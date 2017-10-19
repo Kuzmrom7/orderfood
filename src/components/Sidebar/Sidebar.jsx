@@ -53,19 +53,19 @@ class Sidebar extends Component{
                         <li className={this.activeRoute("/user")}>
                             <NavLink to={'/user'} className="nav-link" activeClassName="active">
                                 <i className="pe-7s-user"></i>
-                                <p>User Profile</p>
+                                <p>Профиль</p>
                             </NavLink>
                         </li>
                         <li className="">
                             <NavLink to={'/'} className="nav-link" activeClassName="">
                                 <i className="fa fa-cutlery"></i>
-                                <p>Menu</p>
+                                <p>Меню</p>
                             </NavLink>
                         </li>
                         <li className="">
                             <NavLink to={'/'} className="nav-link" activeClassName="">
                                 <i className="fa fa-lemon-o"></i>
-                                <p>Dishes</p>
+                                <p>Блюда</p>
                             </NavLink>
                         </li>
 
