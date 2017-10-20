@@ -6,12 +6,12 @@ import {
 } from 'react-router-dom';
 import NotificationSystem from 'react-notification-system';
 
-import Dashboard from '../../views/Dashboard/Dashboard';
-import UserProfile from '../../views/UserProfile/UserProfile';
-import TableList from '../../views/TableList/TableList';
-import Typography from '../../views/Typography/Typography';
-import Icons from '../../views/Icons/Icons';
-import Notifications from '../../views/Notifications/Notifications';
+import Dashboard from '../../layout/Dashboard/Dashboard';
+import UserProfile from '../../layout/UserProfile/UserProfile';
+import TableList from '../../layout/TableList/TableList';
+import Typography from '../../layout/Typography/Typography';
+import Icons from '../../layout/Icons/Icons';
+import Notifications from '../../layout/Notifications/Notifications';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -82,7 +82,7 @@ class App extends Component {
                                 <Route path="/user" component={UserProfile}/>
                                 <Route path="/table" component={TableList}/>
                                 <Route path="/typography" component={Typography}/>
-                                <Route path="/icons" component={Icons}/>k
+                                <Route path="/icons" component={Icons}/>
                                 <Route path="/notifications" component={Notifications}/>
                                 <Redirect from="/" to="/dashboard"/>
                             </Switch>
