@@ -56,16 +56,22 @@ class Sidebar extends Component{
                                 <p>Профиль</p>
                             </NavLink>
                         </li>
-                        <li className="">
-                            <NavLink to={'/'} className="nav-link" activeClassName="">
-                                <i className="fa fa-cutlery"></i>
+                        <li className={this.activeRoute("/menu")}>
+                            <NavLink to={'/menu'} className="nav-link" activeClassName="active">
+                                <i className="fa fa-bars"></i>
                                 <p>Меню</p>
                             </NavLink>
                         </li>
                         <li className="">
-                            <NavLink to={'/'} className="nav-link" activeClassName="">
-                                <i className="fa fa-lemon-o"></i>
+                            <NavLink to={'/diches'} className="nav-link" activeClassName="active">
+                                <i className="fa fa-cutlery"></i>
                                 <p>Блюда</p>
+                            </NavLink>
+                        </li>
+                        <li className="">
+                            <NavLink to={'/personal'} className="nav-link" activeClassName="active">
+                                <i className="fa fa-users"></i>
+                                <p>Персонал</p>
                             </NavLink>
                         </li>
 
