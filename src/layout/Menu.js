@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import {connect} from "react-redux";
+import Link from "react-router";
 
 class Menu extends Component {
 
@@ -14,4 +15,8 @@ class Menu extends Component {
     }
 }
 
-export default Menu;
+const mapStateToProps = (state, props) => ({
+
+});
+
+export default connect(mapStateToProps)(Menu);
