@@ -1,0 +1,39 @@
+.card {
+  background-color: rgba(44, 54, 67, 0.5);
+  border: 1px solid #0E1927;
+  border-radius: 3px;
+  font-weight: 300;
+  overflow: hidden;
+}
+
+.card-body {
+  background-color: #3a4453;
+  min-height: 32px;
+  padding: 5px;
+  border-bottom: #2c3644;;
+}
+
+.card dt {
+  font-weight: 300;
+}
+
+.card small {
+  font-weight: 300;
+}
+
+.card-title {
+  color: #ffffff;
+  font-size: 1.325rem;
+  margin-bottom: 0;
+}
+
+.card-description {
+  color: #7387A1;
+  font-size: 1rem;
+}
+
+.card-footer {
+  background-color: rgba(44, 54, 67, 0.5);
+  padding: 5px;
+
+}

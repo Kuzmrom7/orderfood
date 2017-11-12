@@ -16,7 +16,7 @@ class UserProfile extends Component {
                     <div className="row">
                         <div className="col-md-8">
                             <Card
-                                title="Edit Profile"
+                                title="Изменить профиль"
                                 content={
                                     <form>
                                         <FormInputs

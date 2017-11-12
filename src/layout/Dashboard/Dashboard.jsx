@@ -19,20 +19,7 @@ import {
 } from '../../variables/Variables.jsx';
 
 class Dashboard extends Component {
-    createLegend(json){
-        var legend = [];
-        for(var i = 0; i < json["names"].length; i++){
-            var type = "fa fa-circle text-"+json["types"][i];
-            legend.push(
-                <i className={type} key={i}></i>
-            );
-            legend.push(" ");
-            legend.push(
-                json["names"][i]
-            );
-        }
-        return legend;
-    }
+
     render() {
         return (
             <div className="content">
@@ -93,7 +80,7 @@ class Dashboard extends Component {
                                     }
                                 legend={
                                     <div className="legend">
-                                        {this.createLegend(legendSales)}
+
                                     </div>
                                 }
                             />
@@ -109,56 +96,10 @@ class Dashboard extends Component {
                                 content={
                                     <ChartistGraph data={dataPie} type="Pie"/>
                                 }
-                                legend={
-                                    <div className="legend">
-                                        {this.createLegend(legendPie)}
-                                    </div>
-                                }
+
                             />
                         </div>
                     </div>
-
-                    {/*CARD temporarily comment*/}
-                  {/*  <div className="row">
-                        <div className="col-md-6">
-                            <Card
-                                id="chartActivity"
-                                classes="ct-chart"
-                                title="2014 Sales"
-                                category="All products including Taxes"
-                                stats="Data information certified"
-                                statsIcon="fa fa-check"
-                                content={
-                                    <ChartistGraph
-                                        data={dataBar}
-                                        type="Bar"
-                                        options={optionsBar}
-                                        responsiveOptions={responsiveBar}
-                                    />
-                                }
-                                legend={
-                                    <div className="legend">
-                                        {this.createLegend(legendBar)}
-                                    </div>
-                                }
-                            />
-                        </div>
-
-                        <div className="col-md-6">
-                            <Card
-                                classes="table-full-width"
-                                title="Tasks"
-                                category="Backend development"
-                                stats="Updated 3 minutes ago"
-                                statsIcon="fa fa-history"
-                                content={
-                                    <table className="table">
-                                        <Tasks />
-                                    </table>
-                                }
-                            />
-                        </div>
-                    </div>*/}
 
                 </div>
             </div>
