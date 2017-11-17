@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Navbar } from 'react-bootstrap';
+import '../../assets/css/bootstrap.min.css';
 
 import HeaderLinks from './HeaderLinks.jsx';
 

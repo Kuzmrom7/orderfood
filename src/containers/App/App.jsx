@@ -22,7 +22,13 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 
 import {style} from "../../variables/Variables.jsx";
 
-
+/*const Authenticated = ({ component, ...rest }) => (
+  <Route {...rest} render={(props) => {
+    return (!!Storage().get("token"))?
+      (React.createElement(component, { ...props})) :
+      (<Redirect to="/signin" />);
+  }} />
+);*/
 
 
 class App extends Component {
@@ -41,6 +47,7 @@ class App extends Component {
                         <Header {...this.props}/>
 
                             <Switch>
+
                                 <Route path="/dashboard" component={Dashboard}/>
                                 <Route path="/user" component={UserProfile}/>
                                 <Route path="/menu" component ={Menu}/>
@@ -48,7 +55,8 @@ class App extends Component {
                                 <Route path="/personal" component ={Personal}/>
 
 
-                                <Redirect from="/" to="/dashboard"/>
+                                <Redirect from="/" to="/signin"/>
+
                                {/* Неиспользуемы роуты*/}
                                 <Route path="/table" component={TableList}/>
                                 <Route path="/typography" component={Typography}/>

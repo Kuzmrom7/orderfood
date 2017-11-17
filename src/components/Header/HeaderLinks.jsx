@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { NavItem, Nav } from 'react-bootstrap';
+import {Link} from 'react-router-dom'
 
 
 class HeaderLinks extends Component{
@@ -8,7 +9,12 @@ class HeaderLinks extends Component{
         return (
             <div>
                 <Nav pullRight>
-                    <NavItem eventKey={2} href="#">Log out</NavItem>
+                    <NavItem eventKey={2} href="#">
+                      <Link to={"/signin"}>
+                      Log out
+                      </Link>
+                    </NavItem>
+
                 </Nav>
             </div>
         );
