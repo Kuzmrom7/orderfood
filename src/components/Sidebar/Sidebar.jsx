@@ -30,15 +30,11 @@ class Sidebar extends Component{
         };
         return (
             <div id="sidebar" className="sidebar" data-color="black" data-image={imagine}>
-                <div className="sidebar-background" style={sidebarBackground}></div>
+                <div className="sidebar-background" style={sidebarBackground}/>
                     <div className="logo">
-                        <a  className="simple-text logo-mini">
-                            <div className="logo-img">
-                                <img src={logo} alt="logo_image"/>
-                            </div>
-                        </a>
                         <a  className="simple-text logo-normal">
-                            OrderFood
+                            <img src={logo} alt="logo_image" width={30}/>
+                            rderFood
                         </a>
                     </div>
                 <div className="sidebar-wrapper">
