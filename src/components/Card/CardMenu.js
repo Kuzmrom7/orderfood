@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 export class CardMenu extends Component{
   render(){
     return (
+      <div className="col-md-4">
       <div className={"card "+this.props.cardClass}>
         <div className="header">
           <h4 className="title">{this.props.title}</h4>
@@ -21,6 +22,7 @@ export class CardMenu extends Component{
             </div>
           </div>
         </div>
+      </div>
       </div>
     );
   }

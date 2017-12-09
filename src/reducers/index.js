@@ -1,9 +1,10 @@
 import {combineReducers} from 'redux';
-//This is place for connect reducers
+
 
 import account from "./account";
+import menu from "./menu";
 
 
 export default combineReducers({
-    account
+    account,menu
 })

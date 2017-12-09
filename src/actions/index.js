@@ -3,6 +3,8 @@
 
 import Account from "./account";
 
+import Menu from "./menu";
+
 export {
-    Account
+    Account,Menu
 }
