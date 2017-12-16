@@ -1,10 +1,10 @@
 import {Account} from '../../api';
 
-import {ACCOUNT_CREATE_FAILURE, SESSION_CREATE_SUCCESS} from '../../constants';
+import {ACCOUNT_CREATE_FAILURE, ACCOUNT_CREATE_SUCCESS  } from '../../constants';
 
 
 const SuccessAction = (payload) => ({
-    type: SESSION_CREATE_SUCCESS,
+    type: ACCOUNT_CREATE_SUCCESS,
     payload
 });
 
