@@ -15,10 +15,10 @@ import './assets/sass/light-bootstrap-dashboard.css';
 import './assets/css/demo.css';
 import './assets/css/pe-icon-7-stroke.css';
 
-import App from './containers/App/App.js';
-import Main from './containers/Main/Main';
+import App from './App.js';
 import reducers from './reducers/index';
 import PageSignUp from "./layout/PageSignUp";
+import PageSignIn from "./layout/PageSignIn";
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -28,7 +28,7 @@ ReactDOM.render((
     <BrowserRouter>
       <Switch>
         <Route path="/signup" name="Home" component={PageSignUp}/>
-        <Route path="/signin" name="Home" component={Main}/>
+        <Route path="/signin" name="Home" component={PageSignIn}/>
         <Route path="/" name="Home" component={App}/>
       </Switch>
     </BrowserRouter>
