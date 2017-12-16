@@ -1,5 +1,11 @@
 
+import {applyMiddleware, compose, createStore} from "redux";
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import rootReducer from "./reducer";
 
+
+// ---------------------------------------REDUCER----------------------------------------------
 export function createReducer(initialState, reducerMap) {
     return (state = initialState, action) => {
         const reducer = reducerMap[action.type];
@@ -9,14 +15,15 @@ export function createReducer(initialState, reducerMap) {
     };
 }
 
+// ---------------------------------------REQUEST FOR SERVER ----------------------------------------------
 export function requestJSON(method, url, body, auth) {
 
     let headers = {};
     headers["Content-Type"] = "app/json";
 
-    // if (auth) {
-    //     headers["Authorization"] = ["Bearer", Storage().get("token")].join(" ");
-    // }
+    if (auth) {
+        headers["Authorization"] = ["Bearer", Storage().get("token")].join(" ");
+    }
 
     let opts = {};
     opts.method = method;
@@ -25,7 +32,7 @@ export function requestJSON(method, url, body, auth) {
     if (!!body) {
         opts.body = JSON.stringify(body);
     }
-
+  console.log("----",opts)
     return fetch(url, opts)
         .then(response => {
             if (response.status >= 200 && response.status < 300) {
@@ -41,6 +48,7 @@ export function requestJSON(method, url, body, auth) {
             });
         });
 }
+// ---------------------------------------LOCAL STORAGE ----------------------------------------------
 export function Storage() {
 
   window.addEventListener('storage', storeEvent, false);
@@ -114,4 +122,25 @@ export function Storage() {
   };
 
   return storage;
+}
+
+// ---------------------------------------CONFIGURED STORE REDUX ----------------------------------------------
+export function configureStore() {
+  const devTools = (typeof window === 'object' && typeof window.devToolsExtension !== 'undefined') ?
+    window.devToolsExtension() : f => f;
+
+  const middleware = applyMiddleware(
+    thunk,
+    logger,
+  );
+
+  const enhancer = compose(
+    middleware,
+    devTools
+  );
+
+  return createStore(
+    rootReducer,
+    enhancer
+  );
 }

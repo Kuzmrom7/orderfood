@@ -1,69 +1,56 @@
 import React, {Component} from 'react';
-
+import {Link} from 'react-router-dom';
+import {connect} from "react-redux"
+import Account from "../actions/account";
+import AcountFormSignUp from "../containers/AcountFormSignUp";
+import PlaceFormCreate from "../containers/PlaceFormCreate";
 
 class PageSignUp extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+      createplace:false
+    }
   }
+
+  handlerAccountCreate = (username, email, password) => {
+    let dispatch = this.props.dispatch;
+    return dispatch(Account.Create(username, email, password))
+      .then(() => this.setState({createplace:true}))
+  };
+
+  handlerPlaceCreate = (username, email, password) => {
+    let dispatch = this.props.dispatch;
+    return dispatch(Account.Create(username, email, password))
+      .then(() => console.log())
+  };
+
 
   render() {
     return (
       <div className="container">
-        <div className="row centered-form ">
-          <div className="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div className="panel panel-default">
-              <div className="panel-heading">
-                <h3 className="panel-title">Please sign up for Bootsnipp <small>It's free!</small></h3>
-              </div>
-              <div className="panel-body">
-                <form>
-                  <div className="row">
-                    <div className="col-xs-6 col-sm-6 col-md-6">
-                      <div className="form-group">
-                        <input type="text" name="first_name" id="first_name" className="form-control input-sm"
-                               placeholder="First Name"/>
-                      </div>
-                    </div>
-                    <div className="col-xs-6 col-sm-6 col-md-6">
-                      <div className="form-group">
-                        <input type="text" name="last_name" id="last_name" className="form-control input-sm"
-                               placeholder="Last Name"/>
-                      </div>
-                    </div>
-                  </div>
+        <div className="col-md-4 offset-2">
+          <br/>
+          <br/>
+          <Link to={"/signin"}>
 
-                  <div className="form-group">
-                    <input type="email" name="email" id="email" className="form-control input-sm"
-                           placeholder="Email Address"/>
-                  </div>
+              <i className="fa fa-chevron-left fa-3x" aria-hidden="true"/>
 
-                  <div className="row">
-                    <div className="col-xs-6 col-sm-6 col-md-6">
-                      <div className="form-group">
-                        <input type="password" name="password" id="password" className="form-control input-sm"
-                               placeholder="Password"/>
-                      </div>
-                    </div>
-                    <div className="col-xs-6 col-sm-6 col-md-6">
-                      <div className="form-group">
-                        <input type="password" name="password_confirmation" id="password_confirmation"
-                               className="form-control input-sm" placeholder="Confirm Password"/>
-                      </div>
-                    </div>
-                  </div>
-
-                  <input type="submit" value="Register" className="btn btn-info btn-block"/>
-
-                </form>
-              </div>
-            </div>
-          </div>
+          </Link>
+        </div>
+        <div className="col-md-4">
+          {
+            (this.state.createplace)?
+              <PlaceFormCreate submit = {this.handlerPlaceCreate}/>
+              :
+              <AcountFormSignUp submit={this.handlerAccountCreate}/>
+          }
         </div>
       </div>
-
     );
   }
 }
+const mapStateToProps = (state) => (state);
 
-export default PageSignUp;
+export default connect(mapStateToProps)(PageSignUp)
+

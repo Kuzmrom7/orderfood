@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import logo from '../assets/img/reactlogo.png';
 
 
 class PageSignIn extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {
+
+    };
   }
 
   render() {
-    return (
 
+    return (
       <div className="container">
         <div className="col-md-4">
         </div>
@@ -22,20 +24,22 @@ class PageSignIn extends Component {
                 <h1 className="form-signin-heading"><img src={logo} width="60" alt="logo_image"/>rderFood</h1>
               </a>
             </div>
-            <h2 className="form-signin-heading">Please sign in</h2>
-            <input type="email" className="form-control" placeholder="Email address"/>
+            <h2 className="form-signin-heading">Пожалуйста войдите</h2>
+            <input type="email" className="form-control" placeholder="Username"/>
             <br/>
             <input type="password" className="form-control" placeholder="Password"/>
             <br/>
             <Link to={"/dashboard"}>
-              <button className="btn btn-lg btn-primary">Sign in</button>
+              <button className="btn btn-lg btn-primary">Войти</button>
             </Link>
-
             <Link to={"/signup"}>
-              <button className="btn btn-lg btn-success">Sign up</button>
+              <div className="pull-right">
+                <button className="btn btn-lg btn-success">Регистрация</button>
+              </div>
             </Link>
           </form>
         </div>
+
       </div>
     );
   }

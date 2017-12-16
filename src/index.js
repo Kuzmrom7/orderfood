@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
-import {applyMiddleware, createStore} from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
@@ -16,11 +14,11 @@ import './assets/css/demo.css';
 import './assets/css/pe-icon-7-stroke.css';
 
 import App from './App.js';
-import reducers from './reducers/index';
 import PageSignUp from "./layout/PageSignUp";
 import PageSignIn from "./layout/PageSignIn";
+import {configureStore} from "./utils";
 
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)));
+const store = configureStore();
 
 
 ReactDOM.render((
