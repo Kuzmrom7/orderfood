@@ -16,6 +16,7 @@ export const PLACE_CREATE_FAILURE = 'PLACE_CREATE_FAILURE';
 
 //**************TYPE PLACE*****************//
 export const TYPEPLACE_LIST_SUCCESS = 'TYPEPLACE_LIST_SUCCESS';
+export const TYPEPLACE_LIST_FAILURE = 'TYPEPLACE_LIST_FAILURE';
 
 //**************MENU*****************//
 

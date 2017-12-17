@@ -10,6 +10,11 @@ class Place {
         return requestJSON("POST", uri, body, true);
     }
 
+    static List() {
+        let uri = [api_host, "place"].join("/");
+        return requestJSON("GET", uri, null, true);
+    }
+
 }
 
 export default Place
