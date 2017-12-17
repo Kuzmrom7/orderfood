@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import CardMenuList from "../components/Card/CardMenuList";
+import CardMenuCreate from "../components/Card/CardMenuCreate";
 
 class Menu extends Component {
 
@@ -17,6 +18,8 @@ class Menu extends Component {
 
         <div className="content">
           <div className="container-fluid">
+            <CardMenuCreate/>
+
             <CardMenuList menu={menu} onRemove={this.handleRemoveMenu}/>
             {/*   <CardMenu
               statsIcon="fa fa-clock-o"
