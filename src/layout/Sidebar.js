@@ -41,7 +41,7 @@ class Sidebar extends Component{
           <ul className="nav">
             { this.state.width <= 991 ? (<HeaderLinks />):null }
             <li className={this.activeRoute("/dashboard")}>
-              <NavLink to={'/dashboard'} className="nav-link" activeClassName="active">
+              <NavLink to={'/'} className="nav-link" activeClassName="active">
                 <i className="pe-7s-graph"/>
                 <p>Имя place</p>
               </NavLink>
