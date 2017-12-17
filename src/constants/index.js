@@ -14,7 +14,7 @@ export const ACCOUNT_UPDATE_FAILURE = 'ACCOUNT_UPDATE_FAILURE';
 export const PLACE_CREATE_SUCCESS = 'PLACE_CREATE_SUCCESS';
 export const PLACE_CREATE_FAILURE = 'PLACE_CREATE_FAILURE';
 
-//**************PLACE*****************//
+//**************TYPE PLACE*****************//
 export const TYPEPLACE_LIST_SUCCESS = 'TYPEPLACE_LIST_SUCCESS';
 
 //**************MENU*****************//

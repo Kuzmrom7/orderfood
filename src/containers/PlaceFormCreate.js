@@ -7,9 +7,8 @@ class PlaceFormCreate extends Component {
     super(props);
     this.state = {
       data: {
-        username: "",
-        email: "",
-        password:""
+        name: "",
+          nametypeplace: "ресторан",
       },
       pending:true
     }
@@ -25,15 +24,15 @@ class PlaceFormCreate extends Component {
 
     let data = this.state.data;
 
-    this.props.submit(data.username, data.email, data.password)
-      .then(() => this.props.history.push("/"))
+    this.props.submit(data.name, data.nametypeplace)
+      .then(() =>console.log("submitable"))
   };
 
   handleChangeUsername = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
-    data.username = e.target.value;
+    data.name = e.target.value;
     this.setState({data: data});
   };
 
