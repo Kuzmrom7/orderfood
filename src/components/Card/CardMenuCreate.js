@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {FormGroup,ControlLabel,FormControl} from 'react-bootstrap';
 import {FormInputs} from '../../components/FormInputs/FormInputs.jsx';
 
 
@@ -12,19 +11,19 @@ export class CardMenuCreate extends Component {
                 </div>
                 <div className={"content undefined"}>
                     <FormInputs
-                        ncols = {["col-md-6" , "col-md-6"]}
-                        proprieties = {[
+                        ncols={["col-md-6", "col-md-6"]}
+                        proprieties={[
                             {
-                                label : "Название меню",
-                                type : "text",
-                                bsClass : "form-control",
-                                placeholder : "Наименование"
+                                label: "Название меню",
+                                type: "text",
+                                bsClass: "form-control",
+                                placeholder: "Наименование"
                             },
                             {
-                                label : "URL фото",
-                                type : "text",
-                                bsClass : "form-control",
-                                placeholder : "Photo"
+                                label: "URL фото",
+                                type: "text",
+                                bsClass: "form-control",
+                                placeholder: "Photo"
                             }
                         ]}
                     />

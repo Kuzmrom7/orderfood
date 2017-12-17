@@ -5,9 +5,10 @@ import UserProfile from './layout/UserProfile';
 import Menu from './layout/Menu';
 import Diches from "./layout/Diches";
 import Personal from "./layout/Personal";
+import {Storage} from "./utils";
 
 const Main = () => {
-/*  const Authenticated = ({component, ...rest}) => (
+  const Authenticated = ({component, ...rest}) => (
     <Route {...rest} render={(props) => {
       return (!!Storage().get("token"))
         ? (React.createElement(component, {...props}))
@@ -20,19 +21,20 @@ const Main = () => {
       return (!!Storage().get("token"))
         ? (<Redirect to="/"/>)
         : (React.createElement(component, {...props}));
-    }}/>*/
+    }}/>
+  );
 
 return (
 
     <Switch>
-      <Route path="/dashboard" component={Dashboard}/>
-      <Route path="/user" component={UserProfile}/>
-      <Route path="/menu" component={Menu}/>
-      <Route path="/diches" component={Diches}/>
-      <Route path="/personal" component={Personal}/>
+      <Authenticated exact path="/" component={Dashboard}/>
+      <Authenticated exact path="/user" component={UserProfile}/>
+      <Authenticated exact path="/menu" component={Menu}/>
+      <Authenticated exact path="/diches" component={Diches}/>
+      <Authenticated exact path="/personal" component={Personal}/>
 
 
-      <Redirect from="/" to="/signin"/>
+     {/* <Redirect from="/" to="/signin"/>*/}
 
 
 
