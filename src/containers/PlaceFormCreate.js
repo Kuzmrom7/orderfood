@@ -30,7 +30,7 @@ class PlaceFormCreate extends Component {
     let data = this.state.data;
 
     this.props.submit(data.name, data.nametypeplace)
-      .then(() =>console.log("submitable"))
+      .then(() =>console.log(""))
   };
 
   handleChangeUsername = (e) => {
@@ -71,9 +71,8 @@ class PlaceFormCreate extends Component {
         />
         <br/>
         <label >Выберите тип</label>
-        <select className="form-control" id="sel1" onChange={this.handleChangeOption} >
+        <select className="form-control text-capitalize" id="sel1" onChange={this.handleChangeOption} >
             {Object.keys(place).map((id, index) => {
-                console.log("place", place, "id ", id)
                 const p = place[id];
                     return (
                         <option key={index} className="text-capitalize" >{p}</option>
@@ -81,7 +80,6 @@ class PlaceFormCreate extends Component {
                 }
             )}
         </select>
-
         <br/>
         <button type="submit" className="btn btn-lg btn-success">Добавить</button>
       </form>

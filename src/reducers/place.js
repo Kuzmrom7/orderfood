@@ -5,9 +5,7 @@ import {PLACE_CREATE_FAILURE, PLACE_CREATE_SUCCESS, TYPEPLACE_LIST_FAILURE,TYPEP
 const convert = (payload) => {
 
     return {
-
     name: payload.meta
-
     };
 };
 

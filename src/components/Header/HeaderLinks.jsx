@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
 import { NavItem, Nav } from 'react-bootstrap';
-/*import Session from "../../actions/session";*/
+import Session from "../../actions/session";
 import {connect} from "react-redux";
 
 
 
 class HeaderLinks extends Component{
+    constructor(props) {
+        super(props);
+        this.state = {}
+    }
 
     handlerSessionRemove = (login, password) => {
-        console.log("SESSION")
-       /* let dispatch = this.props.dispatch;
-        return dispatch(Session.Create(login, password))
-            .then(() =>  this.props.history.push("/"))*/
+        let dispatch = this.props.dispatch;
+        return dispatch(Session.Remove(login, password))
+            .then(() =>  window.location.reload())
     };
 
     render(){
@@ -29,6 +32,6 @@ class HeaderLinks extends Component{
         );
     }
 }
-const mapStateToProps = (state) => (state);
+const mapStateToProps = (state,props) => (state,props);
 
 export default connect(mapStateToProps)(HeaderLinks)

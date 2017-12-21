@@ -13,6 +13,7 @@ class PageSignIn extends Component {
   }
     handlerSessionCreate = (login, password) => {
         let dispatch = this.props.dispatch;
+        console.log("++++++", this.props.history)
         return dispatch(Session.Create(login, password))
             .then(() =>  this.props.history.push("/"))
     };
