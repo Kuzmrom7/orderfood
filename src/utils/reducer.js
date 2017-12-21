@@ -7,6 +7,7 @@ function get() {
   let reducers = {};
   reducers["account"] = reducer.account;
   reducers["session"] = reducer.session;
+  reducers["place"] = reducer.place;
   reducers["menu"] = reducer.menu;
 
   return reducers;

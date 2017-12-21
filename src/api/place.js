@@ -11,7 +11,7 @@ class Place {
     }
 
     static List() {
-        let uri = [api_host, "place"].join("/");
+        let uri = [api_host, "typeplace"].join("/");
         return requestJSON("GET", uri, null, true);
     }
 
