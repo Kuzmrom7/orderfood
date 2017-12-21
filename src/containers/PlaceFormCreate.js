@@ -28,6 +28,7 @@ class PlaceFormCreate extends Component {
     e.preventDefault();
 
     let data = this.state.data;
+    console.log("DATA" , data)
 
     this.props.submit(data.name, data.nametypeplace)
       .then(() =>console.log(""))
@@ -43,7 +44,6 @@ class PlaceFormCreate extends Component {
 
     handleChangeOption = (e) => {
         e.preventDefault();
-
         let data = this.state.data;
         data.nametypeplace = e.target.value;
         this.setState({data: data});
