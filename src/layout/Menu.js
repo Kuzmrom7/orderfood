@@ -4,11 +4,21 @@ import CardMenuList from "../components/Card/CardMenuList";
 import CardMenuCreate from "../components/Card/CardMenuCreate";
 
 class Menu extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      create : false
+    }
+  }
 
   handleRemoveMenu = (e, menu) => {
     e.preventDefault();
     /*return this.props.dispatch(Project.Remove(project.meta.name))*/
   };
+
+  handleClick=(e) =>  {
+    this.setState({create: !this.state.create})
+  }
 
   render() {
     const menu = this.props.menu;
@@ -18,7 +28,16 @@ class Menu extends Component {
 
         <div className="content">
           <div className="container-fluid">
-            <CardMenuCreate/>
+            <button className="btn btn success" onClick={this.handleClick}>+ меню</button>
+            <br/>
+            <br/>
+            {
+              (this.state.create)?
+                <CardMenuCreate/>
+                :
+                ""
+            }
+
 
             <CardMenuList menu={menu} onRemove={this.handleRemoveMenu}/>
             {/*   <CardMenu
