@@ -5,6 +5,7 @@ import Account from "../actions/account";
 import Place from "../actions/place";
 import AcountFormSignUp from "../containers/AcountFormSignUp";
 import PlaceFormCreate from "../containers/PlaceFormCreate";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class PageSignUp extends Component {
   constructor(props) {
@@ -17,7 +18,9 @@ class PageSignUp extends Component {
   handlerAccountCreate = (username, email, password) => {
     let dispatch = this.props.dispatch;
     return dispatch(Account.Create(username, email, password))
+      .then(()=>  NotificationManager.success('Аккаунт создан! Добавьте заведение!', 'Успешно!'))
       .then(() => this.setState({createplace:true}))
+      .catch(()=> NotificationManager.error('Ошибка', 'Упс..!') )
   };
 
   handlerPlaceCreate = (name, nametypeplace) => {
@@ -47,6 +50,7 @@ class PageSignUp extends Component {
               <AcountFormSignUp submit={this.handlerAccountCreate}/>
           }
         </div>
+        <NotificationContainer/>
       </div>
     );
   }
