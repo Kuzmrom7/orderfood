@@ -22,6 +22,7 @@ class UserProfile extends Component {
       .then(() => {
               NotificationManager.success('Обновлено', 'Данные профиля успешно изменены');
       })
+
   };
   render() {
     return (

@@ -1,48 +1,56 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import CardDishCreate from "../components/Card/CardDishCreate";
-
+import Dish from "../actions/dish";
+import {connect} from "react-redux";
+import Card from "../components/Card/Card"
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Diches extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      create : false
+      create: false
     }
   }
-  handleClick=(e) =>  {
+
+  handleClick = (e) => {
     this.setState({create: !this.state.create})
+  };
+  handleSubmit = (name, url, typedish, timemin, description) => {
+    let dispatch = this.props.dispatch;
+    return dispatch(Dish.Create(name, url, typedish, timemin, description))
+      .then(() => console.log("OK"))
+      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
   }
-    render() {
-        return (
-          <div>
+
+  render() {
+    return (
+      <div>
+        <br/>
+        <div className="content">
+          <div className="container-fluid">
+            <button className="btn btn success" onClick={this.handleClick}>+ Блюдо</button>
             <br/>
-          <div className="content">
-            <div className="container-fluid">
-                <button className="btn btn success" onClick={this.handleClick}>+ блюдо</button>
-                <br/>
-                <br/>
-                {
-                  (this.state.create)?
-                    <CardDishCreate/>
-                    :
-                    ""
-                }
-             {/*   <div className="col-md-12">
-                  <Card
-                    title="Все блюда"
-                    contentClass="all-icons"
-                    content={
-                      <div className="row">
-                      </div>
-                    }
-                  />
-                </div>*/}
-            </div>
+            <br/>
+            {
+              (this.state.create) ?
+                <CardDishCreate submit={this.handleSubmit}/>
+                :
+                ""
+            }
+               <div className="col-md-12">
+
+                </div>
           </div>
-          </div>
-        );
-    }
+          <NotificationContainer/>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Diches;
+const mapStateToProps = (state) => (state);
+
+export default connect(mapStateToProps)(Diches)
+

@@ -9,6 +9,7 @@ function get() {
   reducers["session"] = reducer.session;
   reducers["place"] = reducer.place;
   reducers["menu"] = reducer.menu;
+  reducers["dish"] = reducer.dish;
 
   return reducers;
 }

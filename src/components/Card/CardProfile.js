@@ -91,7 +91,7 @@ export class CardProfile extends Component {
             </div>
             <div className="col-md-4">
               <span>Телефон</span>
-              <input type="text" className="form-control"
+              <input type="tel" className="form-control"
                      placeholder="Телефон пуст заполните пожалуйста"
                      onChange={this.handleChangePhone}
                      value={this.state.data.phone}
@@ -100,7 +100,7 @@ export class CardProfile extends Component {
             </div>
             <div className="col-md-4">
               <span>Сайт</span>
-              <input type="text" className="form-control"
+              <input type="url" className="form-control"
                      placeholder="Сайт пуст заполните пожалуйста"
                      onChange={this.handleChangeUrl}
                      value={this.state.data.url}
