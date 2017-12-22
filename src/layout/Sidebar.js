@@ -28,6 +28,7 @@ class Sidebar extends Component{
     const sidebarBackground = {
       backgroundImage: 'url(' + imagine + ')'
     };
+    const {place} = this.props;
     return (
       <div id="sidebar" className="sidebar" data-color="black" data-image={imagine}>
         <div className="sidebar-background" style={sidebarBackground}/>
@@ -43,7 +44,7 @@ class Sidebar extends Component{
             <li className={this.activeRoute("/dashboard")}>
               <NavLink to={'/'} className="nav-link" activeClassName="active">
                 <i className="pe-7s-graph"/>
-                <p>Управление</p>
+                <p>{place.name}</p>
               </NavLink>
             </li>
             <li className={this.activeRoute("/user")}>

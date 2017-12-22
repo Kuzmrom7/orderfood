@@ -1,20 +1,20 @@
 
-import {Place} from '../../api'
-import {PLACE_FETCH_SUCCESS, PLACE_FETCH_FAILURE} from "../../constants"
+import {Account} from '../../api'
+import {ACCOUNT_FETCH_FAILURE, ACCOUNT_FETCH_SUCCESS} from "../../constants"
 
 const SuccessAction = (payload) => ({
-  type: PLACE_FETCH_SUCCESS,
+  type: ACCOUNT_FETCH_SUCCESS,
   payload
 });
 
 const FailureAction = (payload) => ({
-  type: PLACE_FETCH_FAILURE,
+  type: ACCOUNT_FETCH_FAILURE,
   payload
 });
 
 export default () => (dispatch) => {
   return new Promise((resolve, reject) => {
-    Place.Fetch()
+    Account.Fetch()
       .then(response => {
         dispatch(SuccessAction(response));
         resolve(response)
@@ -25,3 +25,4 @@ export default () => (dispatch) => {
       })
   })
 }
+

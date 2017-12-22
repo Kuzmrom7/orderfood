@@ -9,6 +9,10 @@ class Account {
         let body = {username: username, email: email, password: password};
         return requestJSON("POST", uri, body, false);
     }
+    static Fetch(){
+      let uri = [api_host, "user"].join("/");
+      return requestJSON("GET", uri, null, true);
+    }
 
 }
 

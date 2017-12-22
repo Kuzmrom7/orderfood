@@ -14,6 +14,10 @@ class Place {
         let uri = [api_host, "typeplace"].join("/");
         return requestJSON("GET", uri, null, true);
     }
+  static Fetch(){
+    let uri = [api_host, "place"].join("/");
+    return requestJSON("GET", uri, null, true);
+  }
 
 }
 

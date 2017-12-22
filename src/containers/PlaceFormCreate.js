@@ -11,7 +11,7 @@ class PlaceFormCreate extends Component {
     this.state = {
       data: {
         name: "",
-          nametypeplace: "",
+          nametypeplace: "бар",
       },
       pending:true
     }
@@ -71,7 +71,8 @@ class PlaceFormCreate extends Component {
         />
         <br/>
         <label >Выберите тип</label>
-        <select className="form-control text-capitalize" id="sel1" onChange={this.handleChangeOption} >
+        <select className="form-control text-capitalize" id="sel1" onClick={this.handleChangeOption} >
+          <option disabled>Выберите тип заведения</option>
             {Object.keys(place).map((id, index) => {
                 const p = place[id];
                     return (

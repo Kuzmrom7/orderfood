@@ -2,9 +2,8 @@
 //This is place for connect actions
 
 import Account from "./account";
-
-import Menu from "./menu";
+import Place from "./place";
 
 export {
-    Account,Menu
+    Account,Place
 }
