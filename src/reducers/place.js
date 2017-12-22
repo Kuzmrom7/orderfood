@@ -4,14 +4,19 @@ import {
   PLACE_CREATE_SUCCESS,
   PLACE_FETCH_FAILURE,
   PLACE_FETCH_SUCCESS,
-  TYPEPLACE_LIST_SUCCESS
+  TYPEPLACE_LIST_SUCCESS,
+  PLACE_UPDATE_FAILURE,
+  PLACE_UPDATE_SUCCESS
 } from "../constants";
 
 
 const convert = (payload) => {
 
   return {
-    name: payload.meta
+    typePlace: {
+      name: payload.meta
+    }
+
   };
 };
 const convert_place = (payload) => {
@@ -69,6 +74,13 @@ export const place = createReducer(initialState, {
   [PLACE_FETCH_FAILURE]: (state) => {
     return Object.assign({}, state);
   },
+  [PLACE_UPDATE_SUCCESS]: (state, payload) => {
+    return Object.assign({}, state, convert_place(payload));
+  },
+  [PLACE_UPDATE_FAILURE]: (state) => {
+    return Object.assign({}, state);
+  }
+
 
 });
 

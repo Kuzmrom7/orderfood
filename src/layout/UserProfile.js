@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import CardProfile from "../components/Card/CardProfile";
-import {Account,Place} from "../actions";
-import Preloader from "../components/Preloader";
+import {Place} from "../actions";
 import {connect} from "react-redux";
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class UserProfile extends Component {
   constructor(props) {
@@ -11,23 +11,29 @@ class UserProfile extends Component {
     this.state = {
       pending: true,
     };
+
   }
 
-/*  handlePlaceUpdate= (placeName, phoneNumber,url,city) =>{
+
+
+  handlePlaceSubmit= ( phoneNumber,url,adress) =>{
     let dispatch = this.props.dispatch;
-    return dispatch(Place.Update((placeName, phoneNumber,url,city))
-      .then(() => console.log())
-  }*/
+    return dispatch(Place.Update( phoneNumber,url,adress))
+      .then(() => {
+              NotificationManager.success('Обновлено', 'Данные профиля успешно обновлены');
+      })
+  };
   render() {
     return (
       <div className="content">
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">
-                <CardProfile/>
+                <CardProfile submit={this.handlePlaceSubmit}/>
             </div>
           </div>
         </div>
+        <NotificationContainer/>
       </div>
     );
   }

@@ -32,7 +32,6 @@ export function requestJSON(method, url, body, auth) {
     if (!!body) {
         opts.body = JSON.stringify(body);
     }
-  console.log("----",opts)
     return fetch(url, opts)
         .then(response => {
             if (response.status >= 200 && response.status < 300) {

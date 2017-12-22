@@ -2,13 +2,48 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 
 
+
 export class CardProfile extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      data : {
+        phone : this.props.place.phone,
+        url :this.props.place.url,
+        adress: this.props.place.adress
+      }
     };
   }
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    let data = this.state.data;
+    this.props.submit(data.phone, data.url, data.adress)
+      .then(() =>console.log(""))
+  };
+
+  handleChangePhone = (e) => {
+    e.preventDefault();
+
+    let data = this.state.data;
+    data.phone = e.target.value;
+    this.setState({data: data});
+  };
+  handleChangeUrl = (e) => {
+    e.preventDefault();
+
+    let data = this.state.data;
+    data.url = e.target.value;
+    this.setState({data: data});
+  };
+  handleChangeaAdress = (e) => {
+    e.preventDefault();
+
+    let data = this.state.data;
+    data.adress = e.target.value;
+    this.setState({data: data});
+  };
   render() {
     const {account,place} = this.props;
     return (
@@ -57,26 +92,30 @@ export class CardProfile extends Component {
             <div className="col-md-4">
               <span>Телефон</span>
               <input type="text" className="form-control"
-                     placeholder="Номер телефона"
-                     value={place.phone}
+                     placeholder="Телефон пуст заполните пожалуйста"
+                     onChange={this.handleChangePhone}
+                     value={this.state.data.phone}
+
               />
             </div>
             <div className="col-md-4">
               <span>Сайт</span>
               <input type="text" className="form-control"
-                     placeholder="Сайт"
-                     value={place.url}
+                     placeholder="Сайт пуст заполните пожалуйста"
+                     onChange={this.handleChangeUrl}
+                     value={this.state.data.url}
               />
             </div>
             <div className="col-md-12">
               <span>Адрес</span>
               <input type="text" className="form-control"
-                     placeholder="Адрес"
-                     value={place.adress}
+                     placeholder="Адрес пуст заполните пожалуйста"
+                     onChange={this.handleChangeaAdress}
+                     value={this.state.data.adress}
               />
             </div>
             <div className="col-md-1">
-              <button className="btn btn-lg btn-primary">Обновить</button>
+              <button type="submit" className="btn btn-lg btn-primary">Обновить</button>
             </div>
           </form>
 
