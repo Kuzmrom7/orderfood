@@ -19,7 +19,7 @@ class MenuPage extends Component {
     Promise.all([
       this.props.dispatch(Menu.List())
     ])
-      .then(() => NotificationManager.success('Обновлено', ''))
+      .then(() => NotificationManager.success('Список меню обновлен', ''))
 
   }
 
@@ -30,13 +30,14 @@ class MenuPage extends Component {
     let dispatch = this.props.dispatch;
     let placename = this.props.place.name;
     return dispatch(Menu.Create(name, placename, url))
-      .then(() => NotificationManager.success('Добавлено', ''))
+      .then(() => NotificationManager.success('Меню создано', ''))
       .then(() => this.props.dispatch(Menu.List()))
       .then(() => this.setState({create: false}))
       .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
   };
 
   render() {
+
     return (
       <div>
         <br/>

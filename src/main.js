@@ -6,6 +6,7 @@ import MenuPage from './layout/MenuPage';
 import Diches from "./layout/Diches";
 import Personal from "./layout/Personal";
 import {Storage} from "./utils";
+import MenuItem from "./layout/MenuItem";
 
 const Main = () => {
   const Authenticated = ({component, ...rest}) => (
@@ -33,7 +34,7 @@ return (
       <Authenticated exact path="/diches" component={Diches}/>
       <Authenticated exact path="/personal" component={Personal}/>
 
-
+      <Authenticated exact path='/menu/:name' component={MenuItem}/>
      {/* <Redirect from="/" to="/signin"/>*/}
 
 

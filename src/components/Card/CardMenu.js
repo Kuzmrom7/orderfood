@@ -23,7 +23,7 @@ export class CardMenu extends Component {
           <div className="header">
             <h4 className="title text-capitalize">{this.props.title}
             <div className="pull-right" onClick={this.handleRemove}>
-              <i className="fa fa-trash-o" aria-hidden="true"/>
+              <i className="fa fa-level-up" aria-hidden="true"/>
             </div>
             </h4>
 

@@ -11,6 +11,7 @@ function get() {
   reducers["menu"] = reducer.menu;
   reducers["dish"] = reducer.dish;
   reducers["type_dishes"] = reducer.type_dishes;
+  reducers["menu_dish_fetch"] = reducer.menu_dish_fetch;
 
   return reducers;
 }

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom"
 import {connect} from "react-redux";
 import CardMenu from "../../components/Card/CardMenu"
 
@@ -9,9 +10,11 @@ export class CardMenuList extends Component {
 
     return (
       <div>
-        {Object.keys(menu).map((id) => {
+        {Object.keys(menu).map((id,index) => {
             const p = menu[id];
+            let name = p["name"];
             return(
+              <Link key={index} to={`/menu/${id}`}>
               <CardMenu
                 statsIcon="fa fa-clock-o"
                 id="chartPreferences"
@@ -20,6 +23,7 @@ export class CardMenuList extends Component {
                 stats={ p["updated"]}
                 imgMenu={p["url"]}
               />
+              </Link>
             );
           }
         )}

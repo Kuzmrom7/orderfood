@@ -14,6 +14,17 @@ class Menu {
     let uri = [api_host, "menu"].join("/");
     return requestJSON("GET", uri, null, true);
   }
+  static Add(nameDish,nameMenu) {
+    let uri = [api_host, "menudish"].join("/");
+    let body = {namemenu: nameMenu,namedish:nameDish};
+    return requestJSON("POST", uri, body, true);
+  }
+  static MenuDish(nameMenu,nameTypeDish) {
+    let uri = [api_host, "menudish","list"].join("/");
+    let body = {nameMenu: nameMenu, nameTypeDish:nameTypeDish};
+    console.log("Data  ", uri,body)
+    return requestJSON("POST", uri, body, true);
+  }
 
 }
 

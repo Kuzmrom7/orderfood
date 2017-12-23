@@ -17,7 +17,7 @@ class Diches extends Component {
     Promise.all([
       this.props.dispatch(Dish.List())
     ])
-      .then(() =>   NotificationManager.success('Обновлено', ''))
+      .then(() =>   NotificationManager.success('Блюда обновлены', ''))
 
   }
   handleClick = (e) => {
@@ -26,7 +26,7 @@ class Diches extends Component {
   handleSubmit = (name, url, typedish, timemin, description) => {
     let dispatch = this.props.dispatch;
     return dispatch(Dish.Create(name, url, typedish, timemin, description))
-      .then(() =>  NotificationManager.success('Добавлено', ''))
+      .then(() =>  NotificationManager.success('Блюдо добавлено', ''))
       .then(() =>   this.props.dispatch(Dish.List()))
       .then(()=> this.setState({create: false}))
       .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
