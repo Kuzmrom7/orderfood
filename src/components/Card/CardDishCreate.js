@@ -74,7 +74,7 @@ export class CardDishCreate extends Component {
     if (this.state.pending) return (
       <div><Preloader/></div>
     );
-    const {dish} = this.props;
+    const {type_dishes} = this.props;
     return (
       <div className={"card undefined"}>
         <div className="header">
@@ -94,9 +94,8 @@ export class CardDishCreate extends Component {
 
             <div className="col-md-6">
               <span>URL photo</span>
-              <input type="url" className="form-control"
+              <input type="text" className="form-control"
                      placeholder="" onChange={this.handleChangeUrl}
-                     value={this.state.data.url}
               />
             </div>
 
@@ -104,8 +103,8 @@ export class CardDishCreate extends Component {
               <span>Выбрать тип: </span>
               <select className="form-control text-capitalize" id="sel1" onClick={this.handleChangeType} >
                 <option disabled selected>Выберите тип блюда</option>
-                {Object.keys(dish).map((id, index) => {
-                    const p = dish[id];
+                {Object.keys(type_dishes).map((id, index) => {
+                    const p = type_dishes[id];
                     return (
                       <option key={index} className="text-capitalize" >{p}</option>
                     )
@@ -143,7 +142,7 @@ export class CardDishCreate extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  dish: state.dish
+  type_dishes: state.type_dishes
 });
 
 export default connect(mapStateToProps)(CardDishCreate);

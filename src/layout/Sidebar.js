@@ -32,12 +32,14 @@ class Sidebar extends Component{
     return (
       <div id="sidebar" className="sidebar" data-color="black" data-image={imagine}>
         <div className="sidebar-background" style={sidebarBackground}/>
-        <div className="logo">
+
+        <div className="logo" >
           <a  className="simple-text logo-normal">
             <img src={logo} alt="logo_image" width={30}/>
             rderFood
           </a>
         </div>
+
         <div className="sidebar-wrapper">
           <ul className="nav">
             { this.state.width <= 991 ? (<HeaderLinks />):null }

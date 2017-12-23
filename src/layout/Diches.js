@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import CardDishCreate from "../components/Card/CardDishCreate";
 import Dish from "../actions/dish";
+import CardDishList from "../components/Card/CardDishList"
 import {connect} from "react-redux";
-import Card from "../components/Card/Card"
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import {Account, Place} from "../actions";
 
 class Diches extends Component {
 
@@ -13,16 +14,24 @@ class Diches extends Component {
       create: false
     }
   }
+  componentDidMount(){
+    Promise.all([
+      this.props.dispatch(Dish.List())
+    ])
+      .then(() =>   NotificationManager.success('Обновлено', ''))
 
+  }
   handleClick = (e) => {
     this.setState({create: !this.state.create})
   };
   handleSubmit = (name, url, typedish, timemin, description) => {
     let dispatch = this.props.dispatch;
     return dispatch(Dish.Create(name, url, typedish, timemin, description))
-      .then(() => console.log("OK"))
+      .then(() =>  NotificationManager.success('Добавлено', ''))
+      .then(() =>   this.props.dispatch(Dish.List()))
+      .then(()=> this.setState({create: false}))
       .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
-  }
+  };
 
   render() {
     return (
@@ -40,7 +49,7 @@ class Diches extends Component {
                 ""
             }
                <div className="col-md-12">
-
+                  <CardDishList/>
                 </div>
           </div>
           <NotificationContainer/>

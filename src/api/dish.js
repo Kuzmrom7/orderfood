@@ -12,7 +12,7 @@ class Dish {
   }
 
   static List() {
-    let uri = [api_host, "typeplace"].join("/");
+    let uri = [api_host, "listdish"].join("/");
     return requestJSON("GET", uri, null, true);
   }
   static ListType(){

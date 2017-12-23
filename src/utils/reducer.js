@@ -10,6 +10,7 @@ function get() {
   reducers["place"] = reducer.place;
   reducers["menu"] = reducer.menu;
   reducers["dish"] = reducer.dish;
+  reducers["type_dishes"] = reducer.type_dishes;
 
   return reducers;
 }

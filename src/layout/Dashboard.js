@@ -15,51 +15,14 @@ class Dashboard extends Component {
     return (
       <div className="content">
         <div className="container-fluid">
-          <div className="row">
-            <div className="col-lg-3 col-sm-6">
-              <StatsCard
-                bigIcon={<i className="pe-7s-server text-warning"/>}
-                statsText="Данные"
-                statsValue="105GB"
-                statsIcon={<i className="fa fa-refresh"/>}
-                statsIconText="Updated now"
-              />
-            </div>
-            <div className="col-lg-3 col-sm-6">
-              <StatsCard
-                bigIcon={<i className="pe-7s-wallet text-success"/>}
-                statsText="Revenue"
-                statsValue="$1,345"
-                statsIcon={<i className="fa fa-calendar-o"/>}
-                statsIconText="Last day"
-              />
-            </div>
-            <div className="col-lg-3 col-sm-6">
-              <StatsCard
-                bigIcon={<i className="pe-7s-graph1 text-danger"/>}
-                statsText="Errors"
-                statsValue="23"
-                statsIcon={<i className="fa fa-clock-o"/>}
-                statsIconText="In the last hour"
-              />
-            </div>
-            <div className="col-lg-3 col-sm-6">
-              <StatsCard
-                bigIcon={<i className="fa fa-twitter text-info"/>}
-                statsText="Followers"
-                statsValue="+45"
-                statsIcon={<i className="fa fa-refresh"/>}
-                statsIconText="Updated now"
-              />
-            </div>
-          </div>
+
           <div className="row">
             <div className="col-md-8">
               <Card
                 statsIcon="fa fa-history"
                 id="chartHours"
                 classes="ct-chart"
-                title="Users Behavior"
+                title="График заказов"
                 category="24 Hours performance"
                 stats="Updated 3 minutes ago"
                 content={
@@ -81,7 +44,7 @@ class Dashboard extends Component {
                 statsIcon="fa fa-clock-o"
                 id="chartPreferences"
                 classes="ct-chart ct-perfect-fourth"
-                title="Email Statistics"
+                title="Статистика"
                 category="Last Campaign Performance"
                 stats="Campaign sent 2 days ago"
                 content={

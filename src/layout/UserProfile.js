@@ -20,7 +20,7 @@ class UserProfile extends Component {
     let dispatch = this.props.dispatch;
     return dispatch(Place.Update( phoneNumber,url,adress))
       .then(() => {
-              NotificationManager.success('Обновлено', 'Данные профиля успешно изменены');
+              NotificationManager.success('Обновлено', '');
       })
 
   };

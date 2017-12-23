@@ -5,6 +5,7 @@ import Main from "./main";
 import Preloader from "./components/Preloader";
 import {Account, Place} from "./actions";
 import {connect} from "react-redux";
+import Dish from "./actions/dish";
 
 
 
@@ -20,14 +21,16 @@ class App extends Component {
   componentDidMount(){
     Promise.all([
       this.props.dispatch(Account.Fetch()),
-      this.props.dispatch(Place.Fetch())
+      this.props.dispatch(Place.Fetch()),
+      this.props.dispatch(Dish.List())
     ])
       .then(() => this.setState({pending:false}))
+      .catch(()=>  this.props.history.push("/signin"))
   }
 
   render() {
     if (this.state.pending) return (
-      <div><Preloader/><Main/></div>
+      <div><Preloader/></div>
     );
     return (
 

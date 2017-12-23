@@ -50,27 +50,19 @@ const stateExtension = (state) => {
 
 const initialState = stateExtension({});
 
-export const dish = createReducer(initialState, {
-  [DISH_CREATE_SUCCESS]: (state) => {
-    return Object.assign({}, state);
-  },
-  [DISH_CREATE_FAILURE]: (state) => {
-    return Object.assign({}, state);
-  },
-  [DISH_LIST_SUCCESS]: (state,payload) => {
+export const type_dishes = createReducer(initialState, {
+  [TYPE_DISH_LIST_SUCCESS]: (state, payload) => {
     let newState = initialState;
     Object.keys(payload).forEach(function (key) {
-      newState[key] = convert_dish(payload[key]);
+      newState[key] = payload[key].meta.name;
     });
     return newState;
   },
-  [DISH_LIST_FAILURE]: (state) => {
+  [TYPE_DISH_LIST_FAILURE]: (state) => {
     return Object.assign({}, state);
   },
-
-
 
 
 });
 
-export default dish;
+export default type_dishes;
