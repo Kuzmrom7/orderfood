@@ -4,7 +4,8 @@
 import Account from "./account";
 import Place from "./place";
 import Dish from "./dish";
+import Menu from "./menu";
 
 export  {
-    Account,Place,Dish
+    Account,Place,Dish,Menu
 }

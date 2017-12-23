@@ -2,7 +2,7 @@ import React from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom';
 import Dashboard from './layout/Dashboard';
 import UserProfile from './layout/UserProfile';
-import Menu from './layout/Menu';
+import MenuPage from './layout/MenuPage';
 import Diches from "./layout/Diches";
 import Personal from "./layout/Personal";
 import {Storage} from "./utils";
@@ -29,7 +29,7 @@ return (
     <Switch>
       <Authenticated exact path="/" component={Dashboard}/>
       <Authenticated exact path="/user" component={UserProfile}/>
-      <Authenticated exact path="/menu" component={Menu}/>
+      <Authenticated exact path="/menu" component={MenuPage}/>
       <Authenticated exact path="/diches" component={Diches}/>
       <Authenticated exact path="/personal" component={Personal}/>
 

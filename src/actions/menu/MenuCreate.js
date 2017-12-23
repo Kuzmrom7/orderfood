@@ -13,9 +13,9 @@ const FailureAction = (payload) => ({
   payload
 });
 
-export default (name, namePlace) => (dispatch) => {
+export default (name, placename,url) => (dispatch) => {
   return new Promise((resolve, reject) => {
-    Menu.Create(name, namePlace)
+    Menu.Create(name, placename,url)
       .then(response => {
         dispatch(SuccessAction(response));
         resolve(response);

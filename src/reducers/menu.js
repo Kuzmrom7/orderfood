@@ -1,7 +1,6 @@
 import {createReducer} from "../utils";
-import {MENU_LIST_FETCH_SUCCESS} from "../constants";
+import {MENU_LIST_SUCCESS, MENU_LIST_FAILURE, MENU_LIST_FETCH_SUCCESS} from "../constants";
 
-const initialState = {};
 
 const convert = (payload) => {
   let menu = {
@@ -10,6 +9,35 @@ const convert = (payload) => {
   };
   return menu
 };
+const convert_menu = (payload) => {
+  let user = {
+    name: payload.name,
+    url: payload.url,
+    updated:payload.updated
+  };
+
+  return user;
+};
+
+const stateExtension = (state) => {
+  Object.defineProperty(state, 'filter', {
+    value: (match) => {
+      return Object.keys(state).reduce((prev, el) => {
+        const item = state[el];
+        if ((item.meta.name.toLowerCase().indexOf(match.toLowerCase()) !== -1)
+          || (item.meta.description.toLowerCase().indexOf(match.toLowerCase()) !== -1)) prev[el] = item;
+        return prev;
+      }, {});
+    },
+    writable: true,
+    enumerable: false
+  });
+
+  return state;
+};
+
+
+const initialState = stateExtension({});
 
 export const menu = createReducer(initialState, {
     [MENU_LIST_FETCH_SUCCESS]: (state, payload) => {
@@ -18,7 +46,17 @@ export const menu = createReducer(initialState, {
         newState[payload[key].meta.name] = convert(payload[key]);
       });
       return newState;
-    }
+    },
+    [MENU_LIST_SUCCESS]: (state,payload) => {
+      let newState = initialState;
+      Object.keys(payload).forEach(function (key) {
+        newState[key] = convert_menu(payload[key]);
+      });
+      return newState;
+    },
+    [MENU_LIST_FAILURE]: (state) => {
+      return Object.assign({}, state);
+    },
   },
   {});
 

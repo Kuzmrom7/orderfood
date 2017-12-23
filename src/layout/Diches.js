@@ -4,7 +4,6 @@ import Dish from "../actions/dish";
 import CardDishList from "../components/Card/CardDishList"
 import {connect} from "react-redux";
 import {NotificationContainer, NotificationManager} from 'react-notifications';
-import {Account, Place} from "../actions";
 
 class Diches extends Component {
 
