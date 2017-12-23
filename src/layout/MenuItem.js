@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import StatsCard from "../components/StatsCard/StatsCard";
+import MenuCardItem from "../containers/MenuCardItem";
 import Preloader from "../components/Preloader";
 import Dish from "../actions/dish";
 import {NotificationManager} from "react-notifications";
 import Menu from "../actions/menu";
 import AddDish from "../components/AddDish";
-import {Account} from "../actions";
 
 
 
@@ -16,7 +15,8 @@ class MenuItem extends Component {
     this.state = {
      pending:true,
      name : "",
-      nameDish: ""
+      nameDish: "",
+      pend : true
     }
   }
 
@@ -30,6 +30,7 @@ class MenuItem extends Component {
       this.props.dispatch(Dish.ListType())
     ])
       .then(() => this.setState({pending:false}))
+
 
   }
 
@@ -69,21 +70,18 @@ class MenuItem extends Component {
 
                 {Object.keys(type_dishes).map((id, index) => {
                     const p = type_dishes[id];
-                    Promise.all([
-                      this.props.dispatch(Menu.Menudish(name,p))
-                      ]
-                    ).then(()=>{console.log("TRY")});
-                    return (
-                     <div>
-                       <h4 className="text-capitalize">{p}</h4>
-                       <div className="col-md-12">
-                         <div className="col-md-3">
-                           {menu_dish_fetch.name}
-                           <StatsCard/>
-                         </div>
-                       </div>
-                     </div>
-                    )
+                    Promise.all([this.props.dispatch(Menu.Menudish(name,p))],  this.setState({pend: true}))
+                      .then(() => NotificationManager.success('Загружены меню и блюда', ''),console.log("TEEELOGO"))
+                      .then(() => {
+                        this.setState({pend: false})
+                    })
+                      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'));
+
+                   if (this.state.pend === true)
+                    return <Preloader/>;
+                  else
+                    return <MenuCardItem typeDish={p} nameMenu={name}/>
+
                   }
                 )}
 
