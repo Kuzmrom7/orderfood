@@ -60,7 +60,8 @@ export class AddDish extends Component {
           </div>
           <div className="col-md-6">
             <br/>
-            <button  type="submit" className="btn btn-lg btn-primary ">Добавить блюдо</button>
+            <br/>
+            <button  type="submit" className="btn btn-success ">Добавить блюдо</button>
           </div>
         </div>
       </form>

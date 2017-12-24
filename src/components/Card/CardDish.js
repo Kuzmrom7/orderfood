@@ -17,7 +17,7 @@ export class CardDish extends Component {
     }
     else img = this.props.imgMenu;
     return (
-      <div className="col-md-4">
+      <div className="col-md-3">
         <div className={"card " + this.props.cardClass}>
           <div className="header">
             <h4 className="title text-capitalize">{this.props.title}

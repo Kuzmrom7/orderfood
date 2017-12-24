@@ -17,7 +17,7 @@ class Diches extends Component {
     Promise.all([
       this.props.dispatch(Dish.List())
     ])
-      .then(() =>   NotificationManager.success('Блюда обновлены', ''))
+      .then(() =>   NotificationManager.success('Блюда обновлены', '',1000))
 
   }
   handleClick = (e) => {
