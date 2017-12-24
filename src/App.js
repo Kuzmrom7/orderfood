@@ -6,6 +6,7 @@ import Preloader from "./components/Preloader";
 import {Account, Place,Menu} from "./actions";
 import {connect} from "react-redux";
 import Dish from "./actions/dish";
+import Personal from "./actions/personal";
 
 
 
@@ -23,7 +24,7 @@ class App extends Component {
       this.props.dispatch(Account.Fetch()),
       this.props.dispatch(Place.Fetch()),
       this.props.dispatch(Dish.List()),
-      this.props.dispatch(Menu.List())
+      this.props.dispatch(Menu.List()),
     ])
       .then(() => this.setState({pending:false}))
       .catch(()=>  this.props.history.push("/signin"))
