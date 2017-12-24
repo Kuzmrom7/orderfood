@@ -4,14 +4,15 @@ import CardMenuList from "../components/Card/CardMenuList";
 import CardMenuCreate from "../components/Card/CardMenuCreate";
 import {NotificationContainer, NotificationManager} from "react-notifications";
 import Menu from "../actions/menu"
-import {Dish} from "../actions";
+import Preloader from "../components/Preloader";
 
 
 class MenuPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      create: false
+      create: false,
+      pending: true,
     }
   }
 
@@ -20,6 +21,7 @@ class MenuPage extends Component {
       this.props.dispatch(Menu.List())
     ])
       .then(() => NotificationManager.success('Список меню обновлен', ''))
+      .then(() => this.setState({pending: false}))
 
   }
 
@@ -29,15 +31,19 @@ class MenuPage extends Component {
   handleSubmit = (name, url) => {
     let dispatch = this.props.dispatch;
     let placename = this.props.place.name;
+    this.setState({pending: true})
     return dispatch(Menu.Create(name, placename, url))
       .then(() => NotificationManager.success('Меню создано', ''))
       .then(() => this.props.dispatch(Menu.List()))
+      .then(() => this.setState({pending: false}))
       .then(() => this.setState({create: false}))
       .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
   };
 
   render() {
-
+    if (this.state.pending) return (
+      <Preloader/>
+    );
     return (
       <div>
         <br/>

@@ -1,7 +1,7 @@
 import {createReducer, Storage} from "../utils";
 import {
-MENU_DISH_FETCH_FAILURE,
-  MENU_DISH_FETCH_SUCCESS
+  MENU_DISH_FETCH_FAILURE,
+  MENU_DISH_FETCH_SUCCESS, MENU_FETCH_FAILURE, MENU_FETCH_SUCCESS
 } from "../constants";
 
 
@@ -55,6 +55,16 @@ export const menu_dish_fetch = createReducer(initialState, {
     return newState;
   },
   [MENU_DISH_FETCH_FAILURE]: (state) => {
+    return Object.assign({}, state);
+  },
+  [MENU_FETCH_SUCCESS]: (state, payload) => {
+    let newState = initialState;
+    Object.keys(payload).forEach(function (key) {
+      newState[key] = (payload[key]);
+    });
+    return newState;
+  },
+  [MENU_FETCH_FAILURE]: (state) => {
     return Object.assign({}, state);
   },
 

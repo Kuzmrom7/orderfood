@@ -9,13 +9,15 @@ export class StatsCard extends Component{
                     <div className="row">
                         <div className="col-xs-5">
                             <div className="icon-big text-center icon-warning">
-                                {this.props.bigIcon}
+                              <img   width="100" height="100" src={this.props.bigIcon} alt=""/>
                             </div>
                         </div>
                         <div className="col-xs-7">
                             <div className="numbers">
                                 <p>{this.props.statsText}</p>
+
                                 {this.props.statsValue}
+                                <p> {this.props.timeMin}</p>
                             </div>
                         </div>
                     </div>

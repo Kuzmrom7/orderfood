@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import StatsCard from "../components/StatsCard/StatsCard";
+import CardDish from "../components/Card/CardDish";
 
 class MenuCardItem extends Component {
   constructor(props) {
@@ -12,19 +12,38 @@ class MenuCardItem extends Component {
   }
 
   render() {
-    const {typeDish, nameMenu, menu_dish_fetch} = this.props;
-    const dish = menu_dish_fetch[0];
-    console.log("!!!!!!!!!",dish)
-
+    const {menuFetch} = this.props;
     return (
 
       <div>
-        <h4 className="text-capitalize">{typeDish}</h4>
-        <div className="col-md-12">
-          <div className="col-md-3">
-            <StatsCard statsText={dish}/>
-          </div>
-        </div>
+        {(menuFetch === null) ?
+
+          console.log("NUlL", menuFetch)
+          :
+
+          Object.keys(menuFetch).map((id, index) => {
+            const p = menuFetch[id];
+            return (
+              <div>
+
+
+                <CardDish
+                  statsIcon="fa fa-clock-o"
+                  id="chartPreferences"
+                  classes="ct-chart ct-perfect-fourth"
+                  title={p["name"]}
+                  stats={p["updated"]}
+                  imgMenu={p["url"]}
+                  desc={p["description"]}
+                  timeMin={p["timeMin"]}
+                />
+
+
+              </div>
+            )
+          })
+
+        }
       </div>
 
 
