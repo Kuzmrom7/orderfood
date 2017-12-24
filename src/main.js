@@ -31,7 +31,7 @@ return (
       <Authenticated exact path="/" component={Dashboard}/>
       <Authenticated exact path="/user" component={UserProfile}/>
       <Authenticated exact path="/menu" component={MenuPage}/>
-      <Authenticated exact path="/diches" component={Diches}/>
+      <Authenticated exact path="/dish" component={Diches}/>
       <Authenticated exact path="/personal" component={Personal}/>
 
       <Authenticated exact path='/menu/:name' component={MenuItem}/>

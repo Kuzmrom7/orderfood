@@ -30,7 +30,7 @@ class Sidebar extends Component{
     };
     const {place} = this.props;
     return (
-      <div id="sidebar" className="sidebar" data-color="black" data-image={imagine}>
+      <div id="sidebar" className="sidebar" data-color="grey" data-image={imagine}>
         <div className="sidebar-background" style={sidebarBackground}/>
 
         <div className="logo" >
@@ -45,13 +45,13 @@ class Sidebar extends Component{
             { this.state.width <= 991 ? (<HeaderLinks />):null }
             <li className={this.activeRoute("/dashboard")}>
               <NavLink to={'/'} className="nav-link" activeClassName="active">
-                <i className="pe-7s-graph"/>
+                <i className="fa fa-pie-chart"/>
                 <p>{place.name}</p>
               </NavLink>
             </li>
             <li className={this.activeRoute("/user")}>
               <NavLink to={'/user'} className="nav-link" activeClassName="active">
-                <i className="pe-7s-user"/>
+                <i className="fa fa-user-circle"/>
                 <p>Профиль</p>
               </NavLink>
             </li>
@@ -62,7 +62,7 @@ class Sidebar extends Component{
               </NavLink>
             </li>
             <li className="">
-              <NavLink to={'/diches'} className="nav-link" activeClassName="active">
+              <NavLink to={'/dish'} className="nav-link" activeClassName="active">
                 <i className="fa fa-cutlery"/>
                 <p>Блюда</p>
               </NavLink>
