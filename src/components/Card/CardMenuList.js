@@ -20,7 +20,7 @@ export class CardMenuList extends Component {
                 id="chartPreferences"
                 classes="ct-chart ct-perfect-fourth"
                 title={p["name"]}
-                stats={ p["updated"]}
+                stats={ p["updated"].slice(0,10)}
                 imgMenu={p["url"]}
               />
               </Link>

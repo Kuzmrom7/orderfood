@@ -46,7 +46,7 @@ class TablePersonal extends Component {
                           <td>{p["name"]}</td>
                           <td>{p["phone"]}</td>
                           <td>{p["created"]}</td>
-                          <td>{p["updated"]}</td>
+                          <td>{p["updated"].slice(1,10)}</td>
                           <td><i className="fa fa-trash-o" aria-hidden="true"/></td>
                         </tr>
                       );

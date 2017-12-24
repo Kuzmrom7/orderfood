@@ -17,12 +17,11 @@ export class CardDish extends Component {
     }
     else img = this.props.imgMenu;
     return (
-      <div className="col-md-3">
+      <div className="col-md-3 col-sm-4 ">
         <div className={"card " + this.props.cardClass}>
           <div className="header">
             <h4 className="title text-capitalize">{this.props.title}
               <div className="pull-right" onClick={this.handleRemove}>
-                <i className="fa fa-trash-o" aria-hidden="true"/>
               </div>
             </h4>
 
