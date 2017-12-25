@@ -20,7 +20,6 @@ class MenuPage extends Component {
     Promise.all([
       this.props.dispatch(Menu.List())
     ])
-      .then(() => NotificationManager.success('Список меню обновлен', ''))
       .then(() => this.setState({pending: false}))
 
   }
@@ -33,10 +32,10 @@ class MenuPage extends Component {
     let placename = this.props.place.name;
     this.setState({pending: true})
     return dispatch(Menu.Create(name, placename, url))
-      .then(() => NotificationManager.success('Меню создано', ''))
       .then(() => this.props.dispatch(Menu.List()))
       .then(() => this.setState({pending: false}))
       .then(() => this.setState({create: false}))
+      .then(() => NotificationManager.success('Меню создано', ''))
       .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
   };
 

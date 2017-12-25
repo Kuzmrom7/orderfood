@@ -35,7 +35,7 @@ class MenuCardItem extends Component {
                   stats={p["updated"].slice(0,10)}
                   imgMenu={p["url"]}
                   desc={p["description"]}
-                  timeMin={p["timeMin"]}
+                  timeMin={p["timemin"]}
                 />
 
 
