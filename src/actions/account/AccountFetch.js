@@ -1,4 +1,3 @@
-
 import {Account} from '../../api'
 import {ACCOUNT_FETCH_FAILURE, ACCOUNT_FETCH_SUCCESS} from "../../constants"
 

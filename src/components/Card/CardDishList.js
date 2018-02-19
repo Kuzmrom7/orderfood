@@ -10,24 +10,23 @@ export class CardDishList extends Component {
       <div>
 
 
-
-          {Object.keys(dish).map((id, index) => {
-              const p = dish[id];
-              let dta = Date.UTC(p["updated"])
-              return(
-                <CardDish
-                  statsIcon="fa fa-clock-o"
-                  id="chartPreferences"
-                  classes="ct-chart ct-perfect-fourth"
-                  title={p["name"]}
-                  stats={ p["updated"].slice(0,10)}
-                  imgMenu={p["url"]}
-                  desc = {p["description"]}
-                  timeMin = {p["timemin"]}
-                />
-              );
-            }
-          )}
+        {Object.keys(dish).map((id, index) => {
+            const p = dish[id];
+            let dta = Date.UTC(p["updated"])
+            return (
+              <CardDish
+                statsIcon="fa fa-clock-o"
+                id="chartPreferences"
+                classes="ct-chart ct-perfect-fourth"
+                title={p["name"]}
+                stats={p["updated"].slice(0, 10)}
+                imgMenu={p["url"]}
+                desc={p["description"]}
+                timeMin={p["timemin"]}
+              />
+            );
+          }
+        )}
 
       </div>
 
@@ -38,7 +37,7 @@ export class CardDishList extends Component {
 const mapStateToProps = (state) => {
   return {
     dish: state.dish,
-    type_dishes:state.type_dishes
+    type_dishes: state.type_dishes
   }
 };
 

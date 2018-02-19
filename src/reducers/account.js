@@ -1,5 +1,10 @@
 import {createReducer, Storage} from "../utils";
-import {ACCOUNT_CREATE_FAILURE, ACCOUNT_CREATE_SUCCESS,ACCOUNT_FETCH_SUCCESS, ACCOUNT_FETCH_FAILURE} from "../constants";
+import {
+  ACCOUNT_CREATE_FAILURE,
+  ACCOUNT_CREATE_SUCCESS,
+  ACCOUNT_FETCH_FAILURE,
+  ACCOUNT_FETCH_SUCCESS
+} from "../constants";
 
 const initialState = {
   meta: {
@@ -14,8 +19,8 @@ const initialState = {
 
 const convert = (payload) => {
   let user = {
-      username: payload.username,
-      email: payload.email
+    username: payload.username,
+    email: payload.email
   };
 
   return user;

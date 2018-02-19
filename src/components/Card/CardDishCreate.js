@@ -4,36 +4,14 @@ import {Dish} from "../../actions";
 import Preloader from "../../components/Preloader";
 
 
-
 export class CardDishCreate extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data : {
-        name :"",
-        url: "",
-        typeDish: "",
-        timeMin: 0,
-        desc : ""
-      },
-      pending : true
-    };
-  }
-  componentDidMount(){
-    Promise.all([
-      this.props.dispatch(Dish.ListType())
-    ])
-      .then(() => this.setState({pending:false}))
-  }
   handleSubmit = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
-    this.props.submit(data.name,data.url,data.typeDish, data.timeMin,data.desc)
-      .then(() =>console.log(""))
+    this.props.submit(data.name, data.url, data.typeDish, data.timeMin, data.desc)
+      .then(() => console.log(""))
   };
-
   handleChangeName = (e) => {
     e.preventDefault();
 
@@ -70,6 +48,28 @@ export class CardDishCreate extends Component {
     this.setState({data: data});
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: {
+        name: "",
+        url: "",
+        typeDish: "",
+        timeMin: 0,
+        desc: ""
+      },
+      pending: true
+    };
+  }
+
+  componentDidMount() {
+    Promise.all([
+      this.props.dispatch(Dish.ListType())
+    ])
+      .then(() => this.setState({pending: false}))
+  }
+
   render() {
     if (this.state.pending) return (
       <div><Preloader/></div>
@@ -101,12 +101,12 @@ export class CardDishCreate extends Component {
 
             <div className="col-md-6">
               <span>Выбрать тип: </span>
-              <select className="form-control text-capitalize" id="sel1" onClick={this.handleChangeType} >
+              <select className="form-control text-capitalize" id="sel1" onClick={this.handleChangeType}>
                 <option disabled selected>Выберите тип блюда</option>
                 {Object.keys(type_dishes).map((id, index) => {
                     const p = type_dishes[id];
                     return (
-                      <option key={index} className="text-capitalize" >{p}</option>
+                      <option key={index} className="text-capitalize">{p}</option>
                     )
                   }
                 )}
@@ -141,6 +141,7 @@ export class CardDishCreate extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   type_dishes: state.type_dishes
 });

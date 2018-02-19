@@ -1,8 +1,5 @@
-import {createReducer, Storage} from "../utils";
-import {
-  MENU_DISH_FETCH_FAILURE,
-  MENU_DISH_FETCH_SUCCESS, MENU_FETCH_FAILURE, MENU_FETCH_SUCCESS
-} from "../constants";
+import {createReducer} from "../utils";
+import {MENU_DISH_FETCH_FAILURE, MENU_DISH_FETCH_SUCCESS, MENU_FETCH_FAILURE, MENU_FETCH_SUCCESS} from "../constants";
 
 
 const convert = (payload) => {
@@ -20,7 +17,7 @@ const convert_dish = (payload) => {
     description: payload.description,
     url: payload.url,
     timemin: payload.timemin,
-    updated:payload.updated
+    updated: payload.updated
   };
 
   return user;
@@ -50,7 +47,7 @@ export const menu_dish_fetch = createReducer(initialState, {
   [MENU_DISH_FETCH_SUCCESS]: (state, payload) => {
     let newState = initialState;
     Object.keys(payload).forEach(function (key) {
-      newState[key] =convert_dish(payload[key]);
+      newState[key] = convert_dish(payload[key]);
     });
     return newState;
   },

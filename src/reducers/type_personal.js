@@ -1,9 +1,5 @@
-import {createReducer, Storage} from "../utils";
-import {
-TYPE_PERSONAL_LIST_SUCCESS,
-  TYPE_PERSONAL_LIST_FAILURE
-
-} from "../constants";
+import {createReducer} from "../utils";
+import {TYPE_PERSONAL_LIST_FAILURE, TYPE_PERSONAL_LIST_SUCCESS} from "../constants";
 
 
 const convert = (payload) => {
@@ -17,7 +13,7 @@ const convert = (payload) => {
 };
 const convert_type = (payload) => {
   let user = {
-   id : payload.id,
+    id: payload.id,
     name: payload.name
   };
 

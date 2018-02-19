@@ -1,6 +1,6 @@
 import {Menu} from '../../api';
 
-import {MENU_LIST_FAILURE, MENU_LIST_SUCCESS  } from '../../constants';
+import {MENU_LIST_FAILURE, MENU_LIST_SUCCESS} from '../../constants';
 
 
 const SuccessAction = (payload) => ({

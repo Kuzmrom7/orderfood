@@ -5,6 +5,15 @@ import {connect} from "react-redux";
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class UserProfile extends Component {
+  handlePlaceSubmit = (phoneNumber, url, adress) => {
+    let dispatch = this.props.dispatch;
+    return dispatch(Place.Update(phoneNumber, url, adress))
+      .then(() => {
+        NotificationManager.success('Обновлено', '');
+      })
+
+  };
+
   constructor(props) {
     super(props);
 
@@ -14,23 +23,13 @@ class UserProfile extends Component {
 
   }
 
-
-
-  handlePlaceSubmit= ( phoneNumber,url,adress) =>{
-    let dispatch = this.props.dispatch;
-    return dispatch(Place.Update( phoneNumber,url,adress))
-      .then(() => {
-              NotificationManager.success('Обновлено', '');
-      })
-
-  };
   render() {
     return (
       <div className="content">
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">
-                <CardProfile submit={this.handlePlaceSubmit}/>
+              <CardProfile submit={this.handlePlaceSubmit}/>
             </div>
           </div>
         </div>
@@ -39,9 +38,10 @@ class UserProfile extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   account: state.account,
-  place:state.place
+  place: state.place
 });
 
 export default connect(mapStateToProps)(UserProfile)

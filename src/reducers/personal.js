@@ -1,9 +1,9 @@
-import {createReducer, Storage} from "../utils";
+import {createReducer} from "../utils";
 import {
-PERSONAL_CREATE_SUCCESS,
   PERSONAL_CREATE_FAILURE,
-  PERSONAL_LIST_SUCCESS,
-PERSONAL_LIST_FAILURE
+  PERSONAL_CREATE_SUCCESS,
+  PERSONAL_LIST_FAILURE,
+  PERSONAL_LIST_SUCCESS
 } from "../constants";
 
 
@@ -21,7 +21,7 @@ const convert_dish = (payload) => {
     name: payload.name,
     phone: payload.phone,
     created: payload.created,
-    updated:payload.updated
+    updated: payload.updated
   };
 
   return user;
@@ -54,7 +54,7 @@ export const dish = createReducer(initialState, {
   [PERSONAL_CREATE_FAILURE]: (state) => {
     return Object.assign({}, state);
   },
-  [PERSONAL_LIST_SUCCESS]: (state,payload) => {
+  [PERSONAL_LIST_SUCCESS]: (state, payload) => {
     let newState = initialState;
     Object.keys(payload).forEach(function (key) {
       newState[key] = convert_dish(payload[key]);
@@ -64,8 +64,6 @@ export const dish = createReducer(initialState, {
   [PERSONAL_LIST_FAILURE]: (state) => {
     return Object.assign({}, state);
   },
-
-
 
 
 });

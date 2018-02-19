@@ -1,6 +1,6 @@
 import {Personal} from '../../api';
 
-import {PERSONAL_LIST_FAILURE, PERSONAL_LIST_SUCCESS  } from '../../constants';
+import {PERSONAL_LIST_FAILURE, PERSONAL_LIST_SUCCESS} from '../../constants';
 
 
 const SuccessAction = (payload) => ({

@@ -1,6 +1,6 @@
 import {Menu} from '../../api';
 
-import {MENU_CREATE_SUCCESS,MENU_CREATE_FAILURE} from '../../constants';
+import {MENU_CREATE_FAILURE, MENU_CREATE_SUCCESS} from '../../constants';
 
 
 const SuccessAction = (payload) => ({
@@ -13,9 +13,9 @@ const FailureAction = (payload) => ({
   payload
 });
 
-export default (name, placename,url) => (dispatch) => {
+export default (name, placename, url) => (dispatch) => {
   return new Promise((resolve, reject) => {
-    Menu.Create(name, placename,url)
+    Menu.Create(name, placename, url)
       .then(response => {
         dispatch(SuccessAction(response));
         resolve(response);

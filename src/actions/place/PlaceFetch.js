@@ -1,6 +1,5 @@
-
 import {Place} from '../../api'
-import {PLACE_FETCH_SUCCESS, PLACE_FETCH_FAILURE} from "../../constants"
+import {PLACE_FETCH_FAILURE, PLACE_FETCH_SUCCESS} from "../../constants"
 
 const SuccessAction = (payload) => ({
   type: PLACE_FETCH_SUCCESS,

@@ -1,4 +1,3 @@
-
 import Error from "./error";
 
 const EmailRegex = /^[0-9a-zа-я-\\.]+@[0-9a-zа-я]{2,}\.[a-zа-я]{2,}$/i;

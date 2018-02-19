@@ -6,4 +6,4 @@ import Update from "./MenuUpdate";
 import Remove from "./MenuRemove";
 import Menudish from "./MenuDishFetch"
 
-export default {Create,List,Fetch,Update,Remove,Add,Menudish}
+export default {Create, List, Fetch, Update, Remove, Add, Menudish}

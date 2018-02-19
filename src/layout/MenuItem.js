@@ -9,6 +9,16 @@ import MenuCardItem from "../containers/MenuCardItem";
 
 
 class MenuItem extends Component {
+  handleSubmit = (nameDish, nameMenu) => {
+    let dispatch = this.props.dispatch;
+    this.setState({pending: true});
+    return dispatch(Menu.Add(nameDish, nameMenu))
+      .then(() => NotificationManager.success('Блюдо добавлено!', ''))
+      .then(() => this.props.dispatch(Menu.Menudish(nameMenu)))
+      .then(() => this.setState({pending: false}))
+      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -32,18 +42,6 @@ class MenuItem extends Component {
     ])
       .then(() => this.setState({pending: false}))
   }
-
-
-  handleSubmit = (nameDish, nameMenu) => {
-    let dispatch = this.props.dispatch;
-    this.setState({pending: true});
-    return dispatch(Menu.Add(nameDish, nameMenu))
-      .then(() => NotificationManager.success('Блюдо добавлено!', ''))
-      .then(() => this.props.dispatch(Menu.Menudish(nameMenu)))
-      .then(() => this.setState({pending: false}))
-      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
-  };
-
 
   render() {
     const hash = window.location.pathname.slice(6);

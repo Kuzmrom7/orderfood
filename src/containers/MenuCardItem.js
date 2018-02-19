@@ -32,7 +32,7 @@ class MenuCardItem extends Component {
                   id="chartPreferences"
                   classes="ct-chart ct-perfect-fourth"
                   title={p["name"]}
-                  stats={p["updated"].slice(0,10)}
+                  stats={p["updated"].slice(0, 10)}
                   imgMenu={p["url"]}
                   desc={p["description"]}
                   timeMin={p["timemin"]}

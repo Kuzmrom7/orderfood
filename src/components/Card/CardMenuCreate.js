@@ -1,31 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {Dish} from "../../actions";
-import Preloader from "../../components/Preloader";
-
 
 
 export class CardDishCreate extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data : {
-        name :"",
-        url: "",
-      },
-      pending : true
-    };
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
-    this.props.submit(data.name,data.url)
-      .then(() =>console.log(""))
+    this.props.submit(data.name, data.url)
+      .then(() => console.log(""))
   };
-
   handleChangeName = (e) => {
     e.preventDefault();
 
@@ -40,6 +24,18 @@ export class CardDishCreate extends Component {
     data.url = e.target.value;
     this.setState({data: data});
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: {
+        name: "",
+        url: "",
+      },
+      pending: true
+    };
+  }
 
   render() {
     return (
@@ -75,6 +71,7 @@ export class CardDishCreate extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   type_dishes: state.type_dishes
 });

@@ -3,5 +3,5 @@ import Update from "./AccountUpdate";
 import Fetch from "./AccountFetch"
 
 export default {
-    Create, Update,Fetch
+  Create, Update, Fetch
 }

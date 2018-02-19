@@ -7,30 +7,32 @@ import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class Diches extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      create: false
-    }
-  }
-  componentDidMount(){
-    Promise.all([
-      this.props.dispatch(Dish.List())
-    ])
-      .then(() =>   NotificationManager.success('Блюда обновлены', '',1000))
-
-  }
   handleClick = (e) => {
     this.setState({create: !this.state.create})
   };
   handleSubmit = (name, url, typedish, timemin, description) => {
     let dispatch = this.props.dispatch;
     return dispatch(Dish.Create(name, url, typedish, timemin, description))
-      .then(() =>  NotificationManager.success('Блюдо добавлено', ''))
-      .then(() =>   this.props.dispatch(Dish.List()))
-      .then(()=> this.setState({create: false}))
+      .then(() => NotificationManager.success('Блюдо добавлено', ''))
+      .then(() => this.props.dispatch(Dish.List()))
+      .then(() => this.setState({create: false}))
       .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      create: false
+    }
+  }
+
+  componentDidMount() {
+    Promise.all([
+      this.props.dispatch(Dish.List())
+    ])
+      .then(() => NotificationManager.success('Блюда обновлены', '', 1000))
+
+  }
 
   render() {
     return (
@@ -47,9 +49,9 @@ class Diches extends Component {
                 :
                 ""
             }
-               <div className="col-md-12">
-                  <CardDishList/>
-                </div>
+            <div className="col-md-12">
+              <CardDishList/>
+            </div>
           </div>
           <NotificationContainer/>
         </div>

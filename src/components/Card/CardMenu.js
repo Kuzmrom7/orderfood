@@ -8,11 +8,13 @@ export class CardMenu extends Component {
       create: false
     }
   }
-  handleRemove(){
+
+  handleRemove() {
     console.log("DELETE")
   }
+
   render() {
-    let img ;
+    let img;
     if (this.props.imgMenu === "") {
       img = "https://images.unsplash.com/photo-1446034730750-a0b64d06ad13?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
     }
@@ -22,16 +24,16 @@ export class CardMenu extends Component {
         <div className={"card " + this.props.cardClass}>
           <div className="header">
             <h4 className="title text-capitalize">{this.props.title}
-            <div className="pull-right" onClick={this.handleRemove}>
-              <i className="fa fa-level-up" aria-hidden="true"/>
-            </div>
+              <div className="pull-right" onClick={this.handleRemove}>
+                <i className="fa fa-level-up" aria-hidden="true"/>
+              </div>
             </h4>
 
           </div>
 
           <div className={"content " + this.props.contentClass}>
 
-            <img src={img} className="img-responsive" />
+            <img src={img} className="img-responsive"/>
 
             <div className="footer">
               {this.props.legend}

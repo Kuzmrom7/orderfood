@@ -1,29 +1,22 @@
 import {createReducer} from "../utils";
-import {
-  MENU_FETCH_FAILURE,
-  MENU_FETCH_SUCCESS,
-  MENU_LIST_FAILURE,
-  MENU_LIST_FETCH_SUCCESS,
-  MENU_LIST_SUCCESS
-} from "../constants";
+import {MENU_LIST_FAILURE, MENU_LIST_FETCH_SUCCESS, MENU_LIST_SUCCESS} from "../constants";
 
 
 const convert = (payload) => {
-  let menu = {
+  return {
     id: payload.id || '',
     meta: payload.meta || {},
-  };
-  return menu
+  }
 };
 const convert_menu = (payload) => {
-  let user = {
+  return {
     name: payload.name,
     url: payload.url,
     updated: payload.updated
   };
-
-  return user;
 };
+
+/*
 const convert_fetch = (payload) => {
   let user = {
     name: payload.name,
@@ -33,6 +26,7 @@ const convert_fetch = (payload) => {
 
   return user;
 };
+*/
 
 const stateExtension = (state) => {
   Object.defineProperty(state, 'filter', {

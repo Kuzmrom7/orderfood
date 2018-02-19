@@ -3,11 +3,9 @@ import Header from './layout/Header';
 import Sidebar from './layout/Sidebar';
 import Main from "./main";
 import Preloader from "./components/Preloader";
-import {Account, Place,Menu} from "./actions";
+import {Account, Menu, Place} from "./actions";
 import {connect} from "react-redux";
 import Dish from "./actions/dish";
-import Personal from "./actions/personal";
-
 
 
 class App extends Component {
@@ -19,15 +17,15 @@ class App extends Component {
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     Promise.all([
       this.props.dispatch(Account.Fetch()),
       this.props.dispatch(Place.Fetch()),
       this.props.dispatch(Dish.List()),
       this.props.dispatch(Menu.List()),
     ])
-      .then(() => this.setState({pending:false}))
-      .catch(()=>  this.props.history.push("/signin"))
+      .then(() => this.setState({pending: false}))
+      .catch(() => this.props.history.push("/signin"))
   }
 
   render() {
@@ -49,7 +47,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   account: state.account,
-  place:state.place
+  place: state.place
 });
 
 export default connect(mapStateToProps)(App)

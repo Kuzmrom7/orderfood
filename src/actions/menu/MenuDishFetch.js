@@ -1,5 +1,5 @@
 import {Menu} from '../../api';
-import {MENU_FETCH_FAILURE,MENU_FETCH_SUCCESS} from '../../constants';
+import {MENU_FETCH_FAILURE, MENU_FETCH_SUCCESS} from '../../constants';
 
 
 const SuccessAction = (payload) => ({
@@ -12,7 +12,7 @@ const FailureAction = (payload) => ({
   payload
 });
 
-export default ( nameMenu) => (dispatch) => {
+export default (nameMenu) => (dispatch) => {
   return new Promise((resolve, reject) => {
     Menu.MenuFetch(nameMenu)
       .then(response => {

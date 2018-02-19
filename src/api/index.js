@@ -6,5 +6,5 @@ import Dish from './dish';
 import Personal from './personal';
 
 export {
-    Account,Session,Place,Menu,Dish,Personal
+  Account, Session, Place, Menu, Dish, Personal
 }

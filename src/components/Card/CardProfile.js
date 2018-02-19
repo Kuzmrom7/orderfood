@@ -2,27 +2,14 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 
 
-
 export class CardProfile extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data : {
-        phone : this.props.place.phone,
-        url :this.props.place.url,
-        adress: this.props.place.adress
-      }
-    };
-  }
   handleSubmit = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
     this.props.submit(data.phone, data.url, data.adress)
-      .then(() =>console.log(""))
+      .then(() => console.log(""))
   };
-
   handleChangePhone = (e) => {
     e.preventDefault();
 
@@ -44,8 +31,21 @@ export class CardProfile extends Component {
     data.adress = e.target.value;
     this.setState({data: data});
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: {
+        phone: this.props.place.phone,
+        url: this.props.place.url,
+        adress: this.props.place.adress
+      }
+    };
+  }
+
   render() {
-    const {account,place} = this.props;
+    const {account, place} = this.props;
     return (
       <div className={"card undefined"}>
         <div className="header">
@@ -124,9 +124,10 @@ export class CardProfile extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   account: state.account,
-  place:state.place
+  place: state.place
 });
 
 export default connect(mapStateToProps)(CardProfile);

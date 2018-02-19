@@ -1,6 +1,6 @@
 import {Dish} from '../../api';
 
-import {TYPE_DISH_LIST_FAILURE, TYPE_DISH_LIST_SUCCESS  } from '../../constants';
+import {TYPE_DISH_LIST_FAILURE, TYPE_DISH_LIST_SUCCESS} from '../../constants';
 
 
 const SuccessAction = (payload) => ({

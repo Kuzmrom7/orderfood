@@ -4,5 +4,5 @@ import List from "./PersonalList"
 
 
 export default {
-  Create,List,TypePersonal
+  Create, List, TypePersonal
 }

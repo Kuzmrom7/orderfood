@@ -25,7 +25,7 @@ const Main = () => {
     }}/>
   );
 
-return (
+  return (
 
     <Switch>
       <Authenticated exact path="/" component={Dashboard}/>
@@ -35,7 +35,7 @@ return (
       <Authenticated exact path="/personal" component={Personals}/>
 
       <Authenticated exact path='/menu/:name' component={MenuItem}/>
-     {/* <Redirect from="/" to="/signin"/>*/}
+      {/* <Redirect from="/" to="/signin"/>*/}
 
 
     </Switch>

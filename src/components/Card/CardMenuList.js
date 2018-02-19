@@ -10,19 +10,19 @@ export class CardMenuList extends Component {
 
     return (
       <div>
-        {Object.keys(menu).map((id,index) => {
+        {Object.keys(menu).map((id, index) => {
             const p = menu[id];
             let name = p["name"];
-            return(
+            return (
               <Link key={index} to={`/menu/${id}`}>
-              <CardMenu
-                statsIcon="fa fa-clock-o"
-                id="chartPreferences"
-                classes="ct-chart ct-perfect-fourth"
-                title={p["name"]}
-                stats={ p["updated"].slice(0,10)}
-                imgMenu={p["url"]}
-              />
+                <CardMenu
+                  statsIcon="fa fa-clock-o"
+                  id="chartPreferences"
+                  classes="ct-chart ct-perfect-fourth"
+                  title={p["name"]}
+                  stats={p["updated"].slice(0, 10)}
+                  imgMenu={p["url"]}
+                />
               </Link>
             );
           }

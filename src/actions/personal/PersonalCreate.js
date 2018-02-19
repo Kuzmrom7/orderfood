@@ -1,6 +1,6 @@
 import {Personal} from '../../api';
 
-import {PERSONAL_CREATE_FAILURE, PERSONAL_CREATE_SUCCESS  } from '../../constants';
+import {PERSONAL_CREATE_FAILURE, PERSONAL_CREATE_SUCCESS} from '../../constants';
 
 
 const SuccessAction = (payload) => ({
@@ -13,9 +13,9 @@ const FailureAction = (payload) => ({
   payload
 });
 
-export default (nametypePerson,fio, phone) => (dispatch) => {
+export default (nametypePerson, fio, phone) => (dispatch) => {
   return new Promise((resolve, reject) => {
-    Personal.Create(nametypePerson,fio, phone)
+    Personal.Create(nametypePerson, fio, phone)
       .then(response => {
         dispatch(SuccessAction(response));
         resolve(response);

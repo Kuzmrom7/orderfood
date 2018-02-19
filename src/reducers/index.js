@@ -9,5 +9,5 @@ import personal from "./personal"
 import type_personal from "./type_personal"
 
 export {
-  account, menu,session,place,dish,type_dishes,menu_dish_fetch,personal,type_personal
+  account, menu, session, place, dish, type_dishes, menu_dish_fetch, personal, type_personal
 }

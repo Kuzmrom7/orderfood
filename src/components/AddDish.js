@@ -3,31 +3,30 @@ import {connect} from "react-redux";
 import {Dish} from "../actions";
 
 
-
 export class AddDish extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-   nameDish :"",
-      nameMenu : "",
-      pending : true
-    };
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
 
     let data = this.state;
-    this.props.submit(data.nameDish,data.nameMenu)
-      .then(() =>console.log("+++",data.nameDish,data.nameMenu))
+    this.props.submit(data.nameDish, data.nameMenu)
+      .then(() => console.log("+++", data.nameDish, data.nameMenu))
+  };
+  handleSelect = (e) => {
+    e.preventDefault();
+    this.setState({nameDish: e.target.value});
   };
 
-  handleSelect =(e) =>{
-    e.preventDefault();
-    this.setState({nameDish:  e.target.value});
-  };
-  componentDidMount(){
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      nameDish: "",
+      nameMenu: "",
+      pending: true
+    };
+  }
+
+  componentDidMount() {
     const hash = window.location.pathname.slice(6);
     const {menu} = this.props;
     const p = menu[hash];
@@ -35,7 +34,7 @@ export class AddDish extends Component {
     Promise.all([
       this.props.dispatch(Dish.List())
     ])
-      .then(() => this.setState({pending:false}))
+      .then(() => this.setState({pending: false}))
 
   }
 
@@ -51,7 +50,7 @@ export class AddDish extends Component {
               {Object.keys(dish).map((id, index) => {
                   const p = dish[id];
                   return (
-                    <option key={index} className="text-capitalize" >{p["name"]}</option>
+                    <option key={index} className="text-capitalize">{p["name"]}</option>
                   )
                 }
               )}
@@ -61,16 +60,17 @@ export class AddDish extends Component {
           <div className="col-md-6">
             <br/>
             <br/>
-            <button  type="submit" className="btn btn-success ">Добавить блюдо</button>
+            <button type="submit" className="btn btn-success ">Добавить блюдо</button>
           </div>
         </div>
       </form>
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   menu: state.menu,
-  dish : state.dish
+  dish: state.dish
 });
 
 export default connect(mapStateToProps)(AddDish);

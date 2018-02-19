@@ -4,9 +4,9 @@ const api_host = process.env.REACT_APP_API_HOST;
 
 class Menu {
 
-  static Create(name,placename, url) {
+  static Create(name, placename, url) {
     let uri = [api_host, "menu"].join("/");
-    let body = {name: name,nameplace:placename ,url: url};
+    let body = {name: name, nameplace: placename, url: url};
     return requestJSON("POST", uri, body, true);
   }
 
@@ -14,15 +14,17 @@ class Menu {
     let uri = [api_host, "menu"].join("/");
     return requestJSON("GET", uri, null, true);
   }
-  static Add(nameDish,nameMenu) {
+
+  static Add(nameDish, nameMenu) {
     let uri = [api_host, "menudish"].join("/");
-    let body = {namemenu: nameMenu,namedish:nameDish};
+    let body = {namemenu: nameMenu, namedish: nameDish};
     return requestJSON("POST", uri, body, true);
   }
-  static MenuFetch(nameMenu){
-    let uri = [api_host, "menudish","list"].join("/");
+
+  static MenuFetch(nameMenu) {
+    let uri = [api_host, "menudish", "list"].join("/");
     let body = {nameMenu: nameMenu};
-    console.log("Data  ", uri,body)
+    console.log("Data  ", uri, body)
     return requestJSON("POST", uri, body, true);
   }
 

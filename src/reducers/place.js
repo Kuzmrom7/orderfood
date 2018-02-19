@@ -1,12 +1,12 @@
-import {createReducer, Storage} from "../utils";
+import {createReducer} from "../utils";
 import {
   PLACE_CREATE_FAILURE,
   PLACE_CREATE_SUCCESS,
   PLACE_FETCH_FAILURE,
   PLACE_FETCH_SUCCESS,
-  TYPEPLACE_LIST_SUCCESS,
   PLACE_UPDATE_FAILURE,
-  PLACE_UPDATE_SUCCESS
+  PLACE_UPDATE_SUCCESS,
+  TYPEPLACE_LIST_SUCCESS
 } from "../constants";
 
 

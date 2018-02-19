@@ -5,5 +5,5 @@ import Update from "./PlaceUpdate";
 
 
 export default {
-    Create,List,Fetch,Update
+  Create, List, Fetch, Update
 }

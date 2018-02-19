@@ -8,6 +8,18 @@ import CardPersonalCreate from "../components/Card/CardPersonalCreate";
 
 
 class Personals extends Component {
+  handleClick = (e) => {
+    this.setState({create: !this.state.create})
+  };
+  handleSubmit = (nametypePerson, fio, phone) => {
+    let dispatch = this.props.dispatch;
+    return dispatch(Personal.Create(nametypePerson, fio, phone))
+      .then(() => NotificationManager.success('Сотрудник добавлен!', ''))
+      .then(() => this.props.dispatch(Personal.List()))
+      .then(() => this.setState({create: false}))
+      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -16,10 +28,6 @@ class Personals extends Component {
     }
   }
 
-  handleClick = (e) => {
-    this.setState({create: !this.state.create})
-  };
-
   componentDidMount() {
     Promise.all([
       this.props.dispatch(Personal.List())
@@ -27,15 +35,6 @@ class Personals extends Component {
       .then(() => this.setState({pending: false}))
 
   }
-
-  handleSubmit = (nametypePerson, fio, phone) => {
-    let dispatch = this.props.dispatch;
-    return dispatch(Personal.Create(nametypePerson, fio, phone))
-      .then(() => NotificationManager.success('Сотрудник добавлен!', ''))
-      .then(() =>   this.props.dispatch(Personal.List()) )
-      .then(() => this.setState({create: false}))
-      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
-  };
 
   render() {
     if (this.state.pending) return (

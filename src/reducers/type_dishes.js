@@ -1,12 +1,5 @@
-import {createReducer, Storage} from "../utils";
-import {
-  TYPE_DISH_LIST_SUCCESS,
-  TYPE_DISH_LIST_FAILURE,
-  DISH_CREATE_SUCCESS,
-  DISH_CREATE_FAILURE,
-  DISH_LIST_FAILURE,
-  DISH_LIST_SUCCESS
-} from "../constants";
+import {createReducer} from "../utils";
+import {TYPE_DISH_LIST_FAILURE, TYPE_DISH_LIST_SUCCESS} from "../constants";
 
 
 const convert = (payload) => {
@@ -24,7 +17,7 @@ const convert_dish = (payload) => {
     description: payload.description,
     url: payload.url,
     timemin: payload.timemin,
-    updated:payload.updated
+    updated: payload.updated
   };
 
   return user;

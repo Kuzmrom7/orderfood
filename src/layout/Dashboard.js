@@ -1,13 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ChartistGraph from 'react-chartist';
 import {Card} from '../components/Card/Card.jsx';
-import {StatsCard} from '../components/StatsCard/StatsCard.jsx';
-import {
-  dataPie,
-  dataSales,
-  optionsSales,
-  responsiveSales,
-} from '../variables/Variables.jsx';
+import {dataPie, dataSales, optionsSales, responsiveSales,} from '../variables/Variables.jsx';
 
 class Dashboard extends Component {
 

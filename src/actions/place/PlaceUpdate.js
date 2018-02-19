@@ -1,6 +1,6 @@
 import {Place} from '../../api';
 
-import {PLACE_UPDATE_SUCCESS, PLACE_UPDATE_FAILURE } from '../../constants';
+import {PLACE_UPDATE_FAILURE, PLACE_UPDATE_SUCCESS} from '../../constants';
 
 
 const SuccessAction = (payload) => ({
@@ -13,9 +13,9 @@ const FailureAction = (payload) => ({
   payload
 });
 
-export default (phone,url,adress) => (dispatch) => {
+export default (phone, url, adress) => (dispatch) => {
   return new Promise((resolve, reject) => {
-    Place.Update(phone,url,adress)
+    Place.Update(phone, url, adress)
       .then(response => {
         dispatch(SuccessAction(response));
         resolve(response);

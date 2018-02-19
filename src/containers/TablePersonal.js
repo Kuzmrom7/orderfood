@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Grid, Row, Col, Table } from 'react-bootstrap';
+import {Col, Grid, Row, Table} from 'react-bootstrap';
 import {connect} from "react-redux";
 
 class TablePersonal extends Component {
@@ -41,12 +41,12 @@ class TablePersonal extends Component {
                   <tbody>
                   {Object.keys(personal).map((id, index) => {
                       const p = personal[id];
-                      return(
+                      return (
                         <tr>
                           <td>{p["name"]}</td>
                           <td>{p["phone"]}</td>
                           <td>{p["created"]}</td>
-                          <td>{p["updated"].slice(0,10)}</td>
+                          <td>{p["updated"].slice(0, 10)}</td>
                           <td><i className="fa fa-trash-o" aria-hidden="true"/></td>
                         </tr>
                       );
@@ -77,8 +77,9 @@ class TablePersonal extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
-  personal : state.personal
+  personal: state.personal
 });
 
 export default connect(mapStateToProps)(TablePersonal)

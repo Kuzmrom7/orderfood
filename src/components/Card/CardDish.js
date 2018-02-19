@@ -4,14 +4,15 @@ import React, {Component} from 'react';
 export class CardDish extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    }
+    this.state = {}
   }
-  handleRemove(){
+
+  handleRemove() {
     console.log("DELETE")
   }
+
   render() {
-    let img ;
+    let img;
     if (this.props.imgMenu === "") {
       img = "https://images.unsplash.com/photo-1446034730750-a0b64d06ad13?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
     }
@@ -29,7 +30,7 @@ export class CardDish extends Component {
 
           <div className={"content " + this.props.contentClass}>
 
-            <img src={img} className="img-responsive" />
+            <img src={img} className="img-responsive"/>
             <br/>
             <h6 className>Время приготовления: {this.props.timeMin} минут</h6>
             <br/>

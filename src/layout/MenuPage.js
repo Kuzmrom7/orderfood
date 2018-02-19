@@ -8,6 +8,21 @@ import Preloader from "../components/Preloader";
 
 
 class MenuPage extends Component {
+  handleClick = (e) => {
+    this.setState({create: !this.state.create})
+  };
+  handleSubmit = (name, url) => {
+    let dispatch = this.props.dispatch;
+    let placename = this.props.place.name;
+    this.setState({pending: true})
+    return dispatch(Menu.Create(name, placename, url))
+      .then(() => this.props.dispatch(Menu.List()))
+      .then(() => this.setState({pending: false}))
+      .then(() => this.setState({create: false}))
+      .then(() => NotificationManager.success('Меню создано', ''))
+      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -23,21 +38,6 @@ class MenuPage extends Component {
       .then(() => this.setState({pending: false}))
 
   }
-
-  handleClick = (e) => {
-    this.setState({create: !this.state.create})
-  };
-  handleSubmit = (name, url) => {
-    let dispatch = this.props.dispatch;
-    let placename = this.props.place.name;
-    this.setState({pending: true})
-    return dispatch(Menu.Create(name, placename, url))
-      .then(() => this.props.dispatch(Menu.List()))
-      .then(() => this.setState({pending: false}))
-      .then(() => this.setState({create: false}))
-      .then(() => NotificationManager.success('Меню создано', ''))
-      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
-  };
 
   render() {
     if (this.state.pending) return (

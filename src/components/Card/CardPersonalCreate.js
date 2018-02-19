@@ -4,34 +4,14 @@ import Preloader from "../../components/Preloader";
 import Personal from "../../actions/personal";
 
 
-
 export class CardPersonalCreate extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data : {
-        name :"",
-        phone: "",
-        nametypePerson: ""
-      },
-      pending : true
-    };
-  }
-  componentDidMount(){
-    Promise.all([
-      this.props.dispatch(Personal.TypePersonal())
-    ])
-      .then(() => this.setState({pending:false}))
-  }
   handleSubmit = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
-    this.props.submit(data.nametypePerson,data.name,data.phone)
-      .then(() =>console.log("GO"))
+    this.props.submit(data.nametypePerson, data.name, data.phone)
+      .then(() => console.log("GO"))
   };
-
   handleChangeName = (e) => {
     e.preventDefault();
 
@@ -53,6 +33,26 @@ export class CardPersonalCreate extends Component {
     data.nametypePerson = e.target.value;
     this.setState({data: data});
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: {
+        name: "",
+        phone: "",
+        nametypePerson: ""
+      },
+      pending: true
+    };
+  }
+
+  componentDidMount() {
+    Promise.all([
+      this.props.dispatch(Personal.TypePersonal())
+    ])
+      .then(() => this.setState({pending: false}))
+  }
 
   render() {
     if (this.state.pending) return (
@@ -85,12 +85,12 @@ export class CardPersonalCreate extends Component {
 
             <div className="col-md-4">
               <span>Должность:</span>
-              <select className="form-control text-capitalize" id="sel1" onClick={this.handleChangeType} >
+              <select className="form-control text-capitalize" id="sel1" onClick={this.handleChangeType}>
                 <option disabled selected>Выберите должность</option>
                 {Object.keys(type_personal).map((id, index) => {
                     const p = type_personal[id];
                     return (
-                      <option key={index} className="text-capitalize" >{p["name"]}</option>
+                      <option key={index} className="text-capitalize">{p["name"]}</option>
                     )
                   }
                 )}
@@ -107,6 +107,7 @@ export class CardPersonalCreate extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   type_personal: state.type_personal
 });

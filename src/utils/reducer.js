@@ -2,7 +2,6 @@ import {combineReducers} from "redux";
 import * as reducer from "../reducers";
 
 
-
 function get() {
   let reducers = {};
   reducers["account"] = reducer.account;
