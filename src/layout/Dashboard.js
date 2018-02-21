@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import ChartistGraph from 'react-chartist';
-import {Card} from '../components/Card/Card.jsx';
-import {dataPie, dataSales, optionsSales, responsiveSales,} from '../variables/Variables.jsx';
+import Card, {CardActions, CardContent} from 'material-ui/Card';
+import {CardHeader} from "material-ui";
 
 class Dashboard extends Component {
 
@@ -11,41 +10,21 @@ class Dashboard extends Component {
         <div className="container-fluid">
 
           <div className="row">
-            <div className="col-md-8">
-              <Card
-                statsIcon="fa fa-history"
-                id="chartHours"
-                classes="ct-chart"
-                title="График заказов"
-                category="24 Hours performance"
-                stats="Updated 3 minutes ago"
-                content={
-                  <ChartistGraph
-                    data={dataSales}
-                    type="Line"
-                    options={optionsSales}
-                    responsiveOptions={responsiveSales}/>
-                }
-                legend={
-                  <div className="legend">
+            <div className="col-md-4">
+              <Card className="">
+                <CardHeader
 
-                  </div>
-                }
-              />
+                  title={"ll"}
+                  subheader={"kek"}
+                />
+                <CardContent>{"Goood"}</CardContent>
+
+                <CardActions className="">"dddd"</CardActions>
+
+              </Card>
             </div>
             <div className="col-md-4">
-              <Card
-                statsIcon="fa fa-clock-o"
-                id="chartPreferences"
-                classes="ct-chart ct-perfect-fourth"
-                title="Статистика"
-                category="Last Campaign Performance"
-                stats="Campaign sent 2 days ago"
-                content={
-                  <ChartistGraph data={dataPie} type="Pie"/>
-                }
 
-              />
             </div>
           </div>
 
