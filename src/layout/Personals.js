@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import TablePersonal from "../containers/TablePersonal";
-import {NotificationContainer, NotificationManager} from "react-notifications";
 import Personal from "../actions/personal"
 import Preloader from "../components/Preloader";
 import {connect} from "react-redux";
@@ -14,10 +13,8 @@ class Personals extends Component {
   handleSubmit = (nametypePerson, fio, phone) => {
     let dispatch = this.props.dispatch;
     return dispatch(Personal.Create(nametypePerson, fio, phone))
-      .then(() => NotificationManager.success('Сотрудник добавлен!', ''))
       .then(() => this.props.dispatch(Personal.List()))
       .then(() => this.setState({create: false}))
-      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
   };
 
   constructor(props) {
@@ -61,7 +58,6 @@ class Personals extends Component {
                 ""
             }
           </div>
-          <NotificationContainer/>
         </div>
       </div>
     );

@@ -1,16 +1,6 @@
 import {createReducer} from "../utils";
 import {TYPE_PERSONAL_LIST_FAILURE, TYPE_PERSONAL_LIST_SUCCESS} from "../constants";
 
-
-const convert = (payload) => {
-
-  return {
-    typePlace: {
-      name: payload.meta
-    }
-
-  };
-};
 const convert_type = (payload) => {
   let user = {
     id: payload.id,

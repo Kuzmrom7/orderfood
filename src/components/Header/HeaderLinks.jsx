@@ -32,6 +32,6 @@ class HeaderLinks extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => (state, props);
+const mapStateToProps = (state) => (state);
 
 export default connect(mapStateToProps)(HeaderLinks)

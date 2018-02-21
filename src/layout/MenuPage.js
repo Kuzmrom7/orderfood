@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import CardMenuList from "../components/Card/CardMenuList";
 import CardMenuCreate from "../components/Card/CardMenuCreate";
-import {NotificationContainer, NotificationManager} from "react-notifications";
 import Menu from "../actions/menu"
 import Preloader from "../components/Preloader";
 
@@ -19,8 +18,7 @@ class MenuPage extends Component {
       .then(() => this.props.dispatch(Menu.List()))
       .then(() => this.setState({pending: false}))
       .then(() => this.setState({create: false}))
-      .then(() => NotificationManager.success('Меню создано', ''))
-      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
+      .catch(() => "")
   };
 
   constructor(props) {
@@ -65,7 +63,6 @@ class MenuPage extends Component {
 
           </div>
         </div>
-        <NotificationContainer/>
       </div>
     );
   }

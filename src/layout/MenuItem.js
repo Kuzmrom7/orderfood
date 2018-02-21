@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Preloader from "../components/Preloader";
 import Dish from "../actions/dish";
-import {NotificationContainer, NotificationManager} from "react-notifications";
 import Menu from "../actions/menu";
 import AddDish from "../components/AddDish";
 import MenuCardItem from "../containers/MenuCardItem";
@@ -13,10 +12,8 @@ class MenuItem extends Component {
     let dispatch = this.props.dispatch;
     this.setState({pending: true});
     return dispatch(Menu.Add(nameDish, nameMenu))
-      .then(() => NotificationManager.success('Блюдо добавлено!', ''))
       .then(() => this.props.dispatch(Menu.Menudish(nameMenu)))
       .then(() => this.setState({pending: false}))
-      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
   };
 
   constructor(props) {
@@ -45,7 +42,7 @@ class MenuItem extends Component {
 
   render() {
     const hash = window.location.pathname.slice(6);
-    const {menu, type_dishes, menu_dish_fetch} = this.props;
+    const {menu, menu_dish_fetch} = this.props;
     const p = menu[hash];
     let name = p["name"];
     let img = p["url"];
@@ -63,7 +60,7 @@ class MenuItem extends Component {
               <form className="">
 
                 <div className="text-center">
-                  <img className="img-thumbnail" width="900" height="900" src={img}/>
+                  <img className="img-thumbnail" width="900" height="900" alt="" src={img}/>
                 </div>
                 {
                   Object.keys(menu_dish_fetch).map((id, index) => {
@@ -97,7 +94,6 @@ class MenuItem extends Component {
             <AddDish submit={this.handleSubmit}/>
           </div>
         </div>
-        <NotificationContainer/>
       </div>
     );
   }

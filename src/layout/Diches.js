@@ -3,7 +3,7 @@ import CardDishCreate from "../components/Card/CardDishCreate";
 import Dish from "../actions/dish";
 import CardDishList from "../components/Card/CardDishList"
 import {connect} from "react-redux";
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+
 
 class Diches extends Component {
 
@@ -13,10 +13,9 @@ class Diches extends Component {
   handleSubmit = (name, url, typedish, timemin, description) => {
     let dispatch = this.props.dispatch;
     return dispatch(Dish.Create(name, url, typedish, timemin, description))
-      .then(() => NotificationManager.success('Блюдо добавлено', ''))
       .then(() => this.props.dispatch(Dish.List()))
       .then(() => this.setState({create: false}))
-      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
+      .catch(() => "")
   };
 
   constructor(props) {
@@ -30,7 +29,7 @@ class Diches extends Component {
     Promise.all([
       this.props.dispatch(Dish.List())
     ])
-      .then(() => NotificationManager.success('Блюда обновлены', '', 1000))
+      .then(() => "")
 
   }
 
@@ -53,7 +52,6 @@ class Diches extends Component {
               <CardDishList/>
             </div>
           </div>
-          <NotificationContainer/>
         </div>
       </div>
     );

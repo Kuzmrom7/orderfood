@@ -30,7 +30,7 @@ export class CardDish extends Component {
 
           <div className={"content " + this.props.contentClass}>
 
-            <img src={img} className="img-responsive"/>
+            <img src={img} className="img-responsive" alt=""/>
             <br/>
             <h6 className>Время приготовления: {this.props.timeMin} минут</h6>
             <br/>

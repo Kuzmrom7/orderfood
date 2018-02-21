@@ -2,15 +2,6 @@ import {createReducer} from "../utils";
 import {DISH_CREATE_FAILURE, DISH_CREATE_SUCCESS, DISH_LIST_FAILURE, DISH_LIST_SUCCESS} from "../constants";
 
 
-const convert = (payload) => {
-
-  return {
-    typePlace: {
-      name: payload.meta
-    }
-
-  };
-};
 const convert_dish = (payload) => {
   let user = {
     name: payload.name,

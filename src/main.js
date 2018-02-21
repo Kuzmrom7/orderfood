@@ -17,14 +17,6 @@ const Main = () => {
     }}/>
   );
 
-  const Identificated = ({component, ...rest}) => (
-    <Route {...rest} render={(props) => {
-      return (!!Storage().get("token"))
-        ? (<Redirect to="/"/>)
-        : (React.createElement(component, {...props}));
-    }}/>
-  );
-
   return (
 
     <Switch>

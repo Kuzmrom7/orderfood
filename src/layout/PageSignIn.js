@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
 import Session from "../actions/session";
 import AccountFormSignIn from "../containers/AccountFormSignIn";
 import {connect} from "react-redux";
@@ -10,7 +9,7 @@ class PageSignIn extends Component {
     let dispatch = this.props.dispatch;
     return dispatch(Session.Create(login, password))
       .then(() => this.props.history.push("/"))
-      .catch(() => NotificationManager.error('Ошибка', 'Что-то не так..'))
+      .catch(() => "")
 
   };
 
@@ -28,7 +27,6 @@ class PageSignIn extends Component {
         <div className="col-md-4">
           <AccountFormSignIn submit={this.handlerSessionCreate}/>
         </div>
-        <NotificationContainer/>
       </div>
     );
   }

@@ -7,15 +7,6 @@ import {
 } from "../constants";
 
 
-const convert = (payload) => {
-
-  return {
-    typePlace: {
-      name: payload.meta
-    }
-
-  };
-};
 const convert_dish = (payload) => {
   let user = {
     name: payload.name,

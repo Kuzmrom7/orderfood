@@ -1,28 +1,6 @@
 import {createReducer} from "../utils";
 import {TYPE_DISH_LIST_FAILURE, TYPE_DISH_LIST_SUCCESS} from "../constants";
 
-
-const convert = (payload) => {
-
-  return {
-    typePlace: {
-      name: payload.meta
-    }
-
-  };
-};
-const convert_dish = (payload) => {
-  let user = {
-    name: payload.name,
-    description: payload.description,
-    url: payload.url,
-    timemin: payload.timemin,
-    updated: payload.updated
-  };
-
-  return user;
-};
-
 const stateExtension = (state) => {
   Object.defineProperty(state, 'filter', {
     value: (match) => {

@@ -10,9 +10,8 @@ export class CardDishList extends Component {
       <div>
 
 
-        {Object.keys(dish).map((id, index) => {
+        {Object.keys(dish).map((id) => {
             const p = dish[id];
-            let dta = Date.UTC(p["updated"])
             return (
               <CardDish
                 statsIcon="fa fa-clock-o"

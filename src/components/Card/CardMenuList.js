@@ -12,7 +12,6 @@ export class CardMenuList extends Component {
       <div>
         {Object.keys(menu).map((id, index) => {
             const p = menu[id];
-            let name = p["name"];
             return (
               <Link key={index} to={`/menu/${id}`}>
                 <CardMenu

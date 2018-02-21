@@ -6,8 +6,7 @@ class Dish {
 
   static Create(name, url, typedish, timemin, description) {
     let uri = [api_host, "dish"].join("/");
-    let body = {name: name, description: description, timemin: parseInt(timemin), typedish: typedish, url: url};
-    console.log("Data  ", uri, body)
+    let body = {name: name, description: description, timemin: parseInt(timemin,10), typedish: typedish, url: url};
     return requestJSON("POST", uri, body, true);
   }
 

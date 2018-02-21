@@ -2,14 +2,13 @@ import React, {Component} from 'react';
 import CardProfile from "../components/Card/CardProfile";
 import {Place} from "../actions";
 import {connect} from "react-redux";
-import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class UserProfile extends Component {
   handlePlaceSubmit = (phoneNumber, url, adress) => {
     let dispatch = this.props.dispatch;
     return dispatch(Place.Update(phoneNumber, url, adress))
       .then(() => {
-        NotificationManager.success('Обновлено', '');
+        ""
       })
 
   };
@@ -33,7 +32,6 @@ class UserProfile extends Component {
             </div>
           </div>
         </div>
-        <NotificationContainer/>
       </div>
     );
   }
