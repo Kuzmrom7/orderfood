@@ -1,4 +1,18 @@
 import React, {Component} from 'react';
+import {withStyles} from 'material-ui/styles';
+import Card, {CardActions, CardMedia} from 'material-ui/Card';
+import Button from 'material-ui/Button';
+import AddIcon from 'material-ui-icons/Add';
+import {CardHeader} from "material-ui";
+
+const styles = {
+  card: {
+    maxWidth: 350,
+  },
+  media: {
+    height: 200,
+  },
+};
 
 
 export class CardMenu extends Component {
@@ -9,21 +23,38 @@ export class CardMenu extends Component {
     }
   }
 
-  handleRemove() {
-    console.log("DELETE")
-  }
 
   render() {
+    const {classes} = this.props;
     let img;
-
     if (this.props.imgMenu === "") {
       img = "https://images.unsplash.com/photo-1446034730750-a0b64d06ad13?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
     }
 
-    else img = this.props.imgMenu
+    else img = this.props.imgMenu;
+
     return (
-      <div className="col-md-4">
-        <div className={"card " + this.props.cardClass}>
+      <div className="col-md-4 col-sm-4">
+        <Card className={classes.card}>
+          <CardHeader
+            title={this.props.title}
+            subheader={this.props.stats}
+          />
+          <CardMedia
+            className={classes.media}
+            image={img}
+            title="Contemplative Reptile"
+          />
+          <CardActions>
+            <Button variant="fab" color="primary" aria-label="add" className={classes.button}>
+              <AddIcon/>
+            </Button>
+            <Button size="medium" color="primary">
+              Learn More
+            </Button>
+          </CardActions>
+        </Card>
+        {/*        <div className={"card " + this.props.cardClass}>
           <div className="header">
             <h4 className="title text-capitalize">{this.props.title}
               <div className="pull-right" onClick={this.handleRemove}>
@@ -45,10 +76,10 @@ export class CardMenu extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div>*/}
       </div>
     );
   }
 }
 
-export default CardMenu;
+export default withStyles(styles)(CardMenu);
