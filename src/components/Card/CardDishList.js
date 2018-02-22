@@ -13,6 +13,7 @@ export class CardDishList extends Component {
         {Object.keys(dish).map((id) => {
             const p = dish[id];
             return (
+
               <CardDish
                 statsIcon="fa fa-clock-o"
                 id="chartPreferences"

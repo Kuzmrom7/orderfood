@@ -1,6 +1,17 @@
 import React, {Component} from 'react';
-import Card, {CardActions, CardContent} from 'material-ui/Card';
-import {CardHeader} from "material-ui";
+import PropTypes from 'prop-types';
+import {withStyles} from 'material-ui/styles';
+
+
+const styles = {
+  card: {
+    maxWidth: 300,
+  },
+  media: {
+    height: 200,
+  },
+};
+
 
 class Dashboard extends Component {
 
@@ -11,17 +22,8 @@ class Dashboard extends Component {
 
           <div className="row">
             <div className="col-md-4">
-              <Card className="">
-                <CardHeader
 
-                  title={"ll"}
-                  subheader={"kek"}
-                />
-                <CardContent>{"Goood"}</CardContent>
 
-                <CardActions className="">"dddd"</CardActions>
-
-              </Card>
             </div>
             <div className="col-md-4">
 
@@ -34,4 +36,8 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+Dashboard.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(Dashboard);
