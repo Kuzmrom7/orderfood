@@ -19,8 +19,13 @@ class HeaderLinks extends Component {
   render() {
     return (
       <div>
-        <Nav pullRight>
+        <Nav pullLeft>
+          <NavItem>
+            <i className="fa fa-bars"/>
+          </NavItem>
+        </Nav>
 
+        <Nav pullRight>
           <NavItem eventKey={2} href="#" onClick={this.handlerSessionRemove}>
             Выйти
             <i className="fa fa-sign-out" aria-hidden="true"/>

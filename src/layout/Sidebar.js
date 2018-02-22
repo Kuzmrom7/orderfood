@@ -37,10 +37,10 @@ class Sidebar extends Component {
         <div className="sidebar-background" style={sidebarBackground}/>
 
         <div className="logo">
-          <a className="simple-text logo-normal">
+          <span className="simple-text logo-normal">
             <img src={logo} alt="logo_image" width={30}/>
             rderFood
-          </a>
+          </span>
         </div>
 
         <div className="sidebar-wrapper">
@@ -50,6 +50,12 @@ class Sidebar extends Component {
               <NavLink to={'/'} className="nav-link" activeClassName="active">
                 <i className="fa fa-pie-chart"/>
                 <p>{place.name}</p>
+              </NavLink>
+            </li>
+            <li className={this.activeRoute("/order")}>
+              <NavLink to={'/'} className="nav-link" activeClassName="active">
+                <i className="fa fa-shopping-bag"/>
+                <p>Заказы</p>
               </NavLink>
             </li>
             <li className={this.activeRoute("/user")}>
