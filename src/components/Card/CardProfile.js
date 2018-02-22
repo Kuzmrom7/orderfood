@@ -73,14 +73,13 @@ export class CardProfile extends Component {
                      value={account.email}
               />
             </div>
-            <br/>
-            <br/>
+
 
 
             {/*---------------PLACE--------------*/}
 
 
-            <div className="col-md-4">
+            <div className="col-md-6">
               <span>Название</span>
               <input type="text" className="form-control"
                      placeholder="Название заведения"
@@ -89,7 +88,7 @@ export class CardProfile extends Component {
 
               />
             </div>
-            <div className="col-md-4">
+            <div className="col-md-6">
               <span>Телефон</span>
               <input type="tel" className="form-control"
                      placeholder="Телефон пуст заполните пожалуйста"
@@ -98,7 +97,7 @@ export class CardProfile extends Component {
 
               />
             </div>
-            <div className="col-md-4">
+            <div className="col-md-12">
               <span>Сайт</span>
               <input type="url" className="form-control"
                      placeholder="Сайт пуст заполните пожалуйста"

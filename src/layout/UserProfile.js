@@ -28,7 +28,9 @@ class UserProfile extends Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12">
-              <CardProfile submit={this.handlePlaceSubmit}/>
+              <div className="col-md-6">
+                <CardProfile submit={this.handlePlaceSubmit}/>
+              </div>
             </div>
           </div>
         </div>
