@@ -6,7 +6,21 @@ import Preloader from "./components/Preloader";
 import {Account, Menu, Place} from "./actions";
 import {connect} from "react-redux";
 import Dish from "./actions/dish";
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {blue100, green300, blue700} from 'material-ui/styles/colors';
 
+const muiTheme = getMuiTheme({
+  palette: {
+    primary1Color: green300,
+    primary2Color: blue700,
+    primary3Color: blue100,
+  },
+}, {
+  avatar: {
+    borderColor: null,
+  },
+});
 
 class App extends Component {
   constructor(props) {
@@ -29,18 +43,17 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.pending) return (
-      <div><Preloader/></div>
-    );
+    if (this.state.pending) return (<Preloader/>);
     return (
-
-      <div className="wrapper">
-        <Sidebar {...this.props} />
-        <div id="main-panel" className="main-panel">
-          <Header {...this.props}/>
-          <Main/>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <div className="wrapper">
+          <Sidebar {...this.props} />
+          <div id="main-panel" className="main-panel">
+            <Header {...this.props}/>
+            <Main/>
+          </div>
         </div>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }

@@ -1,16 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from 'material-ui/styles';
-
-
-const styles = {
-  card: {
-    maxWidth: 300,
-  },
-  media: {
-    height: 200,
-  },
-};
 
 
 class Dashboard extends Component {
@@ -40,4 +29,4 @@ Dashboard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Dashboard);
+export default (Dashboard);

@@ -1,20 +1,7 @@
 import React, {Component} from 'react';
-import {withStyles} from 'material-ui/styles';
-import Card, {CardActions, CardContent, CardMedia} from 'material-ui/Card';
-import Button from 'material-ui/Button';
-import AddIcon from 'material-ui-icons/Add';
-import Typography from 'material-ui/Typography';
-import {Divider} from "material-ui";
-
-
-const styles = {
-  card: {
-    maxWidth: 350,
-  },
-  media: {
-    height: 200,
-  },
-};
+import {Card, CardMedia, CardText, CardTitle, Divider, FlatButton, RaisedButton} from "material-ui";
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 export class CardDish extends Component {
   constructor(props) {
@@ -23,8 +10,6 @@ export class CardDish extends Component {
   }
 
   render() {
-    const {classes} = this.props;
-
 
     let img;
     if (this.props.imgMenu === "") {
@@ -33,33 +18,34 @@ export class CardDish extends Component {
     else img = this.props.imgMenu;
     return (
       <div className="col-md-3 col-sm-4 margin-top">
+        <Card>
+          <div className="">
+            <CardMedia
+              overlay={<CardTitle title={this.props.title} subtitle={this.props.desc}/>}
+            >
+              <img src={img}/>
+            </CardMedia>
 
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.media}
-            image={img}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography variant="headline" component="h2">
-              <h5>{this.props.title}</h5>
-              <Divider/>
-            </Typography>
-            <Typography component="p">
-              <h6><i className="fa fa-clock-o" /> {this.props.timeMin} минут</h6>
-            </Typography>
+            <CardText>
+              <div className="row">
+                <div className="col-md-12">
 
-          </CardContent>
-          <CardActions>
-            <Button variant="fab" color="primary" aria-label="add" className={classes.button}>
-              <AddIcon/>
-            </Button>
-            <Button size="small" color="primary">
-              Learn More
-            </Button>
-          </CardActions>
+                  <div className="text-left">
+                    <h6><i className="fa fa-clock-o"/> {this.props.timeMin} минут</h6>
+                    <small><i className="fa fa-calendar"/> {this.props.stats}</small>
+                  </div>
+                  <div className="text-right">
+                    <FloatingActionButton>
+                      <ContentAdd/>
+                    </FloatingActionButton>
+                  </div>
+                </div>
+              </div>
+            </CardText>
+
+          </div>
+          <Divider/>
         </Card>
-
 
         {/*        <div className={"card " + this.props.cardClass}>
           <div className="header">
@@ -91,4 +77,4 @@ export class CardDish extends Component {
   }
 }
 
-export default withStyles(styles)(CardDish);
+export default (CardDish);
