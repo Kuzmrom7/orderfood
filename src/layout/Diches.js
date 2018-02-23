@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import CardDishCreate from "../components/Card/CardDishCreate";
 import Dish from "../actions/dish";
-import CardDishList from "../components/Card/CardDishList"
+import CardDishList from "../components/Card/CardDishList";
+import RaisedButton from 'material-ui/RaisedButton';
 import {connect} from "react-redux";
 
 
@@ -39,7 +40,9 @@ class Diches extends Component {
         <br/>
         <div className="content">
           <div className="container-fluid">
-            <button className="btn btn success" onClick={this.handleClick}>+ Блюдо</button>
+            <div className="col-md-12">
+              <RaisedButton label="Создать блюдо" primary={true} onClick={this.handleClick}/>
+            </div>
             <br/>
             <br/>
             {
@@ -49,7 +52,7 @@ class Diches extends Component {
                 ""
             }
 
-              <CardDishList/>
+            <CardDishList/>
 
           </div>
         </div>

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import {Paper} from "material-ui";
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 export class CardProfile extends Component {
@@ -47,78 +49,81 @@ export class CardProfile extends Component {
   render() {
     const {account, place} = this.props;
     return (
-      <div className={"card undefined"}>
-        <div className="header">
-          <h4 className="title">Изменить профиль</h4>
-        </div>
-        <div className={"content undefined"}>
-          <form className="" onSubmit={this.handleSubmit}>
-            {/*---------------ACCOUNT--------------*/}
-
-
-            <div className="col-md-6">
-              <span>Username</span>
-              <input type="username" className="form-control"
-                     placeholder="Username"
-                     value={account.username}
-                     disabled={true}
-
-              />
+      <div>
+        <Paper zDepth={1}>
+          <div className={"card undefined"}>
+            <div className="header">
+              <h4 className="title">Изменить профиль</h4>
             </div>
-            <div className="col-md-6">
-              <span>Email</span>
-              <input type="email" className="form-control"
-                     placeholder="Email address"
-                     disabled={true}
-                     value={account.email}
-              />
+            <div className={"content undefined"}>
+              <form className="" onSubmit={this.handleSubmit}>
+                {/*---------------ACCOUNT--------------*/}
+
+
+                <div className="col-md-6">
+                  <span>Username</span>
+                  <input type="username" className="form-control"
+                         placeholder="Username"
+                         value={account.username}
+                         disabled={true}
+
+                  />
+                </div>
+                <div className="col-md-6">
+                  <span>Email</span>
+                  <input type="email" className="form-control"
+                         placeholder="Email address"
+                         disabled={true}
+                         value={account.email}
+                  />
+                </div>
+
+
+                {/*---------------PLACE--------------*/}
+
+
+                <div className="col-md-6">
+                  <span>Название</span>
+                  <input type="text" className="form-control"
+                         placeholder="Название заведения"
+                         value={place.name}
+                         disabled={true}
+
+                  />
+                </div>
+                <div className="col-md-6">
+                  <span>Телефон</span>
+                  <input type="tel" className="form-control"
+                         placeholder="Телефон пуст заполните пожалуйста"
+                         onChange={this.handleChangePhone}
+                         value={this.state.data.phone}
+
+                  />
+                </div>
+                <div className="col-md-12">
+                  <span>Сайт</span>
+                  <input type="url" className="form-control"
+                         placeholder="Сайт пуст заполните пожалуйста"
+                         onChange={this.handleChangeUrl}
+                         value={this.state.data.url}
+                  />
+                </div>
+                <div className="col-md-12">
+                  <span>Адрес</span>
+                  <input type="text" className="form-control"
+                         placeholder="Адрес пуст заполните пожалуйста"
+                         onChange={this.handleChangeaAdress}
+                         value={this.state.data.adress}
+                  />
+                </div>
+                <div className="col-md-1">
+                  <RaisedButton type="submit" label="Обновить" primary={true}/>
+                </div>
+              </form>
+
             </div>
-
-
-
-            {/*---------------PLACE--------------*/}
-
-
-            <div className="col-md-6">
-              <span>Название</span>
-              <input type="text" className="form-control"
-                     placeholder="Название заведения"
-                     value={place.name}
-                     disabled={true}
-
-              />
-            </div>
-            <div className="col-md-6">
-              <span>Телефон</span>
-              <input type="tel" className="form-control"
-                     placeholder="Телефон пуст заполните пожалуйста"
-                     onChange={this.handleChangePhone}
-                     value={this.state.data.phone}
-
-              />
-            </div>
-            <div className="col-md-12">
-              <span>Сайт</span>
-              <input type="url" className="form-control"
-                     placeholder="Сайт пуст заполните пожалуйста"
-                     onChange={this.handleChangeUrl}
-                     value={this.state.data.url}
-              />
-            </div>
-            <div className="col-md-12">
-              <span>Адрес</span>
-              <input type="text" className="form-control"
-                     placeholder="Адрес пуст заполните пожалуйста"
-                     onChange={this.handleChangeaAdress}
-                     value={this.state.data.adress}
-              />
-            </div>
-            <div className="col-md-1">
-              <button type="submit" className="btn btn-lg btn-primary">Обновить</button>
-            </div>
-          </form>
-
-        </div>
+          </div>
+        </Paper>
       </div>
     );
   }

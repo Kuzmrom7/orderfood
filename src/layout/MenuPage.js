@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import CardMenuList from "../components/Card/CardMenuList";
 import CardMenuCreate from "../components/Card/CardMenuCreate";
-import Menu from "../actions/menu"
+import RaisedButton from 'material-ui/RaisedButton';
+import Menu from "../actions/menu";
 import Preloader from "../components/Preloader";
 
 
@@ -47,7 +48,7 @@ class MenuPage extends Component {
 
         <div className="content">
           <div className="container-fluid">
-            <button className="btn btn success" onClick={this.handleClick}>+ меню</button>
+            <RaisedButton label="Создать меню"primary={true}  onClick={this.handleClick} />
             <br/>
             <br/>
             {

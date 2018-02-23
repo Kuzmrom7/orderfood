@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardHeader, CardMedia, CardText, Divider} from "material-ui";
+import {Card, CardMedia, CardText, CardTitle, Divider} from "material-ui";
 
 export class CardMenu extends Component {
   constructor(props) {
@@ -19,16 +19,12 @@ export class CardMenu extends Component {
     else img = this.props.imgMenu;
 
     return (
-      <div className="col-md-4 col-sm-3">
+      <div className="col-md-4 col-sm-4">
         <Card>
           <div className="">
-            <CardHeader
-              title={this.props.title}
-              actAsExpander={true}
-              showExpandableButton={true}
-            />
-
-            <CardMedia>
+            <CardMedia
+              overlay={<CardTitle title={this.props.title}/>}
+            >
               <img src={img} alt=""/>
             </CardMedia>
 

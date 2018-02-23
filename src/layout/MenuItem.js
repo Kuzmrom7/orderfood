@@ -46,7 +46,6 @@ class MenuItem extends Component {
     const {menu, menu_dish_fetch} = this.props;
     const p = menu[hash];
     let name = p["name"];
-    let img = p["url"];
 
     if (this.state.pending) return (
       <Preloader/>
