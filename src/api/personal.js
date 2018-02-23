@@ -12,7 +12,6 @@ class Personal {
 
   static List() {
     let uri = [api_host, "personal"].join("/");
-    console.log("DATA!!!!", uri)
     return requestJSON("GET", uri, null, true);
   }
 

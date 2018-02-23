@@ -39,23 +39,20 @@ class MenuPage extends Component {
   }
 
   render() {
-    if (this.state.pending) return (
-      <Preloader/>
-    );
+    if (this.state.pending) return (<Preloader/>);
+
     return (
       <div>
         <br/>
 
         <div className="content">
           <div className="container-fluid">
-            <RaisedButton label="Создать меню"primary={true}  onClick={this.handleClick} />
+            <RaisedButton label="+ Создать меню" primary={true} onClick={this.handleClick}/>
             <br/>
             <br/>
             {
               (this.state.create) ?
-                <CardMenuCreate submit={this.handleSubmit}/>
-                :
-                ""
+                <CardMenuCreate submit={this.handleSubmit}/> : ""
             }
 
             <div className="col-md-12">

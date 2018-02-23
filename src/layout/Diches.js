@@ -41,16 +41,14 @@ class Diches extends Component {
         <div className="content">
           <div className="container-fluid">
             <div className="col-md-12">
-              <RaisedButton label="Создать блюдо" primary={true} onClick={this.handleClick}/>
+              <RaisedButton label={"+ Создать блюдо"} primary={true} onClick={this.handleClick}/>
             </div>
+
             <br/>
             <br/>
-            {
-              (this.state.create) ?
-                <CardDishCreate submit={this.handleSubmit}/>
-                :
-                ""
-            }
+            <br/>
+
+            {(this.state.create) ? <CardDishCreate submit={this.handleSubmit}/> : ""}
 
             <CardDishList/>
 

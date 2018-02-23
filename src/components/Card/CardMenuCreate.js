@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
+import {RaisedButton} from "material-ui";
 
 
 export class CardDishCreate extends Component {
@@ -62,7 +63,7 @@ export class CardDishCreate extends Component {
               />
             </div>
             <div className="col-md-1">
-              <button type="submit" className="btn btn-lg btn-success">Создать меню</button>
+              <RaisedButton type="submit" label="Создать" primary={true}/>
             </div>
           </form>
 

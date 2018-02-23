@@ -31,7 +31,6 @@ class Sidebar extends Component {
     const sidebarBackground = {
       backgroundImage: 'url(' + imagine + ')'
     };
-    const {place} = this.props;
     return (
       <div id="sidebar" className="sidebar" data-color="grey" data-image={imagine}>
         <div className="sidebar-background" style={sidebarBackground}/>
@@ -49,7 +48,7 @@ class Sidebar extends Component {
             <li className={this.activeRoute("/dashboard")}>
               <NavLink to={'/'} className="nav-link" activeClassName="active">
                 <i className="fa fa-pie-chart"/>
-                <p>{place.name}</p>
+                <p>Управление</p>
               </NavLink>
             </li>
             <li className={this.activeRoute("/order")}>
@@ -70,7 +69,7 @@ class Sidebar extends Component {
                 <p>Меню</p>
               </NavLink>
             </li>
-            <li className="">
+            <li className={this.activeRoute("/dish")}>
               <NavLink to={'/dish'} className="nav-link" activeClassName="active">
                 <i className="fa fa-cutlery"/>
                 <p>Блюда</p>

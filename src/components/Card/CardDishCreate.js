@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Dish} from "../../actions";
 import Preloader from "../../components/Preloader";
+import {RaisedButton} from "material-ui";
 
 
 export class CardDishCreate extends Component {
@@ -126,13 +127,13 @@ export class CardDishCreate extends Component {
             <div className="col-md-12">
               <span>Описание </span>
               <input type="text" className="form-control"
-                     placeholder="Сайт пуст заполните пожалуйста"
+                     placeholder="Здесь пусто, заполните пожалуйста"
                      onChange={this.handleChangeDesc}
                      value={this.state.data.desc}
               />
             </div>
             <div className="col-md-1">
-              <button type="submit" className="btn btn-lg btn-success">Создать</button>
+              <RaisedButton type="submit" label="Создать" primary={true}/>
             </div>
           </form>
 
