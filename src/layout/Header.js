@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Nav, Navbar, NavItem} from 'react-bootstrap';
+import {Navbar} from 'react-bootstrap';
 import '../assets/css/bootstrap.min.css';
 
 import HeaderLinks from '../components/Header/HeaderLinks';
@@ -35,11 +35,10 @@ class Header extends Component {
     return (
       <Navbar fluid>
         <Navbar.Header>
-          <Nav>
-            <NavItem>
-              {this.props.place.name}
-            </NavItem>
-          </Nav>
+          <Navbar.Brand>
+            {this.props.place.name}
+          </Navbar.Brand>
+
           <Navbar.Toggle onClick={this.mobileSidebarToggle}/>
         </Navbar.Header>
         <Navbar.Collapse id="header_navbar">
