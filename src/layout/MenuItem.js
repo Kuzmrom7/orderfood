@@ -5,6 +5,7 @@ import Dish from "../actions/dish";
 import Menu from "../actions/menu";
 import AddDish from "../components/AddDish";
 import MenuCardItem from "../containers/MenuCardItem";
+import {Divider} from "material-ui";
 
 
 class MenuItem extends Component {
@@ -56,12 +57,9 @@ class MenuItem extends Component {
           <div className={"card undefined"}>
             <div className="header">
               <h1 className="title text-center text-capitalize">{name} </h1>
-              <br/>
+
               <form className="">
 
-                <div className="text-center">
-                  <img className="img-thumbnail" width="900" height="900" alt="" src={img}/>
-                </div>
                 {
                   Object.keys(menu_dish_fetch).map((id, index) => {
                     const p = menu_dish_fetch[id];
@@ -75,6 +73,7 @@ class MenuItem extends Component {
                       return (
                         <div>
                           <h2 className="text-capitalize">{id}</h2>
+                          <Divider/>
                           <div className="col-md-12">
                             <MenuCardItem key={index} menuFetch={p}/>
                           </div>
@@ -82,7 +81,6 @@ class MenuItem extends Component {
                       );
                   })
                 }
-                <hr/>
               </form>
 
 
