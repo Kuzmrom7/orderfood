@@ -36,6 +36,7 @@ class MenuCardItem extends Component {
                   imgMenu={p["url"]}
                   desc={p["description"]}
                   timeMin={p["timemin"]}
+                  iconCheck = {"fa fa-minus"}
                 />
 
 

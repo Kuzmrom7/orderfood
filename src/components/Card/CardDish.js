@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Card, CardMedia, CardText, CardTitle, Divider, FlatButton, RaisedButton} from "material-ui";
+import {Card, CardMedia, CardText, CardTitle, Divider} from "material-ui";
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+
 
 export class CardDish extends Component {
   constructor(props) {
@@ -23,7 +23,9 @@ export class CardDish extends Component {
             <CardMedia
               overlay={<CardTitle title={this.props.title} subtitle={this.props.desc}/>}
             >
-              <img src={img}/>
+              <img src={img}
+                   alt=""
+              />
             </CardMedia>
 
             <CardText>
@@ -36,7 +38,7 @@ export class CardDish extends Component {
                   </div>
                   <div className="text-right">
                     <FloatingActionButton>
-                      <ContentAdd/>
+                      <i className={this.props.iconCheck}/>
                     </FloatingActionButton>
                   </div>
                 </div>

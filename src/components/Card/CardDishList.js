@@ -7,7 +7,7 @@ export class CardDishList extends Component {
     const {dish} = this.props;
 
     return (
-      <div>
+      <div className="col-md-12">
 
 
         {Object.keys(dish).map((id) => {
@@ -23,6 +23,7 @@ export class CardDishList extends Component {
                 imgMenu={p["url"]}
                 desc={p["description"]}
                 timeMin={p["timemin"]}
+                iconCheck = {"fa fa-plus"}
               />
             );
           }

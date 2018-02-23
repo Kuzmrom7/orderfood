@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Card, CardHeader, CardMedia, CardText, Divider} from "material-ui";
 
 export class CardMenu extends Component {
   constructor(props) {
@@ -18,33 +19,63 @@ export class CardMenu extends Component {
     else img = this.props.imgMenu;
 
     return (
-      <div className="col-md-4 col-sm-4">
+      <div className="col-md-4 col-sm-3">
+        <Card>
+          <div className="">
+            <CardHeader
+              title={this.props.title}
+              actAsExpander={true}
+              showExpandableButton={true}
+            />
 
-        <div className={"card " + this.props.cardClass}>
-          <div className="header">
-            <h4 className="title text-capitalize">{this.props.title}
-              <div className="pull-right" onClick={this.handleRemove}>
-                <i className="fa fa-level-up" aria-hidden="true"/>
+            <CardMedia>
+              <img src={img} alt=""/>
+            </CardMedia>
+
+            <CardText>
+              <div className="row">
+                <div className="col-md-12">
+
+                  <div className="text-left">
+                    <small><i className="fa fa-calendar"/> {this.props.stats}</small>
+                  </div>
+                </div>
               </div>
-            </h4>
+            </CardText>
 
           </div>
-
-          <div className={"content " + this.props.contentClass}>
-
-            <img src={img} className="img-responsive" alt=""/>
-
-            <div className="footer">
-              {this.props.legend}
-              {this.props.stats != null ? <hr/> : ""}
-              <div className="stats">
-                <i className={this.props.statsIcon}/> {this.props.stats}
-              </div>
-            </div>
-          </div>
-        </div>
+          <Divider/>
+        </Card>
       </div>
-    );
+
+      /*
+                <div className={"card " + this.props.cardClass}>
+                <div className="header">
+                  <h4 className="title text-capitalize">{this.props.title}
+                    <div className="pull-right" onClick={this.handleRemove}>
+                      <i className="fa fa-level-up" aria-hidden="true"/>
+                    </div>
+                  </h4>
+
+                </div>
+
+                <div className={"content " + this.props.contentClass}>
+
+                  <img src={img} className="img-responsive" alt=""/>
+
+                  <div className="footer">
+                    {this.props.legend}
+                    {this.props.stats != null ? <hr/> : ""}
+                    <div className="stats">
+                      <i className={this.props.statsIcon}/> {this.props.stats}
+                    </div>
+                  </div>
+                </div>
+              </div>
+      */
+
+    )
+      ;
   }
 }
 

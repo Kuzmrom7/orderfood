@@ -14,14 +14,16 @@ export class CardMenuList extends Component {
             const p = menu[id];
             return (
               <Link key={index} to={`/menu/${id}`}>
-                <CardMenu
-                  statsIcon="fa fa-clock-o"
-                  id="chartPreferences"
-                  classes="ct-chart ct-perfect-fourth"
-                  title={p["name"]}
-                  stats={p["updated"].slice(0, 10)}
-                  imgMenu={p["url"]}
-                />
+
+                  <CardMenu
+                    statsIcon="fa fa-clock-o"
+                    id="chartPreferences"
+                    classes="ct-chart ct-perfect-fourth"
+                    title={p["name"]}
+                    stats={p["updated"].slice(0, 10)}
+                    imgMenu={p["url"]}
+                  />
+
               </Link>
             );
           }

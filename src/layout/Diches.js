@@ -48,9 +48,9 @@ class Diches extends Component {
                 :
                 ""
             }
-            <div className="col-md-12">
+
               <CardDishList/>
-            </div>
+
           </div>
         </div>
       </div>
