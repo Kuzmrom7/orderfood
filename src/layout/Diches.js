@@ -59,7 +59,6 @@ class Diches extends Component {
               </Tab>
               <Tab
                 label="Создать новое"
-                data-route="/home"
               >
                 <div>
                   <CardDishCreate submit={this.handleSubmit}/>

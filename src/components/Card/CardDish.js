@@ -17,11 +17,11 @@ export class CardDish extends Component {
     }
     else img = this.props.imgMenu;
     return (
-      <div className="col-md-3 col-sm-4 margin-top">
+      <div className="col-lg-3 col-md-4 col-sm-4 margin-top ">
         <Card>
           <div className="">
             <CardMedia
-              overlay={<CardTitle title={this.props.title} subtitle={this.props.desc}/>}
+              overlay={<CardTitle title={this.props.title}/>}
             >
               <img src={img}
                    alt=""
@@ -30,9 +30,18 @@ export class CardDish extends Component {
 
             <CardText>
               <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-12 col-sm-12 col-lg-12">
+                  <div className="col-md-7">
+                    <h6><i className="fa fa-clock-o"/> {this.props.timeMin} минут</h6>
+                    <small>100 р.</small>
+                  </div>
+                  <div className="col-md-5 text-right">
+                    <FloatingActionButton>
+                      <i className={this.props.iconCheck}/>
+                    </FloatingActionButton>
+                  </div>
 
-                  <div className="text-left">
+   {/*               <div className="text-left">
                     <h6><i className="fa fa-clock-o"/> {this.props.timeMin} минут</h6>
                     <small><i className="fa fa-calendar"/> {this.props.stats}</small>
                   </div>
@@ -40,7 +49,7 @@ export class CardDish extends Component {
                     <FloatingActionButton>
                       <i className={this.props.iconCheck}/>
                     </FloatingActionButton>
-                  </div>
+                  </div>*/}
                 </div>
               </div>
             </CardText>
