@@ -77,66 +77,68 @@ export class CardDishCreate extends Component {
     );
     const {type_dishes} = this.props;
     return (
-      <div className={"card undefined"}>
-        <div className="header">
-          <h4 className="title">Создать блюдо</h4>
-        </div>
-        <div className={"content undefined"}>
-          <form className="" onSubmit={this.handleSubmit}>
-            {/*---------------DISH--------------*/}
+      <div className="container margin-top">
+        <div className={"card undefined"}>
+          <div className="header">
+            <h4 className="title">Создать блюдо</h4>
+          </div>
+          <div className={"content undefined"}>
+            <form className="" onSubmit={this.handleSubmit}>
+              {/*---------------DISH--------------*/}
 
-            <div className="col-md-6">
-              <span>Название</span>
-              <input type="username" className="form-control"
-                     onChange={this.handleChangeName}
-                     value={this.state.data.name}
-              />
-            </div>
+              <div className="col-md-6">
+                <span>Название</span>
+                <input type="username" className="form-control"
+                       onChange={this.handleChangeName}
+                       value={this.state.data.name}
+                />
+              </div>
 
-            <div className="col-md-6">
-              <span>URL photo</span>
-              <input type="text" className="form-control"
-                     placeholder="" onChange={this.handleChangeUrl}
-              />
-            </div>
+              <div className="col-md-6">
+                <span>URL photo</span>
+                <input type="text" className="form-control"
+                       placeholder="" onChange={this.handleChangeUrl}
+                />
+              </div>
 
-            <div className="col-md-6">
-              <span>Выбрать тип: </span>
-              <select className="form-control text-capitalize" id="sel1" onClick={this.handleChangeType}>
-                <option disabled selected>Выберите тип блюда</option>
-                {Object.keys(type_dishes).map((id, index) => {
-                    const p = type_dishes[id];
-                    return (
-                      <option key={index} className="text-capitalize">{p}</option>
-                    )
-                  }
-                )}
-              </select>
-            </div>
+              <div className="col-md-6">
+                <span>Выбрать тип: </span>
+                <select className="form-control text-capitalize" id="sel1" onClick={this.handleChangeType}>
+                  <option disabled selected>Выберите тип блюда</option>
+                  {Object.keys(type_dishes).map((id, index) => {
+                      const p = type_dishes[id];
+                      return (
+                        <option key={index} className="text-capitalize">{p}</option>
+                      )
+                    }
+                  )}
+                </select>
+              </div>
 
-            <div className="col-md-6">
-              <span>Время приготовления </span>
-              <input type="number" className="form-control"
-                     placeholder="Телефон пуст заполните пожалуйста"
-                     onChange={this.handleChangeTime}
-                     value={this.state.data.timeMin}
+              <div className="col-md-6">
+                <span>Время приготовления </span>
+                <input type="number" className="form-control"
+                       placeholder="Телефон пуст заполните пожалуйста"
+                       onChange={this.handleChangeTime}
+                       value={this.state.data.timeMin}
 
-              />
-            </div>
+                />
+              </div>
 
-            <div className="col-md-12">
-              <span>Описание </span>
-              <input type="text" className="form-control"
-                     placeholder="Здесь пусто, заполните пожалуйста"
-                     onChange={this.handleChangeDesc}
-                     value={this.state.data.desc}
-              />
-            </div>
-            <div className="col-md-1">
-              <RaisedButton type="submit" label="Создать" primary={true}/>
-            </div>
-          </form>
+              <div className="col-md-12">
+                <span>Описание </span>
+                <input type="text" className="form-control"
+                       placeholder="Здесь пусто, заполните пожалуйста"
+                       onChange={this.handleChangeDesc}
+                       value={this.state.data.desc}
+                />
+              </div>
+              <div className="col-md-1">
+                <RaisedButton type="submit" label="Создать" primary={true}/>
+              </div>
+            </form>
 
+          </div>
         </div>
       </div>
     );

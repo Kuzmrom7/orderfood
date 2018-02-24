@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import CardDishCreate from "../components/Card/CardDishCreate";
 import Dish from "../actions/dish";
 import CardDishList from "../components/Card/CardDishList";
-import RaisedButton from 'material-ui/RaisedButton';
 import {connect} from "react-redux";
+import {Tab, Tabs} from "material-ui";
+import {DishTableList} from "../containers/DishTableList";
 
 
 class Diches extends Component {
@@ -35,22 +36,36 @@ class Diches extends Component {
   }
 
   render() {
+
     return (
       <div>
-        <br/>
         <div className="content">
-          <div className="container-fluid">
-            <div className="col-md-12">
+          <div className="">
+            {/*            <div className="col-md-12">
               <RaisedButton label={"+ Создать блюдо"} primary={true} onClick={this.handleClick}/>
-            </div>
-
-            <br/>
-            <br/>
-            <br/>
-
+            </div>*/}
             {(this.state.create) ? <CardDishCreate submit={this.handleSubmit}/> : ""}
 
-            <CardDishList/>
+            <Tabs>
+              <Tab label="Списком">
+                <div>
+                  <DishTableList/>
+                </div>
+              </Tab>
+              <Tab label="Карточки">
+                <div>
+                  <CardDishList/>
+                </div>
+              </Tab>
+              <Tab
+                label="Создать новое"
+                data-route="/home"
+              >
+                <div>
+                  <CardDishCreate submit={this.handleSubmit}/>
+                </div>
+              </Tab>
+            </Tabs>
 
           </div>
         </div>
