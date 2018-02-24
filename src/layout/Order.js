@@ -27,9 +27,11 @@ class Order extends Component {
 
   render() {
     return (
-      <div className="content">
+      <div className="container-fluid">
+        <br/>
+
         <div className="col-md-12">
-          <div className="col-md-2">
+          <div className="col-md-4">
             <Card>
               <List>
                 <ListItem primaryText="Новые" leftIcon={<ContentInbox/>}/>
