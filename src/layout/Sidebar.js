@@ -52,7 +52,7 @@ class Sidebar extends Component {
               </NavLink>
             </li>
             <li className={this.activeRoute("/order")}>
-              <NavLink to={'/'} className="nav-link" activeClassName="active">
+              <NavLink to={'/order'} className="nav-link" activeClassName="active">
                 <i className="fa fa-shopping-bag"/>
                 <p>Заказы</p>
               </NavLink>

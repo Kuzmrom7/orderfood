@@ -7,6 +7,7 @@ import Diches from "./layout/Diches";
 import Personals from "./layout/Personals";
 import {Storage} from "./utils";
 import MenuItem from "./layout/MenuItem";
+import Order from "./layout/Order";
 
 const Main = () => {
   const Authenticated = ({component, ...rest}) => (
@@ -24,6 +25,7 @@ const Main = () => {
       <Authenticated exact path="/user" component={UserProfile}/>
       <Authenticated exact path="/menu" component={MenuPage}/>
       <Authenticated exact path="/dish" component={Diches}/>
+      <Authenticated exact path = "/order" component = {Order}/>
       <Authenticated exact path="/personal" component={Personals}/>
 
       <Authenticated exact path='/menu/:name' component={MenuItem}/>
