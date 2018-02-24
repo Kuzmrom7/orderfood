@@ -4,10 +4,10 @@ import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import ContentDrafts from 'material-ui/svg-icons/content/drafts';
-import Divider from 'material-ui/Divider';
-import ActionInfo from 'material-ui/svg-icons/action/info';
-import {Card} from "material-ui";
+import {Card, IconButton, IconMenu, RaisedButton, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from "material-ui";
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn,} from 'material-ui/Table';
+import {Toolbar} from "material-ui/Toolbar/index";
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 
 class Order extends Component {
@@ -27,12 +27,14 @@ class Order extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
-        <br/>
-
-        <div className="col-md-12">
-          <div className="col-md-4">
-            <Card>
+      <div>
+        <Toolbar>
+          <ToolbarGroup firstChild={true}>
+            <IconMenu
+              iconButtonElement={<IconButton><MoreVertIcon/></IconButton>}
+              anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+              targetOrigin={{horizontal: 'left', vertical: 'top'}}
+            >
               <List>
                 <ListItem primaryText="Новые" leftIcon={<ContentInbox/>}/>
                 <ListItem primaryText="Принятые" leftIcon={<ActionGrade/>}/>
@@ -40,14 +42,21 @@ class Order extends Component {
                 <ListItem primaryText="Отлоненные" leftIcon={<ContentDrafts/>}/>
                 <ListItem primaryText="История" leftIcon={<ContentInbox/>}/>
               </List>
-              <Divider/>
-              <List>
-                <ListItem primaryText="Список всех" rightIcon={<ActionInfo/>}/>
-                <ListItem primaryText="Удаленные" rightIcon={<ActionInfo/>}/>
-              </List>
-            </Card>
-          </div>
-          <div className="col-md-8">
+
+            </IconMenu>
+            <ToolbarTitle text="Невский проспект,31"/>
+          </ToolbarGroup>
+          <ToolbarGroup>
+            <ToolbarSeparator/>
+            <RaisedButton label="Обновить" primary={true}/>
+          </ToolbarGroup>
+        </Toolbar>
+
+        <div className="container-fluid">
+          <br/>
+
+          <div className="col-md-12">
+
             <Card>
               <Table onRowSelection={this.handleRowSelection}>
                 <TableHeader>
@@ -81,6 +90,7 @@ class Order extends Component {
                 </TableBody>
               </Table>
             </Card>
+
           </div>
         </div>
       </div>
