@@ -58,13 +58,18 @@ export const place = createReducer(initialState, {
     });
     return newState;
   },
+
   [PLACE_CREATE_FAILURE]: (state) => {
     return Object.assign({}, state);
   },
+
   [TYPEPLACE_LIST_SUCCESS]: (state, payload) => {
     let newState = initialState;
     Object.keys(payload).forEach(function (key) {
-      newState[key] = payload[key].meta.name;
+      newState[key] = {
+        idtypeplace : payload[key].meta.id,
+        nametypeplace : payload[key].meta.name
+      };
     });
     return newState;
   },

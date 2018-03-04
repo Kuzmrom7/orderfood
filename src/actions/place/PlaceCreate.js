@@ -13,9 +13,9 @@ const FailureAction = (payload) => ({
   payload
 });
 
-export default (name, nametypeplace) => (dispatch) => {
+export default (name, typesplace) => (dispatch) => {
   return new Promise((resolve, reject) => {
-    Place.Create(name, nametypeplace)
+    Place.Create(name, typesplace)
       .then(response => {
         dispatch(SuccessAction(response));
         resolve(response);

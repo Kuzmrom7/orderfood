@@ -6,39 +6,58 @@ import Place from '../actions/place'
 import {connect} from "react-redux";
 
 class PlaceFormCreate extends Component {
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-    let data = this.state.data;
-    console.log("DATA", data)
-
-    this.props.submit(data.name, data.nametypeplace)
-      .then(() => console.log(""))
-  };
-  handleChangeUsername = (e) => {
-    e.preventDefault();
-
-    let data = this.state.data;
-    data.name = e.target.value;
-    this.setState({data: data});
-  };
-  handleChangeOption = (e) => {
-    e.preventDefault();
-    let data = this.state.data;
-    data.nametypeplace = e.target.value;
-    this.setState({data: data});
-  };
 
   constructor(props) {
     super(props);
     this.state = {
       data: {
         name: "",
-        nametypeplace: "бар",
+      },
+      typesplace: {
+        idtypeplace: "",
+        nametypeplace: ""
       },
       pending: true
     }
   }
+
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    let data = this.state.data;
+    let typesplace = this.state.typesplace;
+
+
+    Object.keys(this.props.place).map((id) => {
+        const p = this.props.place[id];
+        if (p.nametypeplace === this.state.typesplace.nametypeplace) typesplace.idtypeplace = p.idtypeplace;
+        return data.idtypeplace;
+      }
+    );
+
+
+    this.props.submit(data.name, typesplace)
+      .then(() => console.log(""))
+  };
+
+
+  handleChangeUsername = (e) => {
+    e.preventDefault();
+    let data = this.state.data;
+    data.name = e.target.value;
+    this.setState({data: data});
+  };
+
+
+  handleChangeOption = (e) => {
+    e.preventDefault();
+    let data = this.state.typesplace;
+    data.nametypeplace = e.target.value;
+
+    this.setState({typesplace: {nametypeplace: data.nametypeplace}});
+  };
+
 
   componentDidMount() {
     let dispatch = this.props.dispatch;
@@ -70,7 +89,7 @@ class PlaceFormCreate extends Component {
           {Object.keys(place).map((id, index) => {
               const p = place[id];
               return (
-                <option key={index} className="text-capitalize">{p}</option>
+                <option key={index} className="text-capitalize" name={p.idtypeplace}> {p.nametypeplace} </option>
               )
             }
           )}

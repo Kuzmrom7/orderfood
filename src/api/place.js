@@ -4,14 +4,15 @@ const api_host = process.env.REACT_APP_API_HOST;
 
 class Place {
 
-  static Create(name, nametypeplace) {
+  static Create(name, typesplace) {
+    console.log(typesplace);
     let uri = [api_host, "place"].join("/");
-    let body = {name: name, nametypeplace: nametypeplace};
+    let body = {name: name, typesplace : [typesplace] };
     return requestJSON("POST", uri, body, true);
   }
 
   static List() {
-    let uri = [api_host, "typeplace"].join("/");
+    let uri = [api_host, "type/place"].join("/");
     return requestJSON("GET", uri, null, true);
   }
 

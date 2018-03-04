@@ -3,12 +3,12 @@ import Header from './layout/Header';
 import Sidebar from './layout/Sidebar';
 import Main from "./main";
 import Preloader from "./components/Preloader";
-import {Account, Menu, Place} from "./actions";
+import {Menu, Place} from "./actions";
 import {connect} from "react-redux";
 import Dish from "./actions/dish";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {blue100, green300, blue700} from 'material-ui/styles/colors';
+import {blue100, blue700, green300} from 'material-ui/styles/colors';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -33,7 +33,6 @@ class App extends Component {
 
   componentDidMount() {
     Promise.all([
-      this.props.dispatch(Account.Fetch()),
       this.props.dispatch(Place.Fetch()),
       this.props.dispatch(Dish.List()),
       this.props.dispatch(Menu.List()),

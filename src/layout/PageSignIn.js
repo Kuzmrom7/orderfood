@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 
 
 class PageSignIn extends Component {
+
   handlerSessionCreate = (login, password) => {
     let dispatch = this.props.dispatch;
     return dispatch(Session.Create(login, password))

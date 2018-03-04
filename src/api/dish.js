@@ -11,7 +11,7 @@ class Dish {
   }
 
   static List() {
-    let uri = [api_host, "listdish"].join("/");
+    let uri = [api_host, "dish"].join("/");
     return requestJSON("GET", uri, null, true);
   }
 

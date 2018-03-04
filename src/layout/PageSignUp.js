@@ -7,15 +7,18 @@ import AcountFormSignUp from "../containers/AcountFormSignUp";
 import PlaceFormCreate from "../containers/PlaceFormCreate";
 
 class PageSignUp extends Component {
+
+
   handlerAccountCreate = (username, email, password) => {
     let dispatch = this.props.dispatch;
     return dispatch(Account.Create(username, email, password))
       .then(() => this.setState({createplace: true}))
       .catch(() => "")
   };
-  handlerPlaceCreate = (name, nametypeplace) => {
+
+  handlerPlaceCreate = (name, typesplace) => {
     let dispatch = this.props.dispatch;
-    return dispatch(Place.Create(name, nametypeplace))
+    return dispatch(Place.Create(name, typesplace))
       .then(() => this.props.history.push("/"))
   };
 
