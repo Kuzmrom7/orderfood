@@ -2,39 +2,83 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Dish} from "../../actions";
 import Preloader from "../../components/Preloader";
-import {FloatingActionButton, RaisedButton} from "material-ui";
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import {RaisedButton} from "material-ui";
+import AddSpec from "../AddSpec";
 
 
-const addSpec = () => {
-  return (
-    <div>
-      <div className="col-md-6">
-        <span>Размер или название </span>
-        <input type="text" className="form-control"
-               placeholder="Например 220 гр."
-        />
+class SpecList extends React.Component {
+  render() {
+    return (
+      <div>
+        {
+          Object.keys(this.props.item).map((id) => {
+            const p = this.props.item[id];
+            return (
+              <div className="col-12" key={id}>
+                <div className="row">
+                  <div className="col-md-5">
+                    <span>Размер или название </span>
+                    <input type="text" className="form-control"
+                           value={p.size} disabled={true}
+                    />
+                  </div>
+
+                  <div className="col-md-5">
+                    <span>Цена</span>
+                    <input type="text" className="form-control"
+                           value={p.price} disabled={true}
+                    />
+                  </div>
+
+                  <div className="col-md-2 ">
+                    ДОБАВЛЕНО
+                  </div>
+                </div>
+              </div>
+            )
+          })
+        }
       </div>
+    );
+  }
+}
 
-      <div className="col-md-6">
-        <span>Цена</span>
-        <input type="text" className="form-control"
-               placeholder="Здесь пусто, заполните пожалуйста"
-        />
-      </div>
-    </div>
-  )
-};
+class CardDishCreate extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: {
+        name: "",
+        urls: [],
+        idtypedish: "",
+        timeMin: 0,
+        desc: "",
+        specs: []
+      },
+      specs: [],
+      metaspecs: {
+        size: "",
+        price: ""
+      },
+      pending: true
+    };
+
+  }
 
 
-export class CardDishCreate extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
-    this.props.submit(data.name, data.url, data.typeDish, data.timeMin, data.desc)
+
+
+
+    this.props.submit(data.name, data.urls, data.idtypedish, data.timeMin, data.desc, data.specs)
       .then(() => console.log(""))
   };
+
   handleChangeName = (e) => {
     e.preventDefault();
 
@@ -42,20 +86,31 @@ export class CardDishCreate extends Component {
     data.name = e.target.value;
     this.setState({data: data});
   };
+
   handleChangeUrl = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
-    data.url = e.target.value;
+    data.urls = [{url : e.target.value}];
     this.setState({data: data});
   };
+
   handleChangeType = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
-    data.typeDish = e.target.value;
+    data.idtypedish = e.target.value;
+
+    Object.keys(this.props.type_dishes).map((id) => {
+        const p = this.props.type_dishes[id];
+        if (p.name === e.target.value) data.idtypedish = p.id;
+        return data.idtypedish;
+      }
+    );
+
     this.setState({data: data});
   };
+
   handleChangeTime = (e) => {
     e.preventDefault();
 
@@ -71,29 +126,6 @@ export class CardDishCreate extends Component {
     this.setState({data: data});
   };
 
-  addSpec = () => {
-    this.setState(prevState => ({
-      specs: prevState.specs.concat(addSpec()),
-      text: ''
-    }));
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: {
-        name: "",
-        url: "",
-        typeDish: "",
-        timeMin: 0,
-        desc: ""
-      },
-      specs: [],
-      pending: true
-    };
-  }
-
   componentDidMount() {
     Promise.all([
       this.props.dispatch(Dish.ListType())
@@ -102,9 +134,8 @@ export class CardDishCreate extends Component {
   }
 
   render() {
-    if (this.state.pending) return (
-      <div><Preloader/></div>
-    );
+    if (this.state.pending) return (<Preloader/>);
+
     const {type_dishes} = this.props;
     return (
       <div className="col-md-12 margin-top">
@@ -113,7 +144,7 @@ export class CardDishCreate extends Component {
             <h4 className="title">Создать блюдо</h4>
           </div>
           <div className={"content undefined"}>
-            <form className="" onSubmit={this.handleSubmit}>
+            <div className="">
               {/*---------------DISH--------------*/}
 
               <div className="col-md-6">
@@ -169,42 +200,64 @@ export class CardDishCreate extends Component {
 
                 Добавьте спецификации
 
-                <div className="col-md-12">
-                  <div>
-                    <div className="col-md-6">
-                      <span>Размер или название </span>
-                      <input type="text" className="form-control"
-                             placeholder="Например 220 гр."
-                      />
-                    </div>
+                <SpecList item={this.state.data.specs}/>
 
-                    <div className="col-md-6">
-                      <span>Цена</span>
-                      <input type="text" className="form-control"
-                             placeholder="Здесь пусто, заполните пожалуйста"
-                      />
-                    </div>
-                  </div>
+                <AddSpec size={this.handleSpecSize} price={this.handleSpecPrice} submit={this.handleSubmitSpec}
+                         s={this.state.metaspecs.size} p={this.state.metaspecs.price}/>
 
-                  {this.state.specs}
-                </div>
-                <div className="col-2 pull-right">
-                  <FloatingActionButton mini={true} onClick={this.addSpec}>
-                    <ContentAdd/>
-                  </FloatingActionButton>
-                </div>
               </div>
               <div className="col-md-1">
-                <RaisedButton type="submit" label="Создать" primary={true}/>
+                <RaisedButton type="submit" onClick={this.handleSubmit} label="Создать" primary={true}/>
               </div>
-            </form>
+            </div>
 
           </div>
         </div>
       </div>
     );
   }
+
+  handleSpecSize = (e) => {
+
+    e.preventDefault();
+
+    let data = this.state.metaspecs;
+    data.size = e.target.value;
+
+    this.setState({metaspecs: data});
+
+  };
+
+  handleSpecPrice = (e) => {
+    e.preventDefault();
+
+    let data = this.state.metaspecs;
+    data.price = e.target.value;
+
+    this.setState({metaspecs: data});
+
+  };
+
+  handleSubmitSpec = (e) => {
+    e.preventDefault();
+
+    let data = this.state.data;
+    data.specs = [...this.state.data.specs, this.state.metaspecs]
+    this.setState({
+      data: data
+    });
+
+    this.setState({
+      metaspecs: {
+        size: "",
+        price: ""
+      }
+    });
+
+  }
+
 }
+
 
 const mapStateToProps = (state) => ({
   type_dishes: state.type_dishes

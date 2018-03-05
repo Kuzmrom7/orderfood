@@ -12,9 +12,10 @@ class Diches extends Component {
   handleClick = (e) => {
     this.setState({create: !this.state.create})
   };
-  handleSubmit = (name, url, typedish, timemin, description) => {
+
+  handleSubmit = (name, urls, idtypedish, timemin, description,specs) => {
     let dispatch = this.props.dispatch;
-    let data = {name:name,url:url, typedish: typedish, timemin:timemin, description: description};
+    let data = {name:name,urls:urls, idtypedish: idtypedish, timemin:timemin, description: description,specs:specs};
     return dispatch(Dish.Create(data))
       .then(() => this.props.dispatch(Dish.List()))
       .then(() => this.setState({create: false}))

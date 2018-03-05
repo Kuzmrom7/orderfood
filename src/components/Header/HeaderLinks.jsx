@@ -28,7 +28,6 @@ class HeaderLinks extends Component {
         <Nav pullRight>
           <NavItem eventKey={2} href="#" onClick={this.handlerSessionRemove}>
             Выйти
-            <i className="fa fa-sign-out" aria-hidden="true"/>
           </NavItem>
 
         </Nav>
