@@ -14,7 +14,8 @@ class Diches extends Component {
   };
   handleSubmit = (name, url, typedish, timemin, description) => {
     let dispatch = this.props.dispatch;
-    return dispatch(Dish.Create(name, url, typedish, timemin, description))
+    let data = {name:name,url:url, typedish: typedish, timemin:timemin, description: description};
+    return dispatch(Dish.Create(data))
       .then(() => this.props.dispatch(Dish.List()))
       .then(() => this.setState({create: false}))
       .catch(() => "")
@@ -57,9 +58,7 @@ class Diches extends Component {
                   <CardDishList/>
                 </div>
               </Tab>
-              <Tab
-                label="Создать новое"
-              >
+              <Tab label="Создать новое">
                 <div>
                   <CardDishCreate submit={this.handleSubmit}/>
                 </div>

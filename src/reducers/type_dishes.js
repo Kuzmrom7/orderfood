@@ -22,10 +22,14 @@ const stateExtension = (state) => {
 const initialState = stateExtension({});
 
 export const type_dishes = createReducer(initialState, {
+
   [TYPE_DISH_LIST_SUCCESS]: (state, payload) => {
     let newState = initialState;
     Object.keys(payload).forEach(function (key) {
-      newState[key] = payload[key].meta.name;
+      newState[key] = {
+        id: payload[key].meta.id,
+        name: payload[key].meta.name
+      };
     });
     return newState;
   },
