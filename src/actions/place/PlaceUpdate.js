@@ -13,9 +13,9 @@ const FailureAction = (payload) => ({
   payload
 });
 
-export default (phone, url, adress) => (dispatch) => {
+export default (id, city, phone, url) => (dispatch) => {
   return new Promise((resolve, reject) => {
-    Place.Update(phone, url, adress)
+    Place.Update(id, city, phone, url)
       .then(response => {
         dispatch(SuccessAction(response));
         resolve(response);

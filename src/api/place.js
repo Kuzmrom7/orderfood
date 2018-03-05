@@ -7,7 +7,7 @@ class Place {
   static Create(name, typesplace) {
     console.log(typesplace);
     let uri = [api_host, "place"].join("/");
-    let body = {name: name, typesplace : [typesplace] };
+    let body = {name: name, typesplace: [typesplace]};
     return requestJSON("POST", uri, body, true);
   }
 
@@ -21,9 +21,9 @@ class Place {
     return requestJSON("GET", uri, null, true);
   }
 
-  static Update(phone, url, adress) {
+  static Update(id, city, phone, url) {
     let uri = [api_host, "place"].join("/");
-    let body = {phone: phone, adress: adress, url: url, city: ""};
+    let body = {id: id, city: city, phone: phone, url: url};
     return requestJSON("PUT", uri, body, true);
   }
 

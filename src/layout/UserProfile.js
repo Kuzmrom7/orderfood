@@ -4,14 +4,6 @@ import {Place} from "../actions";
 import {connect} from "react-redux";
 
 class UserProfile extends Component {
-  handlePlaceSubmit = (phoneNumber, url, adress) => {
-    let dispatch = this.props.dispatch;
-    return dispatch(Place.Update(phoneNumber, url, adress))
-      .then(() => {
-        ""
-      })
-
-  };
 
   constructor(props) {
     super(props);
@@ -21,6 +13,15 @@ class UserProfile extends Component {
     };
 
   }
+
+  handlePlaceSubmit = (id, city, phone, url) => {
+    let dispatch = this.props.dispatch;
+    return dispatch(Place.Update(id, city, phone, url))
+      .then(() => {
+        ""
+      })
+
+  };
 
   render() {
     return (

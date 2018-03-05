@@ -5,20 +5,38 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 
 export class CardProfile extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: {
+        id: this.props.place.id,
+        phone: this.props.place.phone,
+        url: this.props.place.url,
+        city: this.props.place.city
+      }
+    };
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
-    this.props.submit(data.phone, data.url, data.adress)
+    this.props.submit(data.id, data.city, data.phone, data.url)
       .then(() => console.log(""))
   };
+
+
   handleChangePhone = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
     data.phone = e.target.value;
+
     this.setState({data: data});
   };
+
   handleChangeUrl = (e) => {
     e.preventDefault();
 
@@ -26,28 +44,18 @@ export class CardProfile extends Component {
     data.url = e.target.value;
     this.setState({data: data});
   };
+
   handleChangeaAdress = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
-    data.adress = e.target.value;
+    data.city = e.target.value;
     this.setState({data: data});
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: {
-        phone: this.props.place.phone,
-        url: this.props.place.url,
-        adress: this.props.place.adress
-      }
-    };
-  }
-
   render() {
     const {account, place} = this.props;
+
     return (
       <div>
         <Paper zDepth={1}>
@@ -96,7 +104,7 @@ export class CardProfile extends Component {
                   <input type="tel" className="form-control"
                          placeholder="Телефон пуст заполните пожалуйста"
                          onChange={this.handleChangePhone}
-                         value={this.state.data.phone}
+                         value={place.phone}
 
                   />
                 </div>
@@ -105,15 +113,15 @@ export class CardProfile extends Component {
                   <input type="url" className="form-control"
                          placeholder="Сайт пуст заполните пожалуйста"
                          onChange={this.handleChangeUrl}
-                         value={this.state.data.url}
+                         value={place.url}
                   />
                 </div>
                 <div className="col-md-12">
-                  <span>Адрес</span>
+                  <span>Город</span>
                   <input type="text" className="form-control"
                          placeholder="Адрес пуст заполните пожалуйста"
                          onChange={this.handleChangeaAdress}
-                         value={this.state.data.adress}
+                         value={place.city}
                   />
                 </div>
                 <div className="col-md-1">

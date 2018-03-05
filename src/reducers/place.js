@@ -20,14 +20,14 @@ const convert = (payload) => {
   };
 };
 const convert_place = (payload) => {
-  let user = {
+  return {
+    id: payload.id,
     name: payload.name,
     phone: payload.phone,
-    url: payload.url,
-    adress: payload.adress,
+    city: payload.city,
+    url : payload.url,
+    typesplace: payload.typesplace
   };
-
-  return user;
 };
 
 const stateExtension = (state) => {
@@ -67,8 +67,8 @@ export const place = createReducer(initialState, {
     let newState = initialState;
     Object.keys(payload).forEach(function (key) {
       newState[key] = {
-        idtypeplace : payload[key].meta.id,
-        nametypeplace : payload[key].meta.name
+        idtypeplace: payload[key].meta.id,
+        nametypeplace: payload[key].meta.name
       };
     });
     return newState;
