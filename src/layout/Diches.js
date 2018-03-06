@@ -9,10 +9,6 @@ import {DishTableList} from "../containers/DishTableList";
 
 class Diches extends Component {
 
-  handleClick = (e) => {
-    this.setState({create: !this.state.create})
-  };
-
   handleSubmit = (name, urls, idtypedish, timemin, description,specs) => {
     let dispatch = this.props.dispatch;
     let data = {name:name,urls:urls, idtypedish: idtypedish, timemin:timemin, description: description,specs:specs};
@@ -42,12 +38,6 @@ class Diches extends Component {
     return (
       <div>
         <div className="content">
-          <div className="">
-            {/*            <div className="col-md-12">
-              <RaisedButton label={"+ Создать блюдо"} primary={true} onClick={this.handleClick}/>
-            </div>*/}
-            {(this.state.create) ? <CardDishCreate submit={this.handleSubmit}/> : ""}
-
             <Tabs>
               <Tab label="Списком">
                 <div>
@@ -66,7 +56,6 @@ class Diches extends Component {
               </Tab>
             </Tabs>
 
-          </div>
         </div>
       </div>
     );

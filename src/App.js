@@ -8,11 +8,11 @@ import {connect} from "react-redux";
 import Dish from "./actions/dish";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {blue100, blue700, green300} from 'material-ui/styles/colors';
+import {blue100, blue700, green400} from 'material-ui/styles/colors';
 
 const muiTheme = getMuiTheme({
   palette: {
-    primary1Color: green300,
+    primary1Color: green400,
     primary2Color: blue700,
     primary3Color: blue100,
   },

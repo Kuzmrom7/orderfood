@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from "react-redux";
 import {RaisedButton} from "material-ui";
-
+import {connect} from "react-redux";
 
 export class CardDishCreate extends Component {
   handleSubmit = (e) => {
@@ -9,8 +8,13 @@ export class CardDishCreate extends Component {
 
     let data = this.state.data;
     this.props.submit(data.name, data.url)
-      .then(() => console.log(""))
+      .then(this.handleSuccess)
   };
+
+  handleSuccess = () => {
+    this.setState({dis: true})
+  };
+
   handleChangeName = (e) => {
     e.preventDefault();
 
@@ -34,39 +38,51 @@ export class CardDishCreate extends Component {
         name: "",
         url: "",
       },
+      dis: false,
       pending: true
     };
   }
 
   render() {
     return (
-      <div className={"card undefined"}>
-        <div className="header">
-          <h4 className="title">Создать меню</h4>
-        </div>
-        <div className={"content undefined"}>
-          <form className="" onSubmit={this.handleSubmit}>
-            {/*---------------DISH--------------*/}
+      <div className="col-md-12 margin-top">
+        <div className={"card undefined"}>
+          <div className="header">
+            <h4 className="title">Создать меню</h4>
+          </div>
+          <div className={"content undefined"}>
+            <form className="" onSubmit={this.handleSubmit}>
+              <div className="col-md-6">
+                <span>Название меню</span>
+                <input type="username" className="form-control"
+                       onChange={this.handleChangeName}
+                       value={this.state.data.name}
+                       disabled={this.state.dis}
+                />
+              </div>
 
-            <div className="col-md-6">
-              <span>Название меню</span>
-              <input type="username" className="form-control"
-                     onChange={this.handleChangeName}
-                     value={this.state.data.name}
-              />
-            </div>
-
-            <div className="col-md-6">
-              <span>URL photo</span>
-              <input type="text" className="form-control"
-                     placeholder="url" onChange={this.handleChangeUrl}
-              />
-            </div>
-            <div className="col-md-1">
-              <RaisedButton type="submit" label="Создать" primary={true}/>
-            </div>
-          </form>
-
+              <div className="col-md-6">
+                <span>URL photo</span>
+                <input type="text" className="form-control" disabled={this.state.dis}
+                       placeholder="url" onChange={this.handleChangeUrl}
+                />
+              </div>
+              <div className="col-md-1 col-sm-12">
+                <br/>
+                <RaisedButton type="submit" label={!this.state.dis ? "Добавить" : "Добавлено"} primary={true}
+                              disabled={this.state.dis}/>
+              </div>
+            </form>
+            {
+              this.state.dis ?
+                <div className="col-md-12">
+                  <RaisedButton label="Добавить еще" onClick={()=> {this.setState({dis:false, data: {name:"",url:""}})}}/>
+                  <br/>
+                </div>
+                :
+                ""
+            }
+          </div>
         </div>
       </div>
     );

@@ -9,7 +9,7 @@ export class CardMenuList extends Component {
     const {menu} = this.props;
 
     return (
-      <div>
+      <div className="">
         {Object.keys(menu).map((id, index) => {
             const p = menu[id];
             return (
@@ -20,7 +20,6 @@ export class CardMenuList extends Component {
                     id="chartPreferences"
                     classes="ct-chart ct-perfect-fourth"
                     title={p["name"]}
-                    stats={p["updated"].slice(0, 10)}
                     imgMenu={p["url"]}
                   />
 
@@ -35,11 +34,9 @@ export class CardMenuList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    menu: state.menu,
-  }
-};
+const mapStateToProps = (state) => ({
+  menu : state.menu
+});
 
 
 export default connect(mapStateToProps)(CardMenuList);

@@ -4,9 +4,9 @@ const api_host = process.env.REACT_APP_API_HOST;
 
 class Menu {
 
-  static Create(name, placename, url) {
+  static Create(name, placeid, url) {
     let uri = [api_host, "menu"].join("/");
-    let body = {name: name, nameplace: placename, url: url};
+    let body = {name: name, id_place: placeid, url: url};
     return requestJSON("POST", uri, body, true);
   }
 

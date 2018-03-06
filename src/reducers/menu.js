@@ -1,5 +1,11 @@
 import {createReducer} from "../utils";
-import {MENU_LIST_FAILURE, MENU_LIST_FETCH_SUCCESS, MENU_LIST_SUCCESS} from "../constants";
+import {
+  MENU_CREATE_FAILURE,
+  MENU_CREATE_SUCCESS,
+  MENU_LIST_FAILURE,
+  MENU_LIST_FETCH_SUCCESS,
+  MENU_LIST_SUCCESS
+} from "../constants";
 
 
 const convert = (payload) => {
@@ -12,7 +18,7 @@ const convert_menu = (payload) => {
   return {
     name: payload.name,
     url: payload.url,
-    updated: payload.updated
+    id: payload.id
   };
 };
 
@@ -66,7 +72,12 @@ export const menu = createReducer(initialState, {
     [MENU_LIST_FAILURE]: (state) => {
       return Object.assign({}, state);
     },
-
+    [MENU_CREATE_SUCCESS]: (state) => {
+      return Object.assign({}, state);
+    },
+    [MENU_CREATE_FAILURE]: (state) => {
+      return Object.assign({}, state);
+    },
   },
   {});
 
