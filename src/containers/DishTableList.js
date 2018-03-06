@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn,} from 'material-ui/Table';
-import {Card} from "material-ui";
-
+import {Avatar, Card, Chip} from "material-ui";
+import {connect} from "react-redux";
 
 
 export class DishTableList extends Component {
 
 
   render() {
+    const {dish} = this.props;
 
     return (
       <div className="container-fluid margin-top">
@@ -15,37 +16,47 @@ export class DishTableList extends Component {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHeaderColumn>ID</TableHeaderColumn>
-                <TableHeaderColumn>Name</TableHeaderColumn>
-                <TableHeaderColumn>Status</TableHeaderColumn>
+                <TableHeaderColumn>Название</TableHeaderColumn>
+                <TableHeaderColumn><i className="fa fa-clock-o"/> Время приготовление</TableHeaderColumn>
+                <TableHeaderColumn><i className="fa fa-money"/>Тип/Цена</TableHeaderColumn>
+
+
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow>
-                <TableRowColumn>1</TableRowColumn>
-                <TableRowColumn>John Smith</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>2</TableRowColumn>
-                <TableRowColumn>Randal White</TableRowColumn>
-                <TableRowColumn>Unemployed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>3</TableRowColumn>
-                <TableRowColumn>Stephanie Sanders</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>4</TableRowColumn>
-                <TableRowColumn>Steve Brown</TableRowColumn>
-                <TableRowColumn>Employed</TableRowColumn>
-              </TableRow>
-              <TableRow>
-                <TableRowColumn>5</TableRowColumn>
-                <TableRowColumn>Christopher Nolan</TableRowColumn>
-                <TableRowColumn>Unemployed</TableRowColumn>
-              </TableRow>
+
+              {Object.keys(dish).map((id) => {
+                const di = dish[id];
+                return (
+                  <TableRow>
+                    <TableRowColumn>{di["name"]}</TableRowColumn>
+                    <TableRowColumn>{di["timemin"]} минуты</TableRowColumn>
+                    <TableRowColumn>
+
+                      <div className="row">
+                        {
+                          Object.keys(di["specs"]).map((id) => {
+                            let d = di["specs"][id];
+
+                            return (
+                              <div>
+                                <br/>
+                                <Chip>
+                                  <Avatar size={22}>  {d["size"]}</Avatar>
+                                  {d["price"]}р.
+                                </Chip>
+                              </div>
+                            )
+                          })
+                        }
+                        <br/>
+                      </div>
+                    </TableRowColumn>
+                  </TableRow>
+                )
+
+              })}
+
             </TableBody>
           </Table>
         </Card>
@@ -54,5 +65,13 @@ export class DishTableList extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    dish: state.dish,
+    type_dishes: state.type_dishes
+  }
+};
 
-export default (DishTableList);
+
+export default connect(mapStateToProps)(DishTableList);
+

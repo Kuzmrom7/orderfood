@@ -3,15 +3,14 @@ import {DISH_CREATE_FAILURE, DISH_CREATE_SUCCESS, DISH_LIST_FAILURE, DISH_LIST_S
 
 
 const convert_dish = (payload) => {
-  let user = {
+  return {
+    id : payload.id,
     name: payload.name,
     description: payload.description,
-    url: payload.url,
-    timemin: payload.timemin,
-    updated: payload.updated
+    urls: payload.urls,
+    specs : payload.specs,
+    timemin: payload.timemin
   };
-
-  return user;
 };
 
 const stateExtension = (state) => {

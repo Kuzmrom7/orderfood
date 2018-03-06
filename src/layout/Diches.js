@@ -17,7 +17,7 @@ class Diches extends Component {
     let dispatch = this.props.dispatch;
     let data = {name:name,urls:urls, idtypedish: idtypedish, timemin:timemin, description: description,specs:specs};
     return dispatch(Dish.Create(data))
-      .then(() => this.props.dispatch(Dish.List()))
+/*      .then(() => this.props.dispatch(Dish.List()))*/
       .then(() => this.setState({create: false}))
       .catch(() => "")
   };
@@ -51,7 +51,7 @@ class Diches extends Component {
             <Tabs>
               <Tab label="Списком">
                 <div>
-                  <DishTableList/>
+                  <DishTableList dish = {this.props.dish }/>
                 </div>
               </Tab>
               <Tab label="Карточки">

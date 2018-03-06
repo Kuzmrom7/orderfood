@@ -12,6 +12,7 @@ export class CardDishList extends Component {
 
         {Object.keys(dish).map((id) => {
             const p = dish[id];
+
             return (
 
               <CardDish
@@ -19,9 +20,9 @@ export class CardDishList extends Component {
                 id="chartPreferences"
                 classes="ct-chart ct-perfect-fourth"
                 title={p["name"]}
-                stats={p["updated"].slice(0, 10)}
-                imgMenu={p["url"]}
+                imgMenu={p["urls"]}
                 desc={p["description"]}
+                specs = {p["specs"]}
                 timeMin={p["timemin"]}
                 iconCheck = {"fa fa-plus"}
               />

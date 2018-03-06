@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, CardMedia, CardText, CardTitle, Divider} from "material-ui";
+import {Avatar, Card, CardMedia, CardText, CardTitle, Chip, Divider} from "material-ui";
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 
@@ -11,19 +11,25 @@ export class CardDish extends Component {
 
   render() {
 
-    let img;
-    if (this.props.imgMenu === "") {
-      img = "https://images.unsplash.com/photo-1446034730750-a0b64d06ad13?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
-    }
-    else img = this.props.imgMenu;
+    /*    let imgs;
+        if (this.props.imgMenu === "") {
+          img = "https://images.unsplash.com/photo-1446034730750-a0b64d06ad13?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
+        }
+        else imgs = this.props.imgMenu;*/
+
+    /*
+        Object.keys(this.props.imgMenu).map((id) => {
+          let img = imgMenu[id]
+        });*/
+
     return (
-      <div className="col-lg-3 col-md-4 col-sm-4 margin-top ">
-        <Card>
+      <div className="col-lg-2 col-md-4 col-sm-3 margin-top" style={{marginRight: 30}}>
+        <Card style={{"width": "200"}}>
           <div className="">
             <CardMedia
               overlay={<CardTitle title={this.props.title}/>}
             >
-              <img src={img}
+              <img src={this.props.imgMenu[0].url}
                    alt=""
               />
             </CardMedia>
@@ -33,23 +39,29 @@ export class CardDish extends Component {
                 <div className="col-md-12 col-sm-12 col-lg-12">
                   <div className="col-md-7">
                     <h6><i className="fa fa-clock-o"/> {this.props.timeMin} минут</h6>
-                    <small>100 р.</small>
                   </div>
                   <div className="col-md-5 text-right">
-                    <FloatingActionButton>
+                    <FloatingActionButton mini={true}>
                       <i className={this.props.iconCheck}/>
                     </FloatingActionButton>
                   </div>
 
-   {/*               <div className="text-left">
-                    <h6><i className="fa fa-clock-o"/> {this.props.timeMin} минут</h6>
-                    <small><i className="fa fa-calendar"/> {this.props.stats}</small>
-                  </div>
-                  <div className="text-right">
-                    <FloatingActionButton>
-                      <i className={this.props.iconCheck}/>
-                    </FloatingActionButton>
-                  </div>*/}
+                </div>
+
+                <div className="col-md-12 col-lg-12">
+                  {
+                    Object.keys(this.props.specs).map((id) => {
+                      const speca = this.props.specs[id];
+                      return (
+                        <div className="col-md-6 col-lg-6">
+                          <Chip>
+                            <Avatar size={32}>  {speca["size"]}</Avatar>
+                            {speca["price"]}р.
+                          </Chip>
+                        </div>
+                      )
+                    })
+                  }
                 </div>
               </div>
             </CardText>
