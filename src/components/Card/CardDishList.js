@@ -22,9 +22,9 @@ export class CardDishList extends Component {
                 title={p["name"]}
                 imgMenu={p["urls"]}
                 desc={p["description"]}
-                specs = {p["specs"]}
+                specs={p["specs"]}
                 timeMin={p["timemin"]}
-                iconCheck = {"fa fa-plus"}
+                iconCheck={"fa fa-plus"}
               />
             );
           }
@@ -36,12 +36,12 @@ export class CardDishList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    dish: state.dish,
-    type_dishes: state.type_dishes
-  }
-};
+const mapStateToProps = (state) => ({
+
+  dish: state.dish,
+  type_dishes: state.type_dishes
+
+});
 
 
 export default connect(mapStateToProps)(CardDishList);

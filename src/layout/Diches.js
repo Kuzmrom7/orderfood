@@ -9,12 +9,18 @@ import {DishTableList} from "../containers/DishTableList";
 
 class Diches extends Component {
 
-  handleSubmit = (name, urls, idtypedish, timemin, description,specs) => {
+  handleSubmit = (name, urls, idtypedish, timemin, description, specs) => {
     let dispatch = this.props.dispatch;
-    let data = {name:name,urls:urls, idtypedish: idtypedish, timemin:timemin, description: description,specs:specs};
+    let data = {
+      name: name,
+      urls: urls,
+      idtypedish: idtypedish,
+      timemin: timemin,
+      description: description,
+      specs: specs
+    };
     return dispatch(Dish.Create(data))
-/*      .then(() => this.props.dispatch(Dish.List()))*/
-      .then(() => this.setState({create: false}))
+      .then(() => this.props.dispatch(Dish.List()))
       .catch(() => "")
   };
 
@@ -38,23 +44,23 @@ class Diches extends Component {
     return (
       <div>
         <div className="content">
-            <Tabs>
-              <Tab label="Списком">
-                <div>
-                  <DishTableList dish = {this.props.dish }/>
-                </div>
-              </Tab>
-              <Tab label="Карточки">
-                <div>
-                  <CardDishList/>
-                </div>
-              </Tab>
-              <Tab label="Создать новое">
-                <div>
-                  <CardDishCreate submit={this.handleSubmit}/>
-                </div>
-              </Tab>
-            </Tabs>
+          <Tabs>
+            <Tab label="Списком">
+              <div>
+                <DishTableList dish={this.props.dish}/>
+              </div>
+            </Tab>
+            <Tab label="Карточки">
+              <div>
+                <CardDishList/>
+              </div>
+            </Tab>
+            <Tab label="Создать новое">
+              <div>
+                <CardDishCreate submit={this.handleSubmit}/>
+              </div>
+            </Tab>
+          </Tabs>
 
         </div>
       </div>
