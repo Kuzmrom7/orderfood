@@ -75,12 +75,12 @@ class Sidebar extends Component {
                 <p>Блюда</p>
               </NavLink>
             </li>
-            <li className="">
+            {/*        <li className="">
               <NavLink to={'/personal'} className="nav-link" activeClassName="active">
                 <i className="fa fa-users"/>
                 <p>Персонал</p>
               </NavLink>
-            </li>
+            </li>*/}
           </ul>
         </div>
       </div>
