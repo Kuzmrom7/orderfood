@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import {RaisedButton, Snackbar} from "material-ui";
 import {connect} from "react-redux";
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+
+const CLOUDINARY_UPLOAD_PRESET = 'kauxupbc';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dwkkf6qmg/image/upload';
 
 export class CardDishCreate extends Component {
 
@@ -14,8 +19,38 @@ export class CardDishCreate extends Component {
       },
       open: false,
       dis: false,
-      pending: true
+      pending: true,
+      uploadedFileCloudinaryUrl: ""
     };
+  }
+
+  onImageDrop(files) {
+    this.setState({
+      uploadedFile: files[0]
+    });
+
+    this.handleImageUpload(files[0]);
+  }
+
+  handleImageUpload(file) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        });
+        let data = this.state.data;
+        data.url = response.body.secure_url;
+        this.setState({data: data});
+      }
+    });
   }
 
   handleSubmit = (e) => {
@@ -28,7 +63,7 @@ export class CardDishCreate extends Component {
 
 
   handleSuccess = () => {
-    this.setState({open: true, dis: true})
+    this.setState({open: true, dis: true, uploadedFileCloudinaryUrl: ""})
   };
 
   handleRequestClose = () => {
@@ -59,6 +94,7 @@ export class CardDishCreate extends Component {
 
 
   render() {
+    console.log(this.state.data)
     return (
       <div className="col-md-12 margin-top">
         <div className={"card undefined"}>
@@ -75,13 +111,24 @@ export class CardDishCreate extends Component {
                        disabled={this.state.dis}
                 />
               </div>
-
-              <div className="col-md-6">
-                <span>URL photo</span>
-                <input type="text" className="form-control" disabled={this.state.dis}
-                       placeholder="url" onChange={this.handleChangeUrl}
-                />
+              <div className="col-md-12">
+                <div className="col-md-4">
+                  <Dropzone
+                    multiple={true}
+                    accept="image/*"
+                    onDrop={this.onImageDrop.bind(this)}>
+                    <p>Нажмите для загрузки фото</p>
+                  </Dropzone>
+                </div>
+                <div className="col-md-4">
+                  {this.state.uploadedFileCloudinaryUrl === '' ? null :
+                    <div>
+                      <p>{this.state.uploadedFile.name}</p>
+                      <img src={this.state.uploadedFileCloudinaryUrl} alt=""/>
+                    </div>}
+                </div>
               </div>
+
               <div className="col-md-1 col-sm-12">
                 <br/>
                 <RaisedButton type="submit" label={!this.state.dis ? "Добавить" : "Добавлено"} primary={true}
