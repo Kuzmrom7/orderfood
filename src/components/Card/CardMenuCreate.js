@@ -1,8 +1,23 @@
 import React, {Component} from 'react';
-import {RaisedButton} from "material-ui";
+import {RaisedButton, Snackbar} from "material-ui";
 import {connect} from "react-redux";
 
 export class CardDishCreate extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: {
+        name: "",
+        url: "",
+      },
+      open: false,
+      dis: false,
+      pending: true
+    };
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -11,8 +26,20 @@ export class CardDishCreate extends Component {
       .then(this.handleSuccess)
   };
 
+
   handleSuccess = () => {
-    this.setState({dis: true})
+    this.setState({open: true, dis: true})
+  };
+
+  handleRequestClose = () => {
+    this.setState({
+      open: false,
+      dis: false,
+      data: {
+        name: "",
+        url: ""
+      }
+    })
   };
 
   handleChangeName = (e) => {
@@ -30,18 +57,6 @@ export class CardDishCreate extends Component {
     this.setState({data: data});
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: {
-        name: "",
-        url: "",
-      },
-      dis: false,
-      pending: true
-    };
-  }
 
   render() {
     return (
@@ -73,15 +88,13 @@ export class CardDishCreate extends Component {
                               disabled={this.state.dis}/>
               </div>
             </form>
-            {
-              this.state.dis ?
-                <div className="col-md-12">
-                  <RaisedButton label="Добавить еще" onClick={()=> {this.setState({dis:false, data: {name:"",url:""}})}}/>
-                  <br/>
-                </div>
-                :
-                ""
-            }
+
+            <Snackbar
+              open={this.state.open}
+              message="Меню было создано"
+              autoHideDuration={2000}
+              onRequestClose={this.handleRequestClose}
+            />
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Dish} from "../../actions";
 import Preloader from "../../components/Preloader";
-import {RaisedButton} from "material-ui";
+import {RaisedButton, Snackbar} from "material-ui";
 import AddSpec from "../AddSpec";
 
 
@@ -62,68 +62,33 @@ class CardDishCreate extends Component {
         size: "",
         price: ""
       },
+      open : false,
       pending: true
     };
 
   }
 
-
   handleSubmit = (e) => {
     e.preventDefault();
 
     let data = this.state.data;
-
-
-
     this.props.submit(data.name, data.urls, data.idtypedish, data.timeMin, data.desc, data.specs)
-      .then(() => console.log(""))
+      .then(this.handleSuccess)
   };
 
-  handleChangeName = (e) => {
-    e.preventDefault();
-
-    let data = this.state.data;
-    data.name = e.target.value;
-    this.setState({data: data});
+  handleSuccess = ()=>{
+    this.setState({open:true})
   };
 
-  handleChangeUrl = (e) => {
-    e.preventDefault();
-
-    let data = this.state.data;
-    data.urls = [{url : e.target.value}];
-    this.setState({data: data});
-  };
-
-  handleChangeType = (e) => {
-    e.preventDefault();
-
-    let data = this.state.data;
-    data.idtypedish = e.target.value;
-
-    Object.keys(this.props.type_dishes).map((id) => {
-        const p = this.props.type_dishes[id];
-        if (p.name === e.target.value) data.idtypedish = p.id;
-        return data.idtypedish;
-      }
-    );
-
-    this.setState({data: data});
-  };
-
-  handleChangeTime = (e) => {
-    e.preventDefault();
-
-    let data = this.state.data;
-    data.timeMin = e.target.value;
-    this.setState({data: data});
-  };
-  handleChangeDesc = (e) => {
-    e.preventDefault();
-
-    let data = this.state.data;
-    data.desc = e.target.value;
-    this.setState({data: data});
+  handleRequestClose = () => {
+    this.setState({open:false, data: {
+        name: "",
+        urls: [],
+        idtypedish: "",
+        timeMin: 0,
+        desc: "",
+        specs: []
+      }})
   };
 
   componentDidMount() {
@@ -211,6 +176,13 @@ class CardDishCreate extends Component {
               </div>
             </div>
 
+            <Snackbar
+              open={this.state.open}
+              message="Блюдо было добавлено"
+              autoHideDuration={2000}
+              onRequestClose={this.handleRequestClose}
+            />
+
           </div>
         </div>
       </div>
@@ -255,6 +227,53 @@ class CardDishCreate extends Component {
     });
 
   }
+  handleChangeName = (e) => {
+    e.preventDefault();
+
+    let data = this.state.data;
+    data.name = e.target.value;
+    this.setState({data: data});
+  };
+
+  handleChangeUrl = (e) => {
+    e.preventDefault();
+
+    let data = this.state.data;
+    data.urls = [{url: e.target.value}];
+    this.setState({data: data});
+  };
+
+  handleChangeType = (e) => {
+    e.preventDefault();
+
+    let data = this.state.data;
+    data.idtypedish = e.target.value;
+
+    Object.keys(this.props.type_dishes).map((id) => {
+        const p = this.props.type_dishes[id];
+        if (p.name === e.target.value) data.idtypedish = p.id;
+        return data.idtypedish;
+      }
+    );
+
+    this.setState({data: data});
+  };
+
+  handleChangeTime = (e) => {
+    e.preventDefault();
+
+    let data = this.state.data;
+    data.timeMin = e.target.value;
+    this.setState({data: data});
+  };
+  handleChangeDesc = (e) => {
+    e.preventDefault();
+
+    let data = this.state.data;
+    data.desc = e.target.value;
+    this.setState({data: data});
+  };
+
 
 }
 
