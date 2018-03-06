@@ -184,7 +184,7 @@ class CardDishCreate extends Component {
                   {this.state.uploadedFileCloudinaryUrl === '' ? null :
                     <div>
                       <p>{this.state.uploadedFile.name}</p>
-                      <img src={this.state.uploadedFileCloudinaryUrl}/>
+                      <img src={this.state.uploadedFileCloudinaryUrl} alt=""/>
                     </div>}
                 </div>
                 <div className="col-md-2">
