@@ -4,6 +4,11 @@ import {Dish} from "../../actions";
 import Preloader from "../../components/Preloader";
 import {RaisedButton, Snackbar} from "material-ui";
 import AddSpec from "../AddSpec";
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+
+const CLOUDINARY_UPLOAD_PRESET = 'kauxupbc';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dwkkf6qmg/image/upload';
 
 
 class SpecList extends React.Component {
@@ -62,10 +67,40 @@ class CardDishCreate extends Component {
         size: "",
         price: ""
       },
-      open : false,
-      pending: true
+      open: false,
+      pending: true,
+      uploadedFileCloudinaryUrl: ''
     };
 
+  }
+
+  onImageDrop(files) {
+    this.setState({
+      uploadedFile: files[0]
+    });
+
+    this.handleImageUpload(files[0]);
+  }
+
+  handleImageUpload(file) {
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+      .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        });
+        let data = this.state.data;
+        data.urls = [{url: response.body.secure_url}];
+        this.setState({data: data});
+      }
+    });
   }
 
   handleSubmit = (e) => {
@@ -76,19 +111,21 @@ class CardDishCreate extends Component {
       .then(this.handleSuccess)
   };
 
-  handleSuccess = ()=>{
-    this.setState({open:true})
+  handleSuccess = () => {
+    this.setState({open: true})
   };
 
   handleRequestClose = () => {
-    this.setState({open:false, data: {
+    this.setState({
+      open: false, data: {
         name: "",
         urls: [],
         idtypedish: "",
         timeMin: 0,
         desc: "",
         specs: []
-      }})
+      }
+    })
   };
 
   componentDidMount() {
@@ -101,6 +138,7 @@ class CardDishCreate extends Component {
   render() {
     if (this.state.pending) return (<Preloader/>);
 
+    console.log(this.state.uploadedFileCloudinaryUrl);
     const {type_dishes} = this.props;
     return (
       <div className="col-md-12 margin-top">
@@ -111,7 +149,6 @@ class CardDishCreate extends Component {
           <div className={"content undefined"}>
             <div className="">
               {/*---------------DISH--------------*/}
-
               <div className="col-md-6">
                 <span>Название</span>
                 <input type="username" className="form-control"
@@ -134,25 +171,35 @@ class CardDishCreate extends Component {
                 </select>
               </div>
 
-              <div className="col-md-6">
-                <span>URL photo</span>
-                <input type="url" className="form-control"
-                       placeholder="" onChange={this.handleChangeUrl}
-                />
-              </div>
+              <div className="col-md-12 margin-top">
+                <div className="col-md-4">
+                  <Dropzone
+                    multiple={true}
+                    accept="image/*"
+                    onDrop={this.onImageDrop.bind(this)}>
+                    <p>Нажмите для загрузки фото</p>
+                  </Dropzone>
+                </div>
+                <div className="col-md-4">
+                  {this.state.uploadedFileCloudinaryUrl === '' ? null :
+                    <div>
+                      <p>{this.state.uploadedFile.name}</p>
+                      <img src={this.state.uploadedFileCloudinaryUrl}/>
+                    </div>}
+                </div>
+                <div className="col-md-2">
+                  <span>Время приготовления </span>
+                  <input type="number" className="form-control"
+                         placeholder="Телефон пуст заполните пожалуйста"
+                         onChange={this.handleChangeTime}
+                         value={this.state.data.timeMin}
 
-
-              <div className="col-md-6">
-                <span>Время приготовления </span>
-                <input type="number" className="form-control"
-                       placeholder="Телефон пуст заполните пожалуйста"
-                       onChange={this.handleChangeTime}
-                       value={this.state.data.timeMin}
-
-                />
+                  />
+                </div>
               </div>
 
               <div className="col-md-12">
+                <br/>
                 <span>Описание </span>
                 <input type="text" className="form-control"
                        placeholder="Здесь пусто, заполните пожалуйста"
@@ -162,8 +209,8 @@ class CardDishCreate extends Component {
               </div>
 
               <div className="col-md-12">
-
-                Добавьте спецификации
+                <br/>
+                Добавьте спецификации (Тип/Цена)
 
                 <SpecList item={this.state.data.specs}/>
 
@@ -214,7 +261,7 @@ class CardDishCreate extends Component {
     e.preventDefault();
 
     let data = this.state.data;
-    data.specs = [...this.state.data.specs, this.state.metaspecs]
+    data.specs = [...this.state.data.specs, this.state.metaspecs];
     this.setState({
       data: data
     });
@@ -225,8 +272,8 @@ class CardDishCreate extends Component {
         price: ""
       }
     });
+  };
 
-  }
   handleChangeName = (e) => {
     e.preventDefault();
 
@@ -245,7 +292,6 @@ class CardDishCreate extends Component {
 
   handleChangeType = (e) => {
     e.preventDefault();
-
     let data = this.state.data;
     data.idtypedish = e.target.value;
 
