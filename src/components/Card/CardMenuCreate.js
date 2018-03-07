@@ -3,6 +3,7 @@ import {RaisedButton, Snackbar} from "material-ui";
 import {connect} from "react-redux";
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
+import CircularProgress from 'material-ui/CircularProgress';
 
 const CLOUDINARY_UPLOAD_PRESET = 'kauxupbc';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dwkkf6qmg/image/upload';
@@ -20,13 +21,15 @@ export class CardDishCreate extends Component {
       open: false,
       dis: false,
       pending: true,
-      uploadedFileCloudinaryUrl: ""
+      uploadedFileCloudinaryUrl: "",
+      upload: false,
     };
   }
 
   onImageDrop(files) {
     this.setState({
-      uploadedFile: files[0]
+      uploadedFile: files[0],
+      upload: true
     });
 
     this.handleImageUpload(files[0]);
@@ -44,7 +47,8 @@ export class CardDishCreate extends Component {
 
       if (response.body.secure_url !== '') {
         this.setState({
-          uploadedFileCloudinaryUrl: response.body.secure_url
+          uploadedFileCloudinaryUrl: response.body.secure_url,
+          upload: false
         });
         let data = this.state.data;
         data.url = response.body.secure_url;
@@ -118,6 +122,19 @@ export class CardDishCreate extends Component {
                     accept="image/*"
                     onDrop={this.onImageDrop.bind(this)}>
                     <p>Нажмите для загрузки фото</p>
+                    <div className="col-md-12">
+                      <div className="col-md-4"/>
+                      <div className="col-md-4">
+                        {
+                          this.state.upload ?
+                            <CircularProgress size={80} thickness={7}/>
+                            :
+                            ""
+                        }
+                      </div>
+                      <div className="col-md-4"/>
+                    </div>
+
                   </Dropzone>
                 </div>
                 <div className="col-md-4">
