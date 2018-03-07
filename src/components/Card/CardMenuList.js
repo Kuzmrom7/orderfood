@@ -13,7 +13,7 @@ export class CardMenuList extends Component {
         {Object.keys(menu).map((id, index) => {
             const p = menu[id];
             return (
-              <Link key={index} to={`/menu/${id}`}>
+              <Link key={index} to={`/menu/${p["id"]}`}>
 
                   <CardMenu
                     statsIcon="fa fa-clock-o"

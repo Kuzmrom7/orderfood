@@ -3,6 +3,7 @@ import {MENU_DISH_FETCH_FAILURE, MENU_DISH_FETCH_SUCCESS, MENU_FETCH_FAILURE, ME
 
 
 const convert_dish = (payload) => {
+
   let user = {
     name: payload.name,
     description: payload.description,
@@ -36,6 +37,7 @@ const initialState = stateExtension({});
 
 export const menu_dish_fetch = createReducer(initialState, {
   [MENU_DISH_FETCH_SUCCESS]: (state, payload) => {
+
     let newState = initialState;
     Object.keys(payload).forEach(function (key) {
       newState[key] = convert_dish(payload[key]);

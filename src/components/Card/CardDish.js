@@ -48,7 +48,7 @@ export class CardDish extends Component {
 
                 </div>
 
-                <div className="col-md-12 col-lg-12">
+                <div className="col-md-12 col-lg-12 content">
                   {
                     Object.keys(this.props.specs).map((id) => {
                       const speca = this.props.specs[id];

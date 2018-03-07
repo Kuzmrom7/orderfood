@@ -21,10 +21,9 @@ class Menu {
     return requestJSON("POST", uri, body, true);
   }
 
-  static MenuFetch(nameMenu) {
-    let uri = [api_host, "menudish", "list"].join("/");
-    let body = {nameMenu: nameMenu};
-    return requestJSON("POST", uri, body, true);
+  static MenuFetch(menuId) {
+    let uri = [api_host, "menu",menuId,"dish"].join("/");
+    return requestJSON("GET", uri, null, true);
   }
 
 }

@@ -25,10 +25,10 @@ const Main = () => {
       <Authenticated exact path="/user" component={UserProfile}/>
       <Authenticated exact path="/menu" component={MenuPage}/>
       <Authenticated exact path="/dish" component={Diches}/>
-      <Authenticated exact path = "/order" component = {Order}/>
+      <Authenticated exact path="/order" component={Order}/>
       <Authenticated exact path="/personal" component={Personals}/>
 
-      <Authenticated exact path='/menu/:name' component={MenuItem}/>
+      <Authenticated exact path='/menu/:id' component={MenuItem}/>
       {/* <Redirect from="/" to="/signin"/>*/}
 
 

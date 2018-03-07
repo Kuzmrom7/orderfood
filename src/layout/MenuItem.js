@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import Preloader from "../components/Preloader";
 import Dish from "../actions/dish";
 import Menu from "../actions/menu";
-import AddDish from "../components/AddDish";
 import MenuCardItem from "../containers/MenuCardItem";
 import {Divider} from "material-ui";
 
@@ -29,9 +28,7 @@ class MenuItem extends Component {
 
   componentDidMount() {
     const hash = window.location.pathname.slice(6);
-    const {menu} = this.props;
-    const p = menu[hash];
-    let name = p["name"];
+    let name = hash;
 
     Promise.all([
       this.props.dispatch(Dish.List()),
@@ -43,9 +40,15 @@ class MenuItem extends Component {
 
   render() {
     const hash = window.location.pathname.slice(6);
-    const {menu, menu_dish_fetch} = this.props;
-    const p = menu[hash];
-    let name = p["name"];
+    const {menu_dish_fetch, menu} = this.props;
+    let name;
+
+    Object.keys(menu).map((id) => {
+      let m = menu[id];
+      if (m["id"] === hash)  name = m["name"]
+      return name
+    });
+
 
     if (this.state.pending) return (
       <Preloader/>
@@ -55,7 +58,7 @@ class MenuItem extends Component {
         <div className="container-fluid">
           <div className={"card undefined"}>
             <div className="header">
-              <h1 className="title text-center text-capitalize">{name} </h1>
+              <h1 className="title text-center text-capitalize">{name ? name : "Меню"} </h1>
 
               <form className="">
 
@@ -88,7 +91,9 @@ class MenuItem extends Component {
           <div className={"card undefined"}>
 
             <br/>
-            <AddDish submit={this.handleSubmit}/>
+            {/*
+            <AddDish submit={this.handleSubmit}/>*/}
+
           </div>
         </div>
       </div>

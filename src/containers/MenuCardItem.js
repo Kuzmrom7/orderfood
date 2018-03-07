@@ -18,25 +18,24 @@ class MenuCardItem extends Component {
       <div>
         {(menuFetch === null) ?
 
-          console.log("NUlL", menuFetch)
+          ""
           :
 
-          Object.keys(menuFetch).map((id, index) => {
+          Object.keys(menuFetch).map((id) => {
             const p = menuFetch[id];
             return (
               <div>
-
 
                 <CardDish
                   statsIcon="fa fa-clock-o"
                   id="chartPreferences"
                   classes="ct-chart ct-perfect-fourth"
                   title={p["name"]}
-                  stats={p["updated"].slice(0, 10)}
-                  imgMenu={p["url"]}
+                  imgMenu={p["urls"]}
                   desc={p["description"]}
+                  specs={p["specs"]}
                   timeMin={p["timemin"]}
-                  iconCheck = {"fa fa-minus"}
+                  iconCheck={"fa fa-minus"}
                 />
 
 
