@@ -23,8 +23,8 @@ export class CardDish extends Component {
         });*/
 
     return (
-      <div className="col-lg-2 col-md-4 col-sm-3 margin-top" style={{marginRight: 30}}>
-        <Card style={{"width": "200"}}>
+      <div className="col-lg-2 col-md-3 col-sm-3 margin-top" style={{marginRight: 30}}>
+        <Card>
           <div className="">
             <CardMedia
               overlay={<CardTitle title={this.props.title}/>}
@@ -48,7 +48,7 @@ export class CardDish extends Component {
 
                 </div>
 
-                <div className="col-md-12 col-lg-12 content">
+                <div className="col-md-12 col-lg-12 ">
                   {
                     Object.keys(this.props.specs).map((id) => {
                       const speca = this.props.specs[id];

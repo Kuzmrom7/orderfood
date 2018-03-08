@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import CircularProgress from 'material-ui/CircularProgress';
 
-const CLOUDINARY_UPLOAD_PRESET = 'kauxupbc';
+const CLOUDINARY_UPLOAD_PRESET = 'lolkek';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dwkkf6qmg/image/upload';
 
 export class CardDishCreate extends Component {
@@ -98,7 +98,6 @@ export class CardDishCreate extends Component {
 
 
   render() {
-    console.log(this.state.data)
     return (
       <div className="col-md-12 margin-top">
         <div className={"card undefined"}>
