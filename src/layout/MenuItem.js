@@ -35,7 +35,6 @@ class MenuItem extends Component {
     const hash = window.location.pathname.slice(6);
     let name = hash;
 
-    console.log(name, "----")
     Promise.all([
       this.props.dispatch(Menu.Menudish(name)),
       this.props.dispatch(Dish.List()),

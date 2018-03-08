@@ -11,17 +11,6 @@ export class CardDish extends Component {
 
   render() {
 
-    /*    let imgs;
-        if (this.props.imgMenu === "") {
-          img = "https://images.unsplash.com/photo-1446034730750-a0b64d06ad13?auto=format&fit=crop&w=1350&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
-        }
-        else imgs = this.props.imgMenu;*/
-
-    /*
-        Object.keys(this.props.imgMenu).map((id) => {
-          let img = imgMenu[id]
-        });*/
-
     return (
       <div className="col-md-3 col-sm-3 margin-top" style={{marginRight: 30}}>
         <Card>
@@ -70,31 +59,6 @@ export class CardDish extends Component {
           <Divider/>
         </Card>
 
-        {/*        <div className={"card " + this.props.cardClass}>
-          <div className="header">
-            <h4 className="title text-capitalize">{this.props.title}
-              <div className="pull-right" onClick={this.handleRemove}>
-              </div>
-            </h4>
-
-          </div>
-
-          <div className={"content " + this.props.contentClass}>
-
-            <img src={img} className="img-responsive" alt=""/>
-            <br/>
-            <h6 className>Время приготовления: {this.props.timeMin} минут</h6>
-            <br/>
-            <p className="category">{this.props.desc}</p>
-            <div className="footer">
-              {this.props.legend}
-              {this.props.stats != null ? <hr/> : ""}
-              <div className="stats">
-                <i className={this.props.statsIcon}/> {this.props.stats}
-              </div>
-            </div>
-          </div>
-        </div>*/}
       </div>
     );
   }
