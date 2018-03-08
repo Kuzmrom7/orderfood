@@ -23,7 +23,7 @@ export class CardDish extends Component {
         });*/
 
     return (
-      <div className="col-lg-2 col-md-3 col-sm-3 margin-top" style={{marginRight: 30}}>
+      <div className="col-md-3 col-sm-3 margin-top" style={{marginRight: 30}}>
         <Card>
           <div className="">
             <CardMedia

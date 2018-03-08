@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import CircularProgress from 'material-ui/CircularProgress';
 
-const CLOUDINARY_UPLOAD_PRESET = 'lolkek';
+const CLOUDINARY_UPLOAD_PRESET = 'menu0903';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dwkkf6qmg/image/upload';
 
 export class CardDishCreate extends Component {
@@ -37,8 +37,8 @@ export class CardDishCreate extends Component {
 
   handleImageUpload(file) {
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
-      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-      .field('file', file);
+      .field('file', file)
+      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET);
 
     upload.end((err, response) => {
       if (err) {

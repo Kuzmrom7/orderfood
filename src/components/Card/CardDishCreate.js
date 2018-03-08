@@ -9,7 +9,7 @@ import request from 'superagent';
 import CircularProgress from 'material-ui/CircularProgress';
 
 
-const CLOUDINARY_UPLOAD_PRESET = 'kauxupbc';
+const CLOUDINARY_UPLOAD_PRESET = 'dish0903';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dwkkf6qmg/image/upload';
 
 
