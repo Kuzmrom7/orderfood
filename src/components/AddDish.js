@@ -8,10 +8,18 @@ export class AddDish extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
+    Object.keys(this.props.dish).map((id) => {
+        const p = this.props.dish[id];
+        if (p.name === this.state.nameDish) this.state.nameDish = p.id;
+        return this.state.nameDish;
+      }
+    );
+
     let data = this.state;
-    this.props.submit(data.nameDish, data.nameMenu)
-      .then(() => console.log("+++", data.nameDish, data.nameMenu))
+    this.props.submit( data.idMenu, data.nameDish)
+      .then(() => console.log( data.nameDish, data.idMenu))
   };
+
   handleSelect = (e) => {
     e.preventDefault();
     this.setState({nameDish: e.target.value});
@@ -22,16 +30,12 @@ export class AddDish extends Component {
 
     this.state = {
       nameDish: "",
-      nameMenu: "",
+      idMenu: this.props.menuid,
       pending: true
     };
   }
 
   componentDidMount() {
-    const hash = window.location.pathname.slice(6);
-    const {menu} = this.props;
-    const p = menu[hash];
-    this.setState({nameMenu: p["name"]});
     Promise.all([
       this.props.dispatch(Dish.List())
     ])
@@ -40,12 +44,13 @@ export class AddDish extends Component {
   }
 
   render() {
-    const {dish} = this.props;
+
+    const {dish,name} = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="col-md-12">
           <div className="col-md-6">
-            <br/><br/>
+
             <select className="form-control text-capitalize" id="sel1" onChange={this.handleSelect}>
               <option disabled selected>Выберите блюдо</option>
               {Object.keys(dish).map((id, index) => {
@@ -58,10 +63,8 @@ export class AddDish extends Component {
             </select>
             <br/><br/>
           </div>
-          <div className="col-md-6">
-            <br/>
-            <br/>
-            <RaisedButton  type="submit" label="Добавить блюдо" primary={true}/>
+          <div className="col-md-6 ">
+            <RaisedButton  type="submit" label={"Добавить в "+ name} primary={true}/>
           </div>
         </div>
       </form>

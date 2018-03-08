@@ -48,7 +48,8 @@ export const menu_dish_fetch = createReducer(initialState, {
     return Object.assign({}, state);
   },
   [MENU_FETCH_SUCCESS]: (state, payload) => {
-    let newState = initialState;
+    let newState = {};
+    console.log(payload)
     Object.keys(payload).forEach(function (key) {
       newState[key] = (payload[key]);
     });

@@ -5,16 +5,10 @@ import Dish from "../actions/dish";
 import Menu from "../actions/menu";
 import MenuCardItem from "../containers/MenuCardItem";
 import {Divider} from "material-ui";
+import AddDish from "../components/AddDish";
 
 
 class MenuItem extends Component {
-  handleSubmit = (nameDish, nameMenu) => {
-    let dispatch = this.props.dispatch;
-    this.setState({pending: true});
-    return dispatch(Menu.Add(nameDish, nameMenu))
-      .then(() => this.props.dispatch(Menu.Menudish(nameMenu)))
-      .then(() => this.setState({pending: false}))
-  };
 
   constructor(props) {
     super(props);
@@ -26,13 +20,25 @@ class MenuItem extends Component {
     }
   }
 
+  handleSubmit = (nameDish, nameMenu) => {
+    let dispatch = this.props.dispatch;
+    this.setState({pending: true});
+    return dispatch(Menu.Add(nameDish, nameMenu))
+      .then(() => this.props.dispatch(Menu.Menudish(nameMenu)))
+      .then(() => this.setState({pending: false}))
+  };
+
+
+
+
   componentDidMount() {
     const hash = window.location.pathname.slice(6);
     let name = hash;
 
+    console.log(name, "----")
     Promise.all([
-      this.props.dispatch(Dish.List()),
       this.props.dispatch(Menu.Menudish(name)),
+      this.props.dispatch(Dish.List()),
       this.props.dispatch(Dish.ListType())
     ])
       .then(() => this.setState({pending: false}))
@@ -41,21 +47,27 @@ class MenuItem extends Component {
   render() {
     const hash = window.location.pathname.slice(6);
     const {menu_dish_fetch, menu} = this.props;
+    let id = hash;
     let name;
 
     Object.keys(menu).map((id) => {
       let m = menu[id];
-      if (m["id"] === hash)  name = m["name"]
+      if (m["id"] === hash) name = m["name"];
       return name
     });
 
 
-    if (this.state.pending) return (
-      <Preloader/>
+    if (this.state.pending) return (<Preloader/>
     );
     return (
       <div className="content">
         <div className="container-fluid">
+          <div className={"card undefined"}>
+
+            <AddDish submit={this.handleSubmit} name={name ? name : "меню"} menuid={id}/>
+
+          </div>
+
           <div className={"card undefined"}>
             <div className="header">
               <h1 className="title text-center text-capitalize">{name ? name : "Меню"} </h1>
@@ -88,27 +100,19 @@ class MenuItem extends Component {
 
             </div>
           </div>
-          <div className={"card undefined"}>
-
-            <br/>
-            {/*
-            <AddDish submit={this.handleSubmit}/>*/}
-
-          </div>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    menu: state.menu,
-    dish: state.dish,
-    type_dishes: state.type_dishes,
-    menu_dish_fetch: state.menu_dish_fetch
-  }
-};
+const mapStateToProps = (state) => ({
+  menu: state.menu,
+  dish: state.dish,
+  type_dishes: state.type_dishes,
+  menu_dish_fetch: state.menu_dish_fetch
+
+});
 
 
 export default connect(mapStateToProps)(MenuItem);

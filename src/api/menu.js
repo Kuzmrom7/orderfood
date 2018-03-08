@@ -15,10 +15,9 @@ class Menu {
     return requestJSON("GET", uri, null, true);
   }
 
-  static Add(nameDish, nameMenu) {
-    let uri = [api_host, "menudish"].join("/");
-    let body = {namemenu: nameMenu, namedish: nameDish};
-    return requestJSON("POST", uri, body, true);
+  static Add(idMenu, idDish) {
+    let uri = [api_host, "menu",idMenu,"dish",idDish].join("/");
+    return requestJSON("POST", uri, null, true);
   }
 
   static MenuFetch(menuId) {

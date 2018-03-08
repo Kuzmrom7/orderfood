@@ -4,7 +4,9 @@ import {
   MENU_CREATE_SUCCESS,
   MENU_LIST_FAILURE,
   MENU_LIST_FETCH_SUCCESS,
-  MENU_LIST_SUCCESS
+  MENU_LIST_SUCCESS,
+  MENU_DISH_SUCCESS,
+  MENU_DISH_FAILURE
 } from "../constants";
 
 
@@ -76,6 +78,12 @@ export const menu = createReducer(initialState, {
       return Object.assign({}, state);
     },
     [MENU_CREATE_FAILURE]: (state) => {
+      return Object.assign({}, state);
+    },
+    [MENU_DISH_SUCCESS]: (state) => {
+      return Object.assign({}, state);
+    },
+    [MENU_DISH_FAILURE]: (state) => {
       return Object.assign({}, state);
     },
   },
