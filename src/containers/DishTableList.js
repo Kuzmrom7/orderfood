@@ -1,34 +1,92 @@
 import React, {Component} from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn,} from 'material-ui/Table';
-import {Avatar, Card, Chip} from "material-ui";
+import {green400, red400} from 'material-ui/styles/colors';
+import {Avatar, Card, Chip, Dialog, FlatButton, FloatingActionButton} from "material-ui";
 import {connect} from "react-redux";
+import Menu from "../actions/menu";
 
 
 export class DishTableList extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      create: false,
+      open: false,
+      id: "",
+      menuId: "",
+    }
+  }
+
+  handleOpen = (e, id) => {
+    this.setState({open: true, id: id});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
+  handleSelect = (e) => {
+    e.preventDefault();
+
+    Object.keys(this.props.menu).map((id) => {
+        const p = this.props.menu[id];
+        if (p.name === e.target.value) this.setState({menuId: p.id});
+
+        return id;
+      }
+    );
+
+
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let menuId = this.state.menuId;
+    let dishId = this.state.id;
+
+    this.props.submit(menuId, dishId)
+      .then(() => this.setState({open:false}))
+  };
+
 
   render() {
-    const {dish} = this.props;
+    const {dish, menu} = this.props;
+    const actions = [
+      <FlatButton
+        label="Назад"
+        primary={true}
+        onClick={this.handleClose}
+      />,
+      <FlatButton
+        label="Добавить"
+        primary={true}
+        keyboardFocused={true}
+        type = "submit"
+        onClick={this.handleSubmit}
+      />,
+    ];
 
     return (
       <div className="container-fluid margin-top">
         <Card>
           <Table>
-            <TableHeader>
+            <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
               <TableRow>
                 <TableHeaderColumn>Название</TableHeaderColumn>
                 <TableHeaderColumn><i className="fa fa-clock-o"/> Время приготовление</TableHeaderColumn>
                 <TableHeaderColumn><i className="fa fa-money"/>Тип/Цена</TableHeaderColumn>
-
+                <TableHeaderColumn width={100}>Добавить</TableHeaderColumn>
+                <TableHeaderColumn width={100}>Удалить</TableHeaderColumn>
 
               </TableRow>
             </TableHeader>
-            <TableBody>
+            <TableBody displayRowCheckbox={false} showRowHover={true}>
 
               {Object.keys(dish).map((id) => {
                 const di = dish[id];
                 return (
-                  <TableRow>
+                  <TableRow key={di["id"]}>
                     <TableRowColumn>{di["name"]}</TableRowColumn>
                     <TableRowColumn>{di["timemin"]} минуты</TableRowColumn>
                     <TableRowColumn>
@@ -52,6 +110,13 @@ export class DishTableList extends Component {
                         <br/>
                       </div>
                     </TableRowColumn>
+                    <TableRowColumn width={100}> <FloatingActionButton mini={true} backgroundColor={green400}
+                                                                       onClick={(e) => {
+                                                                         this.handleOpen(e, di["id"])
+                                                                       }}><i
+                      className="fa fa-plus"/></FloatingActionButton></TableRowColumn>
+                    <TableRowColumn width={100}> <FloatingActionButton mini={true} backgroundColor={red400}><i
+                      className="fa fa-minus"/></FloatingActionButton></TableRowColumn>
                   </TableRow>
                 )
 
@@ -60,12 +125,34 @@ export class DishTableList extends Component {
             </TableBody>
           </Table>
         </Card>
+
+        <Dialog
+          title="Добавить в меню"
+          actions={actions}
+          modal={false}
+          open={this.state.open}
+          onRequestClose={this.handleClose}
+        >
+          <div className="col-md-12">
+            <select className="form-control text-capitalize" id="sel1" onChange={this.handleSelect}>
+              <option disabled selected>Выберите меню</option>
+              {Object.keys(menu).map((id, index) => {
+                  const p = menu[id];
+                  return (
+                    <option key={index} className="text-capitalize">{p["name"]}</option>
+                  )
+                }
+              )}
+            </select>
+          </div>
+        </Dialog>
+
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   return {
     dish: state.dish,
     type_dishes: state.type_dishes

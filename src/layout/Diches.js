@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import CardDishCreate from "../components/Card/CardDishCreate";
 import Dish from "../actions/dish";
+import Menu from "../actions/menu";
 import CardDishList from "../components/Card/CardDishList";
 import {connect} from "react-redux";
 import {Tab, Tabs} from "material-ui";
@@ -33,11 +34,20 @@ class Diches extends Component {
 
   componentDidMount() {
     Promise.all([
-      this.props.dispatch(Dish.List())
+      this.props.dispatch(Dish.List()),
+      this.props.dispatch(Menu.List())
     ])
       .then(() => "")
 
   }
+
+  handleSubmitM = (nameDish, nameMenu) => {
+    let dispatch = this.props.dispatch;
+    this.setState({pending: true});
+    return dispatch(Menu.Add(nameDish, nameMenu))
+      .then(() => this.props.dispatch(Menu.Menudish(nameMenu)))
+      .then(() => this.setState({pending: false}))
+  };
 
   render() {
 
@@ -47,7 +57,7 @@ class Diches extends Component {
           <Tabs>
             <Tab label="Списком">
               <div>
-                <DishTableList dish={this.props.dish}/>
+                <DishTableList dish={this.props.dish} menu = {this.props.menu} submit = {this.handleSubmitM}/>
               </div>
             </Tab>
             <Tab label="Карточки">
@@ -68,7 +78,10 @@ class Diches extends Component {
   }
 }
 
-const mapStateToProps = (state) => (state);
+const mapStateToProps = (state) => ({
+  menu: state.menu,
+  dish : state.dish
+});
 
 export default connect(mapStateToProps)(Diches)
 
