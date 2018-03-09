@@ -49,6 +49,14 @@ class Diches extends Component {
       .then(() => this.setState({pending: false}))
   };
 
+  handleRemove = (id) => {
+    let dispatch = this.props.dispatch;
+    this.setState({pending: true});
+    return dispatch(Dish.Remove(id))
+      .then(() => this.props.dispatch(Dish.List()))
+      .then(() => this.setState({pending: false}))
+  };
+
   render() {
 
     return (
@@ -57,7 +65,7 @@ class Diches extends Component {
           <Tabs>
             <Tab label="Списком">
               <div>
-                <DishTableList dish={this.props.dish} menu = {this.props.menu} submit = {this.handleSubmitM}/>
+                <DishTableList dish={this.props.dish} menu = {this.props.menu} submit = {this.handleSubmitM} rm = {this.handleRemove}/>
               </div>
             </Tab>
             <Tab label="Карточки">

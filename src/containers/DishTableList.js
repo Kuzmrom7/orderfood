@@ -12,8 +12,11 @@ export class DishTableList extends Component {
     this.state = {
       create: false,
       open: false,
+      openRm: false,
+      idRM: "",
       id: "",
       menuId: "",
+      error : ""
     }
   }
 
@@ -21,8 +24,16 @@ export class DishTableList extends Component {
     this.setState({open: true, id: id});
   };
 
+  handleOpenRM = (e, id) => {
+    this.setState({openRm: true, idRM: id});
+  };
+
   handleClose = () => {
     this.setState({open: false});
+  };
+
+  handleCloseM = () => {
+    this.setState({openRm: false,error : ""});
   };
 
   handleSelect = (e) => {
@@ -35,8 +46,6 @@ export class DishTableList extends Component {
         return id;
       }
     );
-
-
   };
 
   handleSubmit = (e) => {
@@ -46,6 +55,15 @@ export class DishTableList extends Component {
 
     this.props.submit(menuId, dishId)
       .then(() => this.setState({open: false}))
+  };
+
+  handleRemove = (e) => {
+
+    e.preventDefault();
+    let id = this.state.idRM;
+    this.props.rm(id)
+      .then(() => this.setState({openRm: false}))
+      .catch(() => this.setState({error :  "Error"}))
   };
 
 
@@ -66,6 +84,21 @@ export class DishTableList extends Component {
       />,
     ];
 
+    const actionsRm = [
+      <FlatButton
+        label="Назад"
+        primary={true}
+        onClick={this.handleCloseM}
+      />,
+      <FlatButton
+        label="Удалить"
+        primary={true}
+        keyboardFocused={true}
+        type="submit"
+        onClick={this.handleRemove}
+      />,
+    ];
+
     return (
       <div className="container-fluid margin-top">
         <Card>
@@ -82,7 +115,7 @@ export class DishTableList extends Component {
             </TableHeader>
             <TableBody displayRowCheckbox={false} showRowHover={true}>
 
-              {Object.keys(dish).map((id,index) => {
+              {Object.keys(dish).map((id, index) => {
                 const di = dish[id];
                 return (
                   <TableRow key={index}>
@@ -92,11 +125,11 @@ export class DishTableList extends Component {
 
                       <div className="row">
                         {
-                          Object.keys(di["specs"]).map((id,index) => {
+                          Object.keys(di["specs"]).map((id, index) => {
                             let d = di["specs"][id];
 
                             return (
-                              <div key = {index}>
+                              <div key={index}>
                                 <br/>
                                 <Chip>
                                   <Avatar size={22}>  {d["size"]}</Avatar>
@@ -114,7 +147,10 @@ export class DishTableList extends Component {
                                                                          this.handleOpen(e, di["id"])
                                                                        }}><i
                       className="fa fa-plus"/></FloatingActionButton></TableRowColumn>
-                    <TableRowColumn width={100}> <FloatingActionButton mini={true} backgroundColor={red400}><i
+                    <TableRowColumn width={100}> <FloatingActionButton mini={true} backgroundColor={red400}
+                                                                       onClick={(e) => {
+                                                                         this.handleOpenRM(e, di["id"])
+                                                                       }}><i
                       className="fa fa-minus"/></FloatingActionButton></TableRowColumn>
                   </TableRow>
                 )
@@ -144,6 +180,16 @@ export class DishTableList extends Component {
               )}
             </select>
           </div>
+        </Dialog>
+
+        <Dialog
+          title="Точно хотите удалить?"
+          actions={actionsRm}
+          modal={false}
+          open={this.state.openRm}
+          onRequestClose={this.handleCloseM}
+        >
+          {this.state.error ? <div className='text-danger'>...Ошибка, возможно блюдо состоит в меню</div> : ""}
         </Dialog>
 
       </div>

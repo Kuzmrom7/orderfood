@@ -23,6 +23,11 @@ class Dish {
     return requestJSON("GET", uri, null, true);
   }
 
+  static Remove(id) {
+    let uri = [api_host, "dish", id].join("/");
+    return requestJSON("DELETE", uri , null,true);
+  }
+
   static ListType() {
     let uri = [api_host, "type/dish"].join("/");
     return requestJSON("GET", uri, null, true);
