@@ -3,7 +3,6 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import {green400, red400} from 'material-ui/styles/colors';
 import {Avatar, Card, Chip, Dialog, FlatButton, FloatingActionButton} from "material-ui";
 import {connect} from "react-redux";
-import Menu from "../actions/menu";
 
 
 export class DishTableList extends Component {
@@ -46,7 +45,7 @@ export class DishTableList extends Component {
     let dishId = this.state.id;
 
     this.props.submit(menuId, dishId)
-      .then(() => this.setState({open:false}))
+      .then(() => this.setState({open: false}))
   };
 
 
@@ -62,7 +61,7 @@ export class DishTableList extends Component {
         label="Добавить"
         primary={true}
         keyboardFocused={true}
-        type = "submit"
+        type="submit"
         onClick={this.handleSubmit}
       />,
     ];

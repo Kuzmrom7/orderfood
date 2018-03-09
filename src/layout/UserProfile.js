@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CardProfile from "../components/Card/CardProfile";
 import {Place} from "../actions";
 import {connect} from "react-redux";
+import {CardAdrressing} from "../components/Card/CardAdrressing";
 
 class UserProfile extends Component {
 
@@ -31,6 +32,9 @@ class UserProfile extends Component {
             <div className="col-md-12">
               <div className="col-md-6">
                 <CardProfile submit={this.handlePlaceSubmit}/>
+              </div>
+              <div className="col-md-6">
+                <CardAdrressing/>
               </div>
             </div>
           </div>
