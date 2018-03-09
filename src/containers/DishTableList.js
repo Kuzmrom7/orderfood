@@ -82,21 +82,21 @@ export class DishTableList extends Component {
             </TableHeader>
             <TableBody displayRowCheckbox={false} showRowHover={true}>
 
-              {Object.keys(dish).map((id) => {
+              {Object.keys(dish).map((id,index) => {
                 const di = dish[id];
                 return (
-                  <TableRow key={di["id"]}>
+                  <TableRow key={index}>
                     <TableRowColumn>{di["name"]}</TableRowColumn>
                     <TableRowColumn>{di["timemin"]} минуты</TableRowColumn>
                     <TableRowColumn>
 
                       <div className="row">
                         {
-                          Object.keys(di["specs"]).map((id) => {
+                          Object.keys(di["specs"]).map((id,index) => {
                             let d = di["specs"][id];
 
                             return (
-                              <div>
+                              <div key = {index}>
                                 <br/>
                                 <Chip>
                                   <Avatar size={22}>  {d["size"]}</Avatar>

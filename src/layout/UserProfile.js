@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CardProfile from "../components/Card/CardProfile";
-import {Place} from "../actions";
+import {Adrress, Place} from "../actions";
 import {connect} from "react-redux";
 import {CardAdrressing} from "../components/Card/CardAdrressing";
 
@@ -15,13 +15,26 @@ class UserProfile extends Component {
 
   }
 
+  componentDidMount() {
+    Promise.all([
+      this.props.dispatch(Adrress.List()),
+    ])
+      .then(() => this.setState({pending: false}))
+
+  }
+
   handlePlaceSubmit = (id, city, phone, url) => {
     let dispatch = this.props.dispatch;
     return dispatch(Place.Update(id, city, phone, url))
-      .then(() => {
-        ""
-      })
+      .then(() => {})
 
+  };
+
+  handleAdrressCreate = (name) => {
+    let dispatch = this.props.dispatch;
+    let id = this.props.place["id"];
+    return dispatch(Adrress.Create(name,id))
+      .then(() => {this.props.dispatch(Adrress.List())})
   };
 
   render() {
@@ -34,7 +47,7 @@ class UserProfile extends Component {
                 <CardProfile submit={this.handlePlaceSubmit}/>
               </div>
               <div className="col-md-6">
-                <CardAdrressing/>
+                <CardAdrressing adrress = {this.props.adrress} submit = {this.handleAdrressCreate} />
               </div>
             </div>
           </div>
@@ -46,7 +59,8 @@ class UserProfile extends Component {
 
 const mapStateToProps = (state) => ({
   account: state.account,
-  place: state.place
+  place: state.place,
+  adrress : state.adrress
 });
 
 export default connect(mapStateToProps)(UserProfile)

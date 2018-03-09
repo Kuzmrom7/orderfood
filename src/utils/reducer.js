@@ -13,6 +13,7 @@ function get() {
   reducers["menu_dish_fetch"] = reducer.menu_dish_fetch;
   reducers["personal"] = reducer.personal;
   reducers["type_personal"] = reducer.type_personal;
+  reducers["adrress"] = reducer.adrress;
 
   return reducers;
 }

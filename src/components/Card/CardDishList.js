@@ -10,12 +10,13 @@ export class CardDishList extends Component {
       <div className="col-md-12">
 
 
-        {Object.keys(dish).map((id) => {
+        {Object.keys(dish).map((id,index) => {
             const p = dish[id];
 
             return (
 
               <CardDish
+                key = {index}
                 statsIcon="fa fa-clock-o"
                 id="chartPreferences"
                 classes="ct-chart ct-perfect-fourth"
