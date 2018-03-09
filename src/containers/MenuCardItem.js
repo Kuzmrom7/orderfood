@@ -21,14 +21,14 @@ class MenuCardItem extends Component {
           ""
           :
 
-          Object.keys(menuFetch).map((id) => {
+          Object.keys(menuFetch).map((id,index) => {
             const p = menuFetch[id];
             return (
-              <div>
+              <div key={index}>
 
                 <CardDish
                   statsIcon="fa fa-clock-o"
-                  id="chartPreferences"
+                  id={p["id"]}
                   classes="ct-chart ct-perfect-fourth"
                   title={p["name"]}
                   imgMenu={p["urls"]}
@@ -36,6 +36,7 @@ class MenuCardItem extends Component {
                   specs={p["specs"]}
                   timeMin={p["timemin"]}
                   iconCheck={"fa fa-minus"}
+                  action = {this.props.remove}
                 />
 
 

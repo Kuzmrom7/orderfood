@@ -9,6 +9,11 @@ export class CardDish extends Component {
     this.state = {}
   }
 
+  handleAction = () => {
+    this.props.action(this.props.id)
+      .then(() => this.setState({openRm: false}))
+  };
+
   render() {
 
     return (
@@ -30,7 +35,9 @@ export class CardDish extends Component {
                     <h6><i className="fa fa-clock-o"/> {this.props.timeMin} минут</h6>
                   </div>
                   <div className="col-md-5 text-right">
-                    <FloatingActionButton mini={true}>
+                    <FloatingActionButton mini={true} onClick={(e) => {
+                      this.handleAction()
+                    }}>
                       <i className={this.props.iconCheck}/>
                     </FloatingActionButton>
                   </div>
@@ -39,7 +46,7 @@ export class CardDish extends Component {
 
                 <div className="col-md-12 col-lg-12 ">
                   {
-                    Object.keys(this.props.specs).map((id,index) => {
+                    Object.keys(this.props.specs).map((id, index) => {
                       const speca = this.props.specs[id];
                       return (
                         <div className="col-md-6 col-lg-6" key={index}>

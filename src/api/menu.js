@@ -20,6 +20,11 @@ class Menu {
     return requestJSON("POST", uri, null, true);
   }
 
+  static RemoveDish(idMenu, idDish) {
+    let uri = [api_host, "menu",idMenu,"dish",idDish].join("/");
+    return requestJSON("DELETE", uri, null, true);
+  }
+
   static MenuFetch(menuId) {
     let uri = [api_host, "menu",menuId,"dish"].join("/");
     return requestJSON("GET", uri, null, true);

@@ -4,7 +4,7 @@ import Preloader from "../components/Preloader";
 import Dish from "../actions/dish";
 import Menu from "../actions/menu";
 import MenuCardItem from "../containers/MenuCardItem";
-import {Divider} from "material-ui";
+import {Divider, Snackbar} from "material-ui";
 import AddDish from "../components/AddDish";
 
 
@@ -16,19 +16,29 @@ class MenuItem extends Component {
       pending: true,
       name: "",
       nameDish: "",
-      pend: true
+      pend: true,
+      open : false,
+      openAdd : false,
     }
   }
 
   handleSubmit = (nameDish, nameMenu) => {
     let dispatch = this.props.dispatch;
+    let idMenu =  window.location.pathname.slice(6);
     this.setState({pending: true});
     return dispatch(Menu.Add(nameDish, nameMenu))
-      .then(() => this.props.dispatch(Menu.Menudish(nameMenu)))
+      .then(() => this.props.dispatch(Menu.Menudish(idMenu)))
       .then(() => this.setState({pending: false}))
+      .then(() => this.setState({openAdd: true}))
   };
 
-
+  handleRemove = (idDish) => {
+    let dispatch = this.props.dispatch;
+    let idMenu =  window.location.pathname.slice(6);
+    return dispatch(Menu.RemoveDish(idMenu, idDish))
+      .then(() => this.props.dispatch(Menu.Menudish(idMenu)))
+      .then(() => this.setState({open: true}))
+  };
 
 
   componentDidMount() {
@@ -78,17 +88,17 @@ class MenuItem extends Component {
                     const p = menu_dish_fetch[id];
                     if (p === null || p.length === 0) {
                       return (
-                        <div>
+                        <div key={index}>
                         </div>
                       )
                     }
                     else
                       return (
-                        <div>
+                        <div key={index}>
                           <h2 className="text-capitalize">{id}</h2>
                           <Divider/>
                           <div className="col-md-12">
-                            <MenuCardItem key={index} menuFetch={p}/>
+                            <MenuCardItem key={index} menuFetch={p} remove = {this.handleRemove}/>
                           </div>
                         </div>
                       );
@@ -100,6 +110,22 @@ class MenuItem extends Component {
             </div>
           </div>
         </div>
+
+        <Snackbar
+          open={this.state.open}
+          message="Блюдо удалено из меню"
+          autoHideDuration={2000}
+          onRequestClose={() => {this.setState({open:false})}}
+        />
+
+        <Snackbar
+          open={this.state.openAdd}
+          message="Блюдо добавлено"
+          autoHideDuration={2000}
+          onRequestClose={() => {this.setState({openAdd:false})}}
+        />
+
+
       </div>
     );
   }
