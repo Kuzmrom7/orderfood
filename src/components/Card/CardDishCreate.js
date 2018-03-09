@@ -235,7 +235,7 @@ class CardDishCreate extends Component {
                          s={this.state.metaspecs.size} p={this.state.metaspecs.price}/>
 
               </div>
-              <div className="col-md-1">
+              <div className="col-md-1 mb-2">
                 <RaisedButton type="submit" onClick={this.handleSubmit} label="Создать" primary={true}/>
               </div>
             </div>
