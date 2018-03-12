@@ -10,8 +10,8 @@ class Menu {
     return requestJSON("POST", uri, body, true);
   }
 
-  static List() {
-    let uri = [api_host, "menu"].join("/");
+  static List(id_place) {
+    let uri = [api_host, "menu/place",id_place].join("/");
     return requestJSON("GET", uri, null, true);
   }
 

@@ -22,12 +22,12 @@ class MenuPage extends Component {
     let dispatch = this.props.dispatch;
     let placeid = this.props.place.id;
     return dispatch(Menu.Create(name, placeid, url))
-      .then(() => this.props.dispatch(Menu.List()))
+      .then(() => this.props.dispatch(Menu.List(this.props.place.id)))
   };
 
   componentDidMount() {
     Promise.all([
-      this.props.dispatch(Menu.List())
+      this.props.dispatch(Menu.List(this.props.place.id))
     ])
       .then(() => this.setState({pending: false}))
 

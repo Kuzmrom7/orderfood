@@ -34,8 +34,8 @@ class Diches extends Component {
 
   componentDidMount() {
     Promise.all([
-      this.props.dispatch(Dish.List()),
-      this.props.dispatch(Menu.List())
+      this.props.dispatch(Dish.List(this.props.place.id)),
+      this.props.dispatch(Menu.List(this.props.place.id))
     ])
       .then(() => "")
 
@@ -53,7 +53,7 @@ class Diches extends Component {
     let dispatch = this.props.dispatch;
     this.setState({pending: true});
     return dispatch(Dish.Remove(id))
-      .then(() => this.props.dispatch(Dish.List()))
+      .then(() => this.props.dispatch(Dish.List(this.props.place.id)))
       .then(() => this.setState({pending: false}))
   };
 
@@ -88,7 +88,8 @@ class Diches extends Component {
 
 const mapStateToProps = (state) => ({
   menu: state.menu,
-  dish : state.dish
+  dish : state.dish,
+  place : state.place
 });
 
 export default connect(mapStateToProps)(Diches)

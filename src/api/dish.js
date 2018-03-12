@@ -18,8 +18,8 @@ class Dish {
     return requestJSON("POST", uri, body, true);
   }
 
-  static List() {
-    let uri = [api_host, "dish"].join("/");
+  static List(id_place) {
+    let uri = [api_host, "dish/place",id_place].join("/");
     return requestJSON("GET", uri, null, true);
   }
 

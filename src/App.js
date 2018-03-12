@@ -35,8 +35,6 @@ class App extends Component {
   componentDidMount() {
     Promise.all([
       this.props.dispatch(Place.Fetch()),
-      this.props.dispatch(Dish.List()),
-      this.props.dispatch(Menu.List()),
     ])
       .then(() => this.setState({pending: false}))
       .catch(() => this.props.history.push("/signin"))
