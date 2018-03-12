@@ -14,8 +14,9 @@ export class CardProfile extends Component {
         id: this.props.place.id,
         phone: this.props.place.phone,
         url: this.props.place.url,
-        city: this.props.place.city
-      }
+        city: this.props.place.city,
+      },
+
     };
   }
 
@@ -24,7 +25,7 @@ export class CardProfile extends Component {
 
     let data = this.state.data;
     this.props.submit(data.id, data.city, data.phone, data.url)
-      .then(() => console.log(""))
+      .then()
   };
 
 
@@ -104,7 +105,7 @@ export class CardProfile extends Component {
                   <input type="tel" className="form-control"
                          placeholder="Телефон пуст заполните пожалуйста"
                          onChange={this.handleChangePhone}
-                         value={place.phone}
+                         defaultValue={place.phone}
 
                   />
                 </div>
@@ -113,7 +114,7 @@ export class CardProfile extends Component {
                   <input type="url" className="form-control"
                          placeholder="Сайт пуст заполните пожалуйста"
                          onChange={this.handleChangeUrl}
-                         value={place.url}
+                         defaultValue={place.url}
                   />
                 </div>
                 <div className="col-md-12">
@@ -121,7 +122,7 @@ export class CardProfile extends Component {
                   <input type="text" className="form-control"
                          placeholder="Адрес пуст заполните пожалуйста"
                          onChange={this.handleChangeaAdress}
-                         value={place.city}
+                         defaultValue={place.city}
                   />
                 </div>
                 <div className="col-md-1">

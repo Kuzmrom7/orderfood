@@ -26,7 +26,7 @@ class UserProfile extends Component {
   handlePlaceSubmit = (id, city, phone, url) => {
     let dispatch = this.props.dispatch;
     return dispatch(Place.Update(id, city, phone, url))
-      .then(() => {})
+      .then(() => {this.props.dispatch(Place.Fetch())})
 
   };
 
