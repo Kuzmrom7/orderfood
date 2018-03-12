@@ -25,8 +25,8 @@ class Menu {
     return requestJSON("DELETE", uri, null, true);
   }
 
-  static MenuFetch(menuId) {
-    let uri = [api_host, "menu",menuId,"dish"].join("/");
+  static MenuFetch(menuId,id_place) {
+    let uri = [api_host, "menu",menuId,"place", id_place, "dish"].join("/");
     return requestJSON("GET", uri, null, true);
   }
 

@@ -37,7 +37,7 @@ export class AddDish extends Component {
 
   componentDidMount() {
     Promise.all([
-      this.props.dispatch(Dish.List())
+      this.props.dispatch(Dish.List(this.props.place.id))
     ])
       .then(() => this.setState({pending: false}))
 
@@ -74,7 +74,8 @@ export class AddDish extends Component {
 
 const mapStateToProps = (state) => ({
   menu: state.menu,
-  dish: state.dish
+  dish: state.dish,
+  place: state.place
 });
 
 export default connect(mapStateToProps)(AddDish);

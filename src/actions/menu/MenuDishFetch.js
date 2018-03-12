@@ -12,9 +12,9 @@ const FailureAction = (payload) => ({
   payload
 });
 
-export default (nameMenu) => (dispatch) => {
+export default (nameMenu,id_place) => (dispatch) => {
   return new Promise((resolve, reject) => {
-    Menu.MenuFetch(nameMenu)
+    Menu.MenuFetch(nameMenu,id_place)
       .then(response => {
         dispatch(SuccessAction(response));
         resolve(response);

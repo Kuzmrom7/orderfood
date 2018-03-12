@@ -27,7 +27,7 @@ class MenuItem extends Component {
     let idMenu =  window.location.pathname.slice(6);
     this.setState({pending: true});
     return dispatch(Menu.Add(nameDish, nameMenu))
-      .then(() => this.props.dispatch(Menu.Menudish(idMenu)))
+      .then(() => this.props.dispatch(Menu.Menudish(idMenu,this.props.place.id)))
       .then(() => this.setState({pending: false}))
       .then(() => this.setState({openAdd: true}))
   };
@@ -36,7 +36,7 @@ class MenuItem extends Component {
     let dispatch = this.props.dispatch;
     let idMenu =  window.location.pathname.slice(6);
     return dispatch(Menu.RemoveDish(idMenu, idDish))
-      .then(() => this.props.dispatch(Menu.Menudish(idMenu)))
+      .then(() => this.props.dispatch(Menu.Menudish(idMenu,this.props.place.id)))
       .then(() => this.setState({open: true}))
   };
 
@@ -46,8 +46,8 @@ class MenuItem extends Component {
     let name = hash;
 
     Promise.all([
-      this.props.dispatch(Menu.Menudish(name)),
-      this.props.dispatch(Dish.List()),
+      this.props.dispatch(Menu.Menudish(name,this.props.place.id)),
+      this.props.dispatch(Dish.List(this.props.place.id)),
       this.props.dispatch(Dish.ListType())
     ])
       .then(() => this.setState({pending: false}))
@@ -134,6 +134,7 @@ class MenuItem extends Component {
 const mapStateToProps = (state) => ({
   menu: state.menu,
   dish: state.dish,
+  place : state.place,
   type_dishes: state.type_dishes,
   menu_dish_fetch: state.menu_dish_fetch
 
