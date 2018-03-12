@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn,} from 'material-ui/Table';
-import {green400, red400} from 'material-ui/styles/colors';
+import {green300, red300} from 'material-ui/styles/colors';
 import {Avatar, Card, Chip, Dialog, FlatButton, FloatingActionButton} from "material-ui";
 import {connect} from "react-redux";
 
@@ -142,12 +142,12 @@ export class DishTableList extends Component {
                         <br/>
                       </div>
                     </TableRowColumn>
-                    <TableRowColumn width={100}> <FloatingActionButton mini={true} backgroundColor={green400}
+                    <TableRowColumn width={100}> <FloatingActionButton mini={true} backgroundColor={green300}
                                                                        onClick={(e) => {
                                                                          this.handleOpen(e, di["id"])
                                                                        }}><i
                       className="fa fa-plus"/></FloatingActionButton></TableRowColumn>
-                    <TableRowColumn width={100}> <FloatingActionButton mini={true} backgroundColor={red400}
+                    <TableRowColumn width={100}> <FloatingActionButton mini={true} backgroundColor={red300}
                                                                        onClick={(e) => {
                                                                          this.handleOpenRM(e, di["id"])
                                                                        }}><i
