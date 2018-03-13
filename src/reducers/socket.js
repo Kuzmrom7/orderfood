@@ -1,20 +1,20 @@
 import {createReducer} from "../utils";
-import {
-  SOCKET_CONNECT,
-} from "../constants";
+import {SOCKET_CONNECT,} from "../constants";
 
 
-const convert = (payload) => {
+/*const convert = (payload) => {
 
   return {
-    id_place : payload.id_place,
-    id_dish  : payload.id_dish,
-    name_user : payload.name_user,
-    phone : payload.phone,
-    dishes : payload.dishes,
-    total : payload.total
+
+    id_place: payload.id_place,
+    id_dish: payload.id_dish,
+    name_user: payload.name_user,
+    phone: payload.phone,
+    dishes: payload.dishes,
+    total: payload.total
+
   };
-};
+};*/
 
 
 const stateExtension = (state) => {
@@ -39,12 +39,13 @@ const initialState = stateExtension({});
 
 export const socket = createReducer(initialState, {
   [SOCKET_CONNECT]: (state, payload) => {
-    let newState = initialState;
-    console.log()
-    Object.keys(payload).forEach(function (key) {
-      newState[payload[key]] = convert(payload[key]);
-    });
-    return newState;
+    return Object.assign({}, state, payload);
+
+/*    newState =     Object.assign({}, state, payload );
+    /!*    Object.keys(payload).forEach(function (key) {
+          newState[payload[key]] = convert(payload[key]);
+        });*!/
+    return newState;*/
   },
 
 

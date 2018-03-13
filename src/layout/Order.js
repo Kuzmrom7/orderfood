@@ -29,9 +29,7 @@ class Order extends Component {
     return this.state.selected.indexOf(index) !== -1;
   };
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
 
   handleRowSelection = (selectedRows) => {
@@ -42,7 +40,6 @@ class Order extends Component {
 
   render() {
 
-    console.log(this.props.socket);
     return (
       <div>
         <Toolbar>

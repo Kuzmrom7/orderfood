@@ -10,6 +10,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {blue100, blue700, blueGrey500} from 'material-ui/styles/colors';
 import './App.css';
 import socketIOClient from "socket.io-client";
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -29,6 +31,7 @@ class App extends Component {
 
     this.state = {
       pending: true,
+      open: false
     };
   }
 
@@ -44,8 +47,21 @@ class App extends Component {
       .catch(() => this.props.history.push("/signin"))
   }
 
+
+  componentWillReceiveProps(newProps) {
+    const {name_user} = newProps.socket;
+    if (this.props.socket !== newProps.socket) {
+
+      NotificationManager.success(`Пользователь ${name_user} сделал заказ`, 'Новый заказ', 3000);
+      this.setState({open: true})
+    }
+
+  }
+
+
   render() {
     if (this.state.pending) return (<Preloader/>);
+    console.log(this.state.response);
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="wrapper">
@@ -54,6 +70,7 @@ class App extends Component {
             <Header {...this.props}/>
             <Main/>
           </div>
+          <NotificationContainer/>
         </div>
       </MuiThemeProvider>
     );
@@ -62,7 +79,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
   account: state.account,
-  place: state.place
+  place: state.place,
+  socket: state.socket
 });
 
 export default connect(mapStateToProps)(App)
