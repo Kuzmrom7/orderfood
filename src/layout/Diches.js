@@ -6,6 +6,7 @@ import CardDishList from "../components/Card/CardDishList";
 import {connect} from "react-redux";
 import {Tab, Tabs} from "material-ui";
 import {DishTableList} from "../containers/DishTableList";
+import Preloader from "../components/Preloader";
 
 
 class Diches extends Component {
@@ -37,7 +38,7 @@ class Diches extends Component {
       this.props.dispatch(Dish.List(this.props.place.id)),
       this.props.dispatch(Menu.List(this.props.place.id))
     ])
-      .then(() => "")
+      .then(() => this.setState({pending: false}))
 
   }
 
@@ -58,7 +59,7 @@ class Diches extends Component {
   };
 
   render() {
-
+    if (this.state.pending) return (<Preloader/>);
     return (
       <div>
         <div className="content">

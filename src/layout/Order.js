@@ -29,7 +29,9 @@ class Order extends Component {
     return this.state.selected.indexOf(index) !== -1;
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+
+  }
 
 
   handleRowSelection = (selectedRows) => {
