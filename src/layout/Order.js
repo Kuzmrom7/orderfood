@@ -8,7 +8,6 @@ import {Card, IconButton, IconMenu, RaisedButton, ToolbarGroup, ToolbarSeparator
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn,} from 'material-ui/Table';
 import {Toolbar} from "material-ui/Toolbar/index";
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import socketIOClient from "socket.io-client";
 import {connect} from "react-redux";
 
 
@@ -21,8 +20,8 @@ class Order extends Component {
       pending: true,
       selected: [1],
       response: false,
-      push : 1,
-      endpoint:  process.env.REACT_APP_NODEMON
+      push: 1,
+      endpoint: process.env.REACT_APP_NODEMON
     };
   }
 
@@ -30,11 +29,7 @@ class Order extends Component {
     return this.state.selected.indexOf(index) !== -1;
   };
 
-  componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on(this.props.place.id, data => this.setState({ response: data, }));
-  }
+  componentDidMount() {}
 
 
   handleRowSelection = (selectedRows) => {
@@ -44,8 +39,8 @@ class Order extends Component {
   };
 
   render() {
-    const { response } = this.state;
 
+    console.log(this.props.socket);
     return (
       <div>
         <Toolbar>
@@ -88,17 +83,14 @@ class Order extends Component {
                 </TableHeader>
                 <TableBody>
                   <TableRow selected={this.isSelected(0)}>
-                    {response
+                    {/*    {response
                       ?
                      <div>
                        <TableRowColumn>{response.id_place}</TableRowColumn>
                        <TableRowColumn>{response.id_address}</TableRowColumn>
                        <TableRowColumn>{response.name_user}</TableRowColumn>
                      </div>
-                      : <p>Loading...</p>}
-                   {/* <TableRowColumn>{response.id_place}</TableRowColumn>
-                    <TableRowColumn>{response.id_address}</TableRowColumn>
-                    <TableRowColumn>{response.name_user}</TableRowColumn>*/}
+                      : <p>Loading...</p>}*/}
                   </TableRow>
                   <TableRow selected={this.isSelected(1)}>
                     <TableRowColumn>2</TableRowColumn>
@@ -130,7 +122,8 @@ class Order extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    place: state.place
+    place: state.place,
+    socket: state.socket
   }
 };
 

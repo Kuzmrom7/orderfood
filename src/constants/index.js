@@ -83,3 +83,7 @@ export const ADRRESS_LIST_SUCCESS = 'ADRRESS_LIST_SUCCESS';
 export const ADRRESS_LIST_FAILURE = 'ADRRESS_LIST_FAILURE';
 
 
+//**************SOCKET*****************//
+
+export const SOCKET_CONNECT =  'SOCKET_CONNECT';
+export const SOCKET_DISCONNECT =  'SOCKET_DISCONNECT';

@@ -14,6 +14,7 @@ function get() {
   reducers["personal"] = reducer.personal;
   reducers["type_personal"] = reducer.type_personal;
   reducers["adrress"] = reducer.adrress;
+  reducers["socket"] = reducer.socket;
 
   return reducers;
 }

@@ -3,12 +3,13 @@ import Header from './layout/Header';
 import Sidebar from './layout/Sidebar';
 import Main from "./main";
 import Preloader from "./components/Preloader";
-import {Place} from "./actions";
+import {Place, Socket} from "./actions";
 import {connect} from "react-redux";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {blue100, blue700, blueGrey500} from 'material-ui/styles/colors';
 import './App.css';
+import socketIOClient from "socket.io-client";
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -36,6 +37,10 @@ class App extends Component {
       this.props.dispatch(Place.Fetch()),
     ])
       .then(() => this.setState({pending: false}))
+      .then(() => {
+        const socket = socketIOClient(process.env.REACT_APP_NODEMON);
+        this.props.dispatch(Socket.SocketAdd(socket, this.props.place.id))
+      })
       .catch(() => this.props.history.push("/signin"))
   }
 
