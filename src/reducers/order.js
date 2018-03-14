@@ -25,7 +25,7 @@ const initialState = stateExtension({});
 export const menu = createReducer(initialState, {
     [ORDER_LIST_SUCCESS]: (state, payload) => {
       let newState = initialState;
-      Object.keys(payload).forEach(function (key) {
+      Object.keys(payload.reverse()).forEach(function (key) {
         newState[key] = (payload[key]);
       });
       return newState;

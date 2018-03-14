@@ -8,12 +8,14 @@ class OrdersTable extends Component {
 
     this.state = {
       pending: true,
+      isNew : '',
     };
 
   }
 
   render() {
     const {order} = this.props;
+    let isNew = [];
     return (
       <Table onRowSelection={this.handleRowSelection}>
         <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
@@ -29,10 +31,14 @@ class OrdersTable extends Component {
           {
             Object.keys(order).map((id,index) => {
               const orderI  = order[id];
+              let date =  new Date (orderI.date);
+              let dateNow = new Date(Date.now());
+              if (  (dateNow - date) / (1000*60 ) <= 5) {
+                isNew[id] = true}
               return (
-                <TableRow key={index}>
-                  <TableRowColumn>{orderI._id}</TableRowColumn>
-                  <TableRowColumn>{orderI.date}</TableRowColumn>
+                <TableRow key={index} hovered = {isNew[id]}>
+                  <TableRowColumn>{isNew[id] ? <span className="text-danger">[NEW] </span> : ""}{orderI._id}</TableRowColumn>
+                  <TableRowColumn>{date.getHours()}:{date.getMinutes()}:{date.getSeconds()}</TableRowColumn>
                   <TableRowColumn>Не обработан</TableRowColumn>
                   <TableRowColumn>Тут будет кнопка</TableRowColumn>
                 </TableRow>
