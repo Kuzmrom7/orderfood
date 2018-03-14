@@ -3,7 +3,7 @@ import Header from './layout/Header';
 import Sidebar from './layout/Sidebar';
 import Main from "./main";
 import Preloader from "./components/Preloader";
-import {Place, Socket} from "./actions";
+import {Orders, Place, Socket} from "./actions";
 import {connect} from "react-redux";
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -52,8 +52,11 @@ class App extends Component {
     const {name_user} = newProps.socket;
     if (this.props.socket !== newProps.socket) {
 
-      NotificationManager.success(`Пользователь ${name_user} сделал заказ`, 'Новый заказ', 7000);
-      this.setState({open: true})
+      NotificationManager.success(`Пользователь ${name_user} сделал заказ`, 'Новый заказ', 6000);
+      Promise.all([
+        this.props.dispatch(Orders.List(this.props.place.id)),
+      ])
+        .then(() => this.setState({pending: false}))
     }
 
   }

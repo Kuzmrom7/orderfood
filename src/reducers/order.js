@@ -26,7 +26,7 @@ export const menu = createReducer(initialState, {
     [ORDER_LIST_SUCCESS]: (state, payload) => {
       let newState = initialState;
       Object.keys(payload).forEach(function (key) {
-        newState[payload[key]._id] = (payload[key]);
+        newState[key] = (payload[key]);
       });
       return newState;
     },
