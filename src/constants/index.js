@@ -82,6 +82,14 @@ export const ADRRESS_CREATE_FAILURE = 'ADRRESS_CREATE_FAILURE';
 export const ADRRESS_LIST_SUCCESS = 'ADRRESS_LIST_SUCCESS';
 export const ADRRESS_LIST_FAILURE = 'ADRRESS_LIST_FAILURE';
 
+//**************ORDER*****************//
+
+export const ORDER_LIST_SUCCESS = 'ORDER_LIST_SUCCESS';
+export const ORDER_LIST_FAILURE = 'ORDER_LIST_FAILURE';
+
+export const ORDER_FETCH_SUCCESS = 'ORDER_FETCH_SUCCESS';
+export const ORDER_FETCH_FAILURE = 'ORDER_FETCH_FAILURE';
+
 
 //**************SOCKET*****************//
 

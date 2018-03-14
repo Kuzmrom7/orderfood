@@ -4,8 +4,10 @@ import Place from './place';
 import Menu from './menu';
 import Dish from './dish';
 import Personal from './personal';
-import Adrress from './adrress';
+import Adrress from './adrress'
+import Order from './order';
+
 
 export {
-  Account, Session, Place, Menu, Dish, Personal,Adrress
+  Account, Session, Place, Menu, Dish, Personal,Adrress,Order
 }

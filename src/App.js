@@ -52,7 +52,7 @@ class App extends Component {
     const {name_user} = newProps.socket;
     if (this.props.socket !== newProps.socket) {
 
-      NotificationManager.success(`Пользователь ${name_user} сделал заказ`, 'Новый заказ', 3000);
+      NotificationManager.success(`Пользователь ${name_user} сделал заказ`, 'Новый заказ', 7000);
       this.setState({open: true})
     }
 

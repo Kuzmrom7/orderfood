@@ -9,6 +9,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import {Toolbar} from "material-ui/Toolbar/index";
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import {connect} from "react-redux";
+import {Orders} from "../actions";
 
 
 class Order extends Component {
@@ -29,7 +30,12 @@ class Order extends Component {
     return this.state.selected.indexOf(index) !== -1;
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    Promise.all([
+      this.props.dispatch(Orders.List(this.props.place.id)),
+    ])
+      .then(() => this.setState({pending: false}))
+  }
 
 
   handleRowSelection = (selectedRows) => {
@@ -39,7 +45,7 @@ class Order extends Component {
   };
 
   render() {
-
+    console.log(this.props.order, "ORDER");
     return (
       <div>
         <Toolbar>
@@ -122,7 +128,8 @@ class Order extends Component {
 const mapStateToProps = (state) => {
   return {
     place: state.place,
-    socket: state.socket
+    socket: state.socket,
+    order : state.order
   }
 };
 
