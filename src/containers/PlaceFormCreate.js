@@ -4,6 +4,7 @@ import Preloader from "../components/Preloader";
 
 import Place from '../actions/place'
 import {connect} from "react-redux";
+import {Paper} from "material-ui";
 
 class PlaceFormCreate extends Component {
 
@@ -70,33 +71,35 @@ class PlaceFormCreate extends Component {
     const {place} = this.props;
 
     return (
-      <form className="form-signin" onSubmit={this.handleSubmit}>
-        <div className="container">
-          <a className="simple-text logo-normal">
+      <Paper zDepth={4} className="p-2">
+        <form className="form-signin m-4" onSubmit={this.handleSubmit}>
+          <div className="container">
+            <a className="simple-text logo-normal">
 
-          </a>
-        </div>
-        <h2 className="form-signin-heading">Добавьте свое заведение</h2>
-        <input type="username" className="form-control"
-               placeholder="Название"
-               onChange={this.handleChangeUsername}
-               value={this.state.username}
-        />
-        <br/>
-        <label>Выберите тип</label>
-        <select className="form-control text-capitalize" id="sel1" onClick={this.handleChangeOption}>
-          <option disabled selected>Выберите тип заведения</option>
-          {Object.keys(place).map((id, index) => {
-              const p = place[id];
-              return (
-                <option key={index} className="text-capitalize" name={p.idtypeplace}> {p.nametypeplace} </option>
-              )
-            }
-          )}
-        </select>
-        <br/>
-        <button type="submit" className="btn btn-lg btn-success">Добавить</button>
-      </form>
+            </a>
+          </div>
+          <h3 className="form-signin-heading">Добавьте свое заведение</h3>
+          <input type="username" className="form-control"
+                 placeholder="Название"
+                 onChange={this.handleChangeUsername}
+                 value={this.state.username}
+          />
+          <br/>
+          <label>Выберите тип</label>
+          <select className="form-control text-capitalize" id="sel1" onClick={this.handleChangeOption}>
+            <option disabled selected>Выберите тип заведения</option>
+            {Object.keys(place).map((id, index) => {
+                const p = place[id];
+                return (
+                  <option key={index} className="text-capitalize" name={p.idtypeplace}> {p.nametypeplace} </option>
+                )
+              }
+            )}
+          </select>
+          <br/>
+          <button type="submit" className="btn btn-lg btn-success">Добавить</button>
+        </form>
+      </Paper>
 
     );
   }

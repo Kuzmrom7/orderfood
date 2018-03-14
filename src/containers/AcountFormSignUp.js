@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
+import {Paper} from "material-ui";
 
 class AcountFormSignUp extends Component {
   handleSubmit = (e) => {
@@ -44,31 +45,32 @@ class AcountFormSignUp extends Component {
 
   render() {
     return (
-      <form className="form-signin" onSubmit={this.handleSubmit}>
-        <div className="container">
-          <a className="simple-text logo-normal">
-            <h1 className="form-signin-heading">Регистрация</h1>
-          </a>
-        </div>
-        <input type="username" className="form-control"
-               placeholder="Username"
-               onChange={this.handleChangeUsername}
-               value={this.state.username}
-        />
-        <br/>
-        <input type="email" className="form-control"
-               placeholder="Email address"
-               onChange={this.handleChangeEmail}
-               value={this.state.email}/>
-        <br/>
-        <input type="password" className="form-control"
-               placeholder="Password"
-               onChange={this.handleChangePassword}
-               value={this.state.password}/>
-        <br/>
-        <button type="submit" className="btn btn-lg btn-success">Зарегистрироваться</button>
-      </form>
+      <Paper zDepth={4} className="p-2">
+        <form className="form-signin m-4" onSubmit={this.handleSubmit}>
 
+            <a className="simple-text logo-normal">
+              <h1 className="form-signin-heading">Регистрация</h1>
+            </a>
+
+          <input type="username" className="form-control"
+                 placeholder="Username"
+                 onChange={this.handleChangeUsername}
+                 value={this.state.username}
+          />
+          <br/>
+          <input type="email" className="form-control"
+                 placeholder="Email address"
+                 onChange={this.handleChangeEmail}
+                 value={this.state.email}/>
+          <br/>
+          <input type="password" className="form-control"
+                 placeholder="Password"
+                 onChange={this.handleChangePassword}
+                 value={this.state.password}/>
+          <br/>
+          <button type="submit" className="btn btn-lg btn-success center-block">Зарегистрироваться</button>
+        </form>
+      </Paper>
     );
   }
 }
