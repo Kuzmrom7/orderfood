@@ -42,6 +42,14 @@ class Order extends Component {
     });
   };
 
+  handleClick = () => {
+    Promise.all([
+      this.props.dispatch(Orders.List(this.props.place.id)),
+    ])
+      .then(() => this.setState({pending: false}))
+
+  };
+
   render() {
     if (this.state.pending) return (<Preloader/>);
 
@@ -67,7 +75,7 @@ class Order extends Component {
           </ToolbarGroup>
           <ToolbarGroup>
             <ToolbarSeparator/>
-            <RaisedButton label="Обновить" primary={true}/>
+            <RaisedButton label="Обновить" onClick={this.handleClick} primary={true}/>
           </ToolbarGroup>
         </Toolbar>
 
