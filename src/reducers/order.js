@@ -1,5 +1,5 @@
 import {createReducer} from "../utils";
-import {ORDER_LIST_FAILURE, ORDER_LIST_SUCCESS} from "../constants";
+import {ORDER_LIST_FAILURE, ORDER_LIST_SUCCESS,ORDER_FETCH_SUCCESS,ORDER_FETCH_FAILURE} from "../constants";
 
 
 const stateExtension = (state) => {
@@ -26,11 +26,17 @@ export const menu = createReducer(initialState, {
     [ORDER_LIST_SUCCESS]: (state, payload) => {
       let newState = initialState;
       Object.keys(payload.reverse()).forEach(function (key) {
-        newState[key] = (payload[key]);
+        newState[payload[key]._id] = (payload[key]);
       });
       return newState;
     },
     [ORDER_LIST_FAILURE]: (state) => {
+      return Object.assign({}, state);
+    },
+    [ORDER_FETCH_SUCCESS]: (state) => {
+      return Object.assign({}, state);
+    },
+    [ORDER_FETCH_FAILURE]: (state) => {
       return Object.assign({}, state);
     },
   },
