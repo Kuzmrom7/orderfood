@@ -45,7 +45,6 @@ class Order extends Component {
   render() {
     if (this.state.pending) return (<Preloader/>);
 
-    console.log(this.props.order, "ORDER");
     return (
       <div>
         <Toolbar>
