@@ -97,7 +97,7 @@ class OrdersTable extends Component {
 
         </Table>
         <Dialog
-          title={`Заказ ${this.state.order_id}`}
+          title={`Заказ №${this.state.order_id}`}
           actions={actions}
           modal={false}
           open={this.state.open}
