@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import Preloader from "../components/Preloader";
 import Order from "../actions/order";
-import {Adrress} from "../actions";
-import {Card, Divider, List, ListItem} from "material-ui";
+import {Adrress, Orders} from "../actions";
+import {Card, Divider, List, ListItem, MenuItem, RaisedButton, SelectField} from "material-ui";
 
 
 class OrderItem extends Component {
@@ -12,45 +12,55 @@ class OrderItem extends Component {
     super(props);
     this.state = {
       pending: true,
-
+      value: 0,
+      dis: false
     }
   }
-
-  /*  handleSubmit = (nameDish, nameMenu) => {
-      let dispatch = this.props.dispatch;
-      let idMenu = window.location.pathname.slice(6);
-      this.setState({pending: true});
-      return dispatch(Menu.Add(nameDish, nameMenu))
-        .then(() => this.props.dispatch(Menu.Menudish(idMenu, this.props.place.id)))
-        .then(() => this.setState({pending: false}))
-        .then(() => this.setState({openAdd: true}))
-    };
-
-    handleRemove = (idDish) => {
-      let dispatch = this.props.dispatch;
-      let idMenu = window.location.pathname.slice(6);
-      return dispatch(Menu.RemoveDish(idMenu, idDish))
-        .then(() => this.props.dispatch(Menu.Menudish(idMenu, this.props.place.id)))
-        .then(() => this.setState({open: true}))
-    };*/
-
 
   componentDidMount() {
     Promise.all([
       this.props.dispatch(Order.Fetch(this.props.id)),
       this.props.dispatch(Adrress.List())
     ])
-      .then(() => this.setState({pending: false}))
-    /*    const hash = window.location.pathname.slice(6);
-        let name = hash;
+      .then(() => {
 
-        Promise.all([
-          this.props.dispatch(Menu.Menudish(name, this.props.place.id)),
-          this.props.dispatch(Dish.List(this.props.place.id)),
-          this.props.dispatch(Dish.ListType())
-        ])
-          .then(() => this.setState({pending: false}))*/
+        const order = this.props.order[this.props.id];
+
+        if (order.status === "PROCCESING") this.setState({value: 1});
+        if (order.status === "SUCCESS") this.setState({value: 2, dis: true});
+        if (order.status === "CANCEL") this.setState({value: 3, dis: true});
+      })
+      .then(() => this.setState({pending: false}))
   }
+
+  handleChange = (event, index, value) => {
+    this.setState({value});
+  };
+
+  handleSubmit = () => {
+    let dispatch = this.props.dispatch;
+    this.setState({pending: true});
+
+    let status;
+
+    switch (this.state.value) {
+      case 2 :
+        status = "SUCCESS";
+        break;
+      case 3:
+        status = "CANCEL";
+        break;
+      default :
+        status = "PROCCESING";
+        break;
+    }
+
+
+    return dispatch(Orders.StatusUpdate(this.props.id, status))
+      .then(() => this.props.dispatch(Orders.List(this.props.place.id)))
+      .then(() => this.setState({pending: false}))
+  };
+
 
   render() {
     if (this.state.pending) return (<Preloader/>);
@@ -70,27 +80,9 @@ class OrderItem extends Component {
 
     return (
       <div>
-        <div className="col-md-12">
-          <div className="col-md-6">
-            <Card>
-              <div className="p-2">
-                <h5>Адрес: {address_name}</h5>
-                <h5>Время заказа: {order.date}</h5>
-              </div>
-            </Card>
-          </div>
-          <div className="col-md-6">
-            <Card>
-              <div className="p-2">
-                <h5>Имя клиента: {order.name_user}</h5>
-                <h5>Телефон: {order.phone}</h5>
-              </div>
-            </Card>
-          </div>
-        </div>
-        <div className="col-md-12 mt-4">
+        <div className="col-md-12 mt-1">
           <Card>
-            <div className="p-2">
+            <div className="p-1">
               <h3>Сожержание заказа: </h3>
 
               <List>
@@ -111,10 +103,43 @@ class OrderItem extends Component {
               <h2 className="text-center">Итого : {order.total}</h2>
             </div>
           </Card>
-
         </div>
 
-        <hr/>
+        <div className="col-md-12 mt-2">
+
+
+          <div className="col-md-6">
+            <h3>О заказе: </h3>
+            <div className="">
+              <h6>Адрес: {address_name}</h6>
+              <h6>Время заказа: {order.date}</h6>
+              <h6>Имя клиента: {order.name_user}</h6>
+              <h6>Телефон: {order.phone}</h6>
+            </div>
+          </div>
+
+          <div className="col-md-6">
+            {
+              order.status === "PROCCESING" ?
+                <span className="text-danger">Обработайте заказ!</span> : ""
+            }
+            <SelectField
+              floatingLabelText="Статус"
+              value={this.state.value}
+              onChange={this.handleChange}
+              disabled={this.state.dis}
+            >
+              <MenuItem value={1} primaryText="Ожидание"/>
+              <MenuItem value={2} primaryText="Обработан"/>
+              <MenuItem value={4} primaryText="Отмена заказ"/>
+
+            </SelectField>
+
+            {!this.state.dis ? <RaisedButton label="ОК" onClick={this.handleSubmit}/> : ""}
+          </div>
+
+
+        </div>
 
 
       </div>
@@ -124,6 +149,7 @@ class OrderItem extends Component {
 
 const mapStateToProps = (state) => ({
   order: state.order,
+  place: state.place,
   adrress: state.adrress
 
 });

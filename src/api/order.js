@@ -14,6 +14,11 @@ class Order {
     return requestJSON("GET", uri, null, true);
   }
 
+  static StatusUpdate(id_order,status) {
+    let bodyS = {status : status};
+    let uri = [api_host, "order", id_order].join("/");
+    return requestJSON("PUT", uri, bodyS, false);
+  }
 
 }
 
