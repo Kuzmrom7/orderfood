@@ -8,6 +8,7 @@ import PlaceFormCreate from "../containers/PlaceFormCreate";
 import {blue100, blue700, blueGrey500} from "material-ui/styles/colors";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {NotificationContainer, NotificationManager} from "react-notifications";
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -28,7 +29,7 @@ class PageSignUp extends Component {
     let dispatch = this.props.dispatch;
     return dispatch(Account.Create(username, email, password))
       .then(() => this.setState({createplace: true}))
-      .catch(() => "")
+      .catch(() => NotificationManager.error(`Проверьте, правильно ли вы ввели данные`, 'Упс..Ошибка', 6000))
   };
 
   handlerPlaceCreate = (name, typesplace) => {
@@ -67,6 +68,7 @@ class PageSignUp extends Component {
               }
             </div>
           </div>
+          <NotificationContainer/>
         </div>
       </MuiThemeProvider>
     );

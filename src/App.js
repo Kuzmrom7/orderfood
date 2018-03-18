@@ -52,7 +52,7 @@ class App extends Component {
     const {name_user} = newProps.socket;
     if (this.props.socket !== newProps.socket) {
 
-      NotificationManager.success(`Пользователь ${name_user} сделал заказ`, 'Новый заказ', 6000);
+      NotificationManager.success(`Пользователь ${name_user} сделал заказ`, 'Новый заказ', 4000);
       Promise.all([
         this.props.dispatch(Orders.List(this.props.place.id)),
       ])

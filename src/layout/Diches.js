@@ -69,11 +69,11 @@ class Diches extends Component {
                 <DishTableList dish={this.props.dish} menu = {this.props.menu} submit = {this.handleSubmitM} rm = {this.handleRemove}/>
               </div>
             </Tab>
-            <Tab label="Карточки">
+{/*            <Tab label="Карточки">
               <div>
                 <CardDishList/>
               </div>
-            </Tab>
+            </Tab>*/}
             <Tab label="Создать новое">
               <div>
                 <CardDishCreate submit={this.handleSubmit}/>

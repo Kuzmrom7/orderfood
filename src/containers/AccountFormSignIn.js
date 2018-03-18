@@ -47,7 +47,7 @@ class AccountFormSignIn extends Component {
               <h1 className="form-signin-heading"><img src={logo} width="60" alt="logo_image"/>rderFood</h1>
             </a>
           </div>
-          <h3 className="form-signin-heading">Пожалуйста войдите</h3>
+          <h3 className="form-signin-heading">Пожалуйста, войдите</h3>
           <input type="username" className="form-control"
                  placeholder="Username"
                  onChange={this.handleChangeUsername}

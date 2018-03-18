@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {blue100, blue700, blueGrey500} from "material-ui/styles/colors";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {NotificationContainer, NotificationManager} from "react-notifications";
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -24,7 +25,7 @@ class PageSignIn extends Component {
     let dispatch = this.props.dispatch;
     return dispatch(Session.Create(login, password))
       .then(() => this.props.history.push("/"))
-      .catch(() => "")
+      .catch(() => NotificationManager.error(`Проверьте, правильно ли Вы ввели данные`, 'Упс..Ошибка', 4000))
 
   };
 
@@ -45,6 +46,7 @@ class PageSignIn extends Component {
               <AccountFormSignIn submit={this.handlerSessionCreate}/>
             </div>
           </div>
+          <NotificationContainer/>
         </div>
       </MuiThemeProvider>
     );
