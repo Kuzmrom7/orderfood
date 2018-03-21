@@ -74,7 +74,7 @@ class OrdersTable extends Component {
                 const orderI = order[id];
                 let date = new Date(orderI.date);
                 let dateNow = new Date(Date.now());
-                if ((dateNow - date) / (1000 * 60) <= 5 || orderI.status === "PROCCESING") {
+                if ((dateNow - date) / (1000 * 60) <= 5 || orderI.status === "PROCESSING") {
                   isNew[id] = true
                 }
                 return (

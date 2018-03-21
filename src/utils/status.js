@@ -2,7 +2,7 @@ import React from "react";
 
 export const Status = (status) => {
   switch (status) {
-    case "PROCCESING": {
+    case "PROCESSING": {
 
       return (<span className="text-danger">ОЖИДАЕТ</span>);
 
