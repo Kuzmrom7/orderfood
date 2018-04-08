@@ -29,7 +29,6 @@ const Main = () => {
       <Authenticated exact path="/personal" component={Personals}/>
 
       <Authenticated exact path='/menu/:id' component={MenuItem}/>
-      {/* <Redirect from="/" to="/signin"/>*/}
 
 
     </Switch>

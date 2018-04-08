@@ -5,6 +5,17 @@ import {RaisedButton} from "material-ui";
 
 
 export class AddDish extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      nameDish: "",
+      idMenu: this.props.menuid,
+      pending: true
+    };
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
 
@@ -24,16 +35,6 @@ export class AddDish extends Component {
     e.preventDefault();
     this.setState({nameDish: e.target.value});
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      nameDish: "",
-      idMenu: this.props.menuid,
-      pending: true
-    };
-  }
 
   componentDidMount() {
     Promise.all([
